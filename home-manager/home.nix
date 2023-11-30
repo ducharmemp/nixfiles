@@ -76,6 +76,7 @@
     };
 
     aliases = {
+      pu = "!git push --set-upstream origin $(git branch --show-current)";
       st = "status";
       aa = "add --all";
       co = "checkout";
@@ -98,6 +99,11 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+
+  programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
   };
 
   # Nicely reload system units when changing configs
