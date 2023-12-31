@@ -56,6 +56,9 @@
     beam.packages.erlangR26.elixir_1_15
     meslo-lgs-nf
     htop
+    nixos-generators
+    nomad
+    nomad-pack
   ];
 
   fonts.fontconfig.enable = true;
