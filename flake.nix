@@ -14,6 +14,10 @@
     nixos-wsl.url = "github:nix-community/NixOS-WSL/23.5.5.2";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Darwin
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
@@ -27,6 +31,7 @@
     nixpkgs,
     home-manager,
     unstable,
+    nix-darwin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -38,7 +43,15 @@
       crasher = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
+        modules = [./nixos/crasher/configuration.nix];
+      };
+    };
+
+    darwinConfigurations = {
+      "CN-0082" = nix-darwin.lib.darwinSystem {
+        specialArgs = {inherit inputs outputs;};
+        # > Our main nixos configuration file <
+        modules = [./nixos/workLaptop/configuration.nix];
       };
     };
 
@@ -50,7 +63,14 @@
         pkgs = unstable.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
-        modules = [./home-manager/home.nix];
+        modules = [./home-manager/crasher/home.nix];
+      };
+
+      "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
+        pkgs = unstable.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        # > Our main home-manager configuration file <
+        modules = [./home-manager/workLaptop/home.nix];
       };
     };
   };
