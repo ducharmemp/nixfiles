@@ -2,6 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -17,24 +18,16 @@
   ];
 
   nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
     # Configure your nixpkgs instance
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
     };
   };
 
@@ -46,15 +39,28 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [
-    fontconfig
-    nerdfonts
-    fzf
-    ripgrep
-    beam.interpreters.erlangR26
-    beam.packages.erlangR26.elixir_1_15
-    meslo-lgs-nf
-    htop
+  home.packages = [
+    pkgs.fontconfig
+    pkgs.nerdfonts
+    pkgs.fzf
+    pkgs.ripgrep
+    pkgs.beam.interpreters.erlangR26
+    pkgs.beam.packages.erlangR26.elixir_1_15
+    pkgs.meslo-lgs-nf
+    pkgs.htop
+    pkgs.nodejs_18
+    (pkgs.yarn.override {
+      nodejs = pkgs.nodejs_18;
+    })
+    pkgs."ruby-3.2.3"
+    pkgs.postgresql_15
+    pkgs.awscli2
+    pkgs.libcxx
+    pkgs.libxml2
+    pkgs.libxslt
+    pkgs.openssl
+    pkgs.freetds
+    pkgs.k9s
   ];
 
   fonts.fontconfig.enable = true;
@@ -86,9 +92,19 @@
 
   programs.fish = {
     enable = true;
+    shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
     plugins = [
         { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
-        { name = "tide"; inherit (pkgs.fishPlugins.tide) src; }
+        {
+          name = "tide";
+          src = pkgs.fetchFromGitHub {
+            owner = "IlanCosman";
+            repo = "tide";
+            rev = "51b0f37307c7bcfa38089c2eddaad0bbb2e20c64";
+            sha256 = "cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
+          };
+        }
+        { name = "bass"; inherit (pkgs.fishPlugins.bass) src; }
     ];
   };
 

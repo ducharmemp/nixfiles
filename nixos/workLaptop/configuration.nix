@@ -60,12 +60,12 @@
     # Enable flakes and new 'nix' command
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
-    auto-optimise-store = true;
+    # See https://github.com/NixOS/nix/issues/7273#issuecomment-1310213986 for reasoning
+    auto-optimise-store = false;
   };
 
   # FIXME: Add the rest of your current configuration
   environment.systemPackages = with pkgs; [
-    git
     vim
     wget
     curl

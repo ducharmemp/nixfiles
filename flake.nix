@@ -18,6 +18,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
+
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
 
@@ -32,6 +34,7 @@
     home-manager,
     unstable,
     nix-darwin,
+    nixpkgs-ruby,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -67,7 +70,12 @@
       };
 
       "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
-        pkgs = unstable.legacyPackages.x86_64-darwin; # Home-manager requires 'pkgs' instance
+        pkgs = import unstable {
+          system = "x86_64-darwin";
+          overlays = [
+            nixpkgs-ruby.overlays.default
+          ];
+        };
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [./home-manager/workLaptop/home.nix];
