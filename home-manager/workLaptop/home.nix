@@ -52,7 +52,7 @@
     (pkgs.yarn.override {
       nodejs = pkgs.nodejs_18;
     })
-    pkgs."ruby-3.2.3"
+    pkgs."ruby-3.0.6"
     pkgs.postgresql_15
     pkgs.awscli2
     pkgs.libcxx
@@ -61,6 +61,7 @@
     pkgs.openssl
     pkgs.freetds
     pkgs.k9s
+    pkgs.babelfish
   ];
 
   fonts.fontconfig.enable = true;
@@ -92,7 +93,11 @@
 
   programs.fish = {
     enable = true;
-    shellInit = ''for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end'';
+    shellInit = ''
+      set fish_greeting
+      for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end
+      source ~/code/creditninja-devbox/aliases.fish
+    '';
     plugins = [
         { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
         {
@@ -104,7 +109,6 @@
             sha256 = "cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
           };
         }
-        { name = "bass"; inherit (pkgs.fishPlugins.bass) src; }
     ];
   };
 
