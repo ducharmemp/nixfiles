@@ -107,7 +107,13 @@
       co = "checkout";
       cane = "commit --amend --no-edit";
       cam = "commit --amend --message";
+      fp = "push --force-with-lease";
     };
+
+    ignores = [
+      "*.iml"
+      ".DS_Store"
+    ];
   };
 
   programs.fish = {
