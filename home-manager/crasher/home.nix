@@ -2,6 +2,7 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -14,21 +15,18 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ../common/git.nix
+    ../common/fish.nix
+    ../common/packages.nix
     "${fetchTarball { url = "https://github.com/msteen/nixos-vscode-server/tarball/master"; sha256 = "0sz8njfxn5bw89n6xhlzsbxkafb6qmnszj4qxy2w0hw2mgmjp829"; }}/modules/vscode-server/home.nix"
   ];
 
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
     ];
     # Configure your nixpkgs instance
     config = {
@@ -39,14 +37,11 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "ducharmemp";
     homeDirectory = "/home/ducharmemp";
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
     fontconfig
     nerdfonts
@@ -58,43 +53,14 @@
     htop
     nixos-generators
     nomad
-    nomad-pack
+    nomad-pack-overridden
+    zellij
   ];
 
   fonts.fontconfig.enable = true;
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-
-    userName = "Matthew DuCharme";
-    userEmail = "ducharmemp@gmail.com";
-
-    delta = {
-      enable = true;
-      options = {
-        line-numbers = true;
-      };
-    };
-
-    aliases = {
-      pu = "!git push --set-upstream origin $(git branch --show-current)";
-      st = "status";
-      aa = "add --all";
-      co = "checkout";
-      cane = "commit --amend --no-edit";
-      cam = "commit --amend --message";
-    };
-  };
-
-  programs.fish = {
-    enable = true;
-    plugins = [
-        { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
-        { name = "tide"; inherit (pkgs.fishPlugins.tide) src; }
-    ];
-  };
 
   programs.neovim = {
     enable = true;
@@ -102,6 +68,10 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+
+  programs.helix = {
+    enable = true;
   };
 
   programs.direnv = {

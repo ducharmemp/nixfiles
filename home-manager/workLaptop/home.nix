@@ -15,6 +15,9 @@
 
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
+    ../common/git.nix
+    ../common/fish.nix
+    ../common/packages.nix
   ];
 
   nixpkgs = {
@@ -71,71 +74,6 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-
-    userName = "Matthew DuCharme";
-    userEmail = "ducharmemp@gmail.com";
-
-    delta = {
-      enable = true;
-      options = {
-        line-numbers = true;
-      };
-    };
-
-    extraConfig = {
-      pull = { ff = "only"; };
-      merge = { conflictstyle = "zdiff3"; };
-      rebase = { autosquash = true; autostash = true; };
-      rerere = { enabled = true; };
-      help = { autocorrect = 10; };
-      diff = { algorithm = "histogram"; };
-      url."git@github.com:".insteadOf = "https://github.com/";
-      transfer.fsckobjects = true;
-      fetch.fsckobjects = true;
-      receive.fsckObjects = true;
-      maintenance.auto = false;
-      maintenance.strategy = "incremental";
-    };
-
-    aliases = {
-      aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'";
-      pu = "!git push --set-upstream origin $(git branch --show-current)";
-      st = "status";
-      aa = "add --all";
-      co = "checkout";
-      cane = "commit --amend --no-edit";
-      cam = "commit --amend --message";
-      fp = "push --force-with-lease";
-    };
-
-    ignores = [
-      "*.iml"
-      ".DS_Store"
-    ];
-  };
-
-  programs.fish = {
-    enable = true;
-    shellInit = ''
-      set fish_greeting
-      for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end
-      source ~/code/creditninja-devbox/aliases.fish
-    '';
-    plugins = [
-        { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
-        {
-          name = "tide";
-          src = pkgs.fetchFromGitHub {
-            owner = "IlanCosman";
-            repo = "tide";
-            rev = "51b0f37307c7bcfa38089c2eddaad0bbb2e20c64";
-            sha256 = "cCI1FDpvajt1vVPUd/WvsjX/6BJm6X1yFPjqohmo1rI=";
-          };
-        }
-    ];
-  };
 
   programs.neovim = {
     enable = true;
