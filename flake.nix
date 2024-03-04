@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     unstable.url = "nixpkgs/nixos-unstable";
 
     # Home manager
@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "unstable";
 
     # WSL
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/23.5.5.2";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/2311.5.3";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
     # Darwin
@@ -22,10 +22,6 @@
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
-
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs = {
@@ -39,6 +35,8 @@
   } @ inputs: let
     inherit (self) outputs;
   in {
+    overlays = import ./overlays {inherit inputs outputs;};
+
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
