@@ -68,6 +68,7 @@
     pkgs.git-absorb
     pkgs.entr
     pkgs.python39
+    pkgs.terraform
   ];
 
   fonts.fontconfig.enable = true;
