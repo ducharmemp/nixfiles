@@ -19,9 +19,6 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
-
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = {

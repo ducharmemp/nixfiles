@@ -18,6 +18,8 @@
     ../common/git.nix
     ../common/fish.nix
     ../common/packages.nix
+    ../common/neovim.nix
+    ../common/zellij.nix
   ];
 
   nixpkgs = {
@@ -69,20 +71,13 @@
     pkgs.entr
     pkgs.python39
     pkgs.terraform
+    pkgs.helix
   ];
 
   fonts.fontconfig.enable = true;
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
 
   programs.direnv = {
       enable = true;
