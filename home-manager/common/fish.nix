@@ -4,7 +4,6 @@
     shellInit = ''
       set fish_greeting
       for p in (string split " " $NIX_PROFILES); fish_add_path --prepend --move $p/bin; end
-        source ~/code/creditninja-devbox/aliases.fish
     '';
     plugins = [
         { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }

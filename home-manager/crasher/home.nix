@@ -55,6 +55,7 @@
     nomad
     nomad-pack-overridden
     zellij
+    fd
   ];
 
   fonts.fontconfig.enable = true;
