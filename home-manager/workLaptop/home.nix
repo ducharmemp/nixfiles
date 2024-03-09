@@ -78,6 +78,7 @@
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
+  programs.fish.shellInit = programs.fish.shellInit + "\nsource ~/code/creditninja-devbox/aliases.fish";
 
   programs.direnv = {
       enable = true;

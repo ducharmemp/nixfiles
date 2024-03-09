@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.git = {
     enable = true;
 
@@ -36,6 +36,7 @@
       cane = "commit --amend --no-edit";
       cam = "commit --amend --message";
       fp = "push --force-with-lease";
+      fixup = "!git commit --fixup";
     };
 
     ignores = [
