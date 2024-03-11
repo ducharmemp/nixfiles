@@ -16,8 +16,8 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
     ../common/git.nix
+    ../common/neovim.nix
     ../common/fish.nix
-    ../common/packages.nix
     "${fetchTarball { url = "https://github.com/msteen/nixos-vscode-server/tarball/master"; sha256 = "0sz8njfxn5bw89n6xhlzsbxkafb6qmnszj4qxy2w0hw2mgmjp829"; }}/modules/vscode-server/home.nix"
   ];
 
@@ -56,6 +56,12 @@
     nomad-pack-overridden
     zellij
     fd
+    zig
+    clangStdenv
+    stylua
+    unzip
+    tree-sitter
+    nodejs_21
   ];
 
   fonts.fontconfig.enable = true;
@@ -79,6 +85,8 @@
       enable = true;
       nix-direnv.enable = true;
   };
+
+  programs.zoxide.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
