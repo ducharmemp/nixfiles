@@ -17,7 +17,6 @@
     # ./nvim.nix
     ../common/git.nix
     ../common/fish.nix
-    ../common/packages.nix
     ../common/neovim.nix
     ../common/zellij.nix
   ];
@@ -29,10 +28,6 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
-
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
     };
   };
 
@@ -54,16 +49,16 @@
     pkgs.meslo-lgs-nf
     pkgs.htop
     pkgs.nodejs_18
+    pkgs.openssl
     (pkgs.yarn.override {
       nodejs = pkgs.nodejs_18;
     })
-    pkgs."ruby-3.0.6"
+    pkgs."ruby-3.2.3"
     pkgs.postgresql_15
     pkgs.awscli2
     pkgs.libcxx
     pkgs.libxml2
     pkgs.libxslt
-    pkgs.openssl
     pkgs.freetds
     pkgs.k9s
     pkgs.babelfish
@@ -71,14 +66,13 @@
     pkgs.entr
     pkgs.python39
     pkgs.terraform
-    pkgs.helix
+    pkgs.fd
   ];
 
   fonts.fontconfig.enable = true;
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.fish.shellInit = programs.fish.shellInit + "\nsource ~/code/creditninja-devbox/aliases.fish";
 
   programs.direnv = {
       enable = true;

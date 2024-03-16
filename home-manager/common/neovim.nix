@@ -6,6 +6,8 @@
     vimAlias = true;
     vimdiffAlias = true;
 
+    withRuby = false;
+
     extraLuaConfig = builtins.readFile ./kickstart.lua;
   };
 }
