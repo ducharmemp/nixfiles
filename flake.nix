@@ -8,7 +8,7 @@
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # WSL
     nixos-wsl.url = "github:nix-community/NixOS-WSL/2311.5.3";
@@ -65,7 +65,7 @@
       };
 
       "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import unstable {
+        pkgs = import nixpkgs {
           system = "x86_64-darwin";
           overlays = [
             nixpkgs-ruby.overlays.default
