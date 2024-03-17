@@ -153,24 +153,6 @@ require("lazy").setup({
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = {} },
 
-	-- Here is a more advanced example where we pass configuration
-	-- options to `gitsigns.nvim`. This is equivalent to the following lua:
-	--    require('gitsigns').setup({ ... })
-	--
-	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
-
 	-- NOTE: Plugins can also be configured to run lua code when they are loaded.
 	--
 	-- This is often very useful to both group configuration, as well as handle
@@ -668,7 +650,7 @@ require("lazy").setup({
 			-- Load the colorscheme here.
 			-- Like many other themes, this one has different styles, and you could load
 			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("tokyonight-moon")
 
 			-- You can configure highlights by doing something like
 			vim.cmd.hi("Comment gui=none")
@@ -763,7 +745,14 @@ require("lazy").setup({
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
-	{ "akinsho/toggleterm.nvim", version = "*", config = true },
+	{ 
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    keys = {
+      { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open terminal" }
+    },
+    config = true,
+  },
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
@@ -850,6 +839,10 @@ require("lazy").setup({
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
 	},
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = true
+  },
 }, {
 	ui = {
 		-- If you have a Nerd Font, set icons to an empty table which will use the

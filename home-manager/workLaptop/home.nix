@@ -67,6 +67,10 @@
     pkgs.python39
     pkgs.terraform
     pkgs.fd
+    pkgs.tree-sitter
+    pkgs.unzip
+    pkgs.stylua
+    pkgs.zig
   ];
 
   fonts.fontconfig.enable = true;

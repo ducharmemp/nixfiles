@@ -62,6 +62,7 @@
     unzip
     tree-sitter
     nodejs_21
+    lazygit
   ];
 
   fonts.fontconfig.enable = true;
