@@ -218,6 +218,7 @@ require("lazy").setup({
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{ "nvim-telescope/telescope-frecency.nvim" },
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -267,12 +268,18 @@ require("lazy").setup({
 			-- Enable telescope extensions, if they are installed
 			pcall(require("telescope").load_extension, "fzf")
 			pcall(require("telescope").load_extension, "ui-select")
+			pcall(require("telescope").load_extension, "frecency")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+			vim.keymap.set(
+				"n",
+				"<leader>sf",
+				"<Cmd>Telescope frecency workspace=CWD<CR>",
+				{ desc = "[S]earch [F]iles" }
+			)
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
@@ -465,6 +472,8 @@ require("lazy").setup({
 				--
 				ruby_ls = {},
 				rubocop = {},
+				tsserver = {},
+				pyright = {},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -574,7 +583,7 @@ require("lazy").setup({
 			--    you can use this plugin to help you. It even has snippets
 			--    for various frameworks/libraries/etc. but you will have to
 			--    set up the ones that are useful for you.
-			-- 'rafamadriz/friendly-snippets',
+			"rafamadriz/friendly-snippets",
 		},
 		config = function()
 			-- See `:help cmp`
@@ -745,14 +754,24 @@ require("lazy").setup({
 	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
-	{ 
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    keys = {
-      { "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open terminal" }
-    },
-    config = true,
-  },
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		keys = {
+			{ "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open terminal" },
+		},
+		config = function()
+			require("toggleterm").setup()
+
+			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Open terminal" })
+			vim.keymap.set(
+				"n",
+				"<leader>tg",
+				'<cmd>lua require(\'toggleterm.terminal\').Terminal:new({ cmd = "lazygit", dir = "git_dir", direction = "float" }):toggle()<cr>',
+				{ noremap = true, silent = true, desc = "Open a lazygit terminal" }
+			)
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
@@ -760,6 +779,9 @@ require("lazy").setup({
 		},
 		config = function()
 			require("nvim-tree").setup({
+				update_focused_file = {
+					enable = true,
+				},
 				filters = {
 					dotfiles = false,
 					git_ignored = true,
@@ -839,10 +861,26 @@ require("lazy").setup({
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
 	},
-  {
-    "norcalli/nvim-colorizer.lua",
-    config = true
-  },
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = true,
+	},
+	{
+		"rgroli/other.nvim",
+		config = function()
+			require("other-nvim").setup({
+				mappings = {
+					"rails",
+				},
+			})
+
+			vim.keymap.set("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>ltn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+		end,
+	},
 }, {
 	ui = {
 		-- If you have a Nerd Font, set icons to an empty table which will use the

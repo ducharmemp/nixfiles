@@ -18,7 +18,6 @@
     ../common/git.nix
     ../common/fish.nix
     ../common/neovim.nix
-    ../common/zellij.nix
   ];
 
   nixpkgs = {
@@ -39,38 +38,39 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = [
-    pkgs.fontconfig
-    pkgs.nerdfonts
-    pkgs.fzf
-    pkgs.ripgrep
-    pkgs.beam.interpreters.erlangR26
-    pkgs.beam.packages.erlangR26.elixir_1_15
-    pkgs.meslo-lgs-nf
-    pkgs.htop
-    pkgs.nodejs_18
-    pkgs.openssl
-    (pkgs.yarn.override {
-      nodejs = pkgs.nodejs_18;
+  home.packages = with pkgs; [
+    fontconfig
+    nerdfonts
+    fzf
+    ripgrep
+    beam.interpreters.erlangR26
+    beam.packages.erlangR26.elixir_1_15
+    meslo-lgs-nf
+    htop
+    nodejs_18
+    openssl
+    (yarn.override {
+      nodejs = nodejs_18;
     })
     pkgs."ruby-3.2.3"
-    pkgs.postgresql_15
-    pkgs.awscli2
-    pkgs.libcxx
-    pkgs.libxml2
-    pkgs.libxslt
-    pkgs.freetds
-    pkgs.k9s
-    pkgs.babelfish
-    pkgs.git-absorb
-    pkgs.entr
-    pkgs.python39
-    pkgs.terraform
-    pkgs.fd
-    pkgs.tree-sitter
-    pkgs.unzip
-    pkgs.stylua
-    pkgs.zig
+    postgresql_15
+    awscli2
+    libcxx
+    libxml2
+    libxslt
+    freetds
+    k9s
+    babelfish
+    git-absorb
+    entr
+    python39
+    terraform
+    fd
+    tree-sitter
+    unzip
+    stylua
+    zig
+    lazygit
   ];
 
   fonts.fontconfig.enable = true;
