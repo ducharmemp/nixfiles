@@ -560,6 +560,12 @@ require("lazy").setup({
 		dependencies = {
 			-- Snippet Engine & its associated nvim-cmp source
 			{
+				"honza/vim-snippets",
+				config = function()
+					vim.o.path = vim.o.path .. "~/.local/share/nvim/lazy/vim-snippets"
+				end,
+			},
+			{
 				"L3MON4D3/LuaSnip",
 				build = (function()
 					-- Build Step is needed for regex support in snippets
@@ -590,6 +596,8 @@ require("lazy").setup({
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			luasnip.config.setup({})
+			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip.loaders.from_snipmate").lazy_load()
 
 			cmp.setup({
 				snippet = {
@@ -714,6 +722,10 @@ require("lazy").setup({
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+
+			"RRethy/nvim-treesitter-endwise",
+		},
 		build = ":TSUpdate",
 		config = function()
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -725,6 +737,7 @@ require("lazy").setup({
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
+				endwise = { enable = true },
 			})
 
 			-- There are additional nvim-treesitter modules that you can use to interact
@@ -764,13 +777,10 @@ require("lazy").setup({
 			require("toggleterm").setup()
 
 			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Open terminal" })
-			vim.keymap.set(
-				"n",
-				"<leader>tg",
-				'<cmd>lua require(\'toggleterm.terminal\').Terminal:new({ cmd = "lazygit", dir = "git_dir", direction = "float" }):toggle()<cr>',
-				{ noremap = true, silent = true, desc = "Open a lazygit terminal" }
-			)
 		end,
+	},
+	{
+		"tpope/vim-fugitive",
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -801,6 +811,13 @@ require("lazy").setup({
 			vim.opt.splitkeep = "screen"
 		end,
 		opts = {
+			animate = {
+				fps = 60,
+			},
+			keys = {
+				["q"] = false,
+				["Q"] = false,
+			},
 			bottom = {
 				-- toggleterm / lazyterm at the bottom with a height of 40% of the screen
 				{
@@ -819,7 +836,6 @@ require("lazy").setup({
 						return not vim.b[buf].lazyterm_cmd
 					end,
 				},
-				"Trouble",
 				{ ft = "qf", title = "QuickFix" },
 				{
 					ft = "help",
