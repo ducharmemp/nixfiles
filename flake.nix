@@ -19,6 +19,8 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
+
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = {
@@ -28,6 +30,7 @@
     unstable,
     nix-darwin,
     nixpkgs-ruby,
+    neovim-nightly-overlay,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -58,7 +61,14 @@
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "ducharmemp@crasher" = home-manager.lib.homeManagerConfiguration {
-        pkgs = unstable.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          overlays = [
+            neovim-nightly-overlay.overlay
+            nixpkgs-ruby.overlays.default
+          ];
+        };
+
         extraSpecialArgs = {inherit inputs outputs;};
         # > Our main home-manager configuration file <
         modules = [./home-manager/crasher/home.nix];
@@ -69,6 +79,7 @@
           system = "x86_64-darwin";
           overlays = [
             nixpkgs-ruby.overlays.default
+            neovim-nightly-overlay.overlay
           ];
         };
         extraSpecialArgs = {inherit inputs outputs;};
