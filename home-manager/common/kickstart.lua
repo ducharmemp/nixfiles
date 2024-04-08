@@ -74,6 +74,8 @@ vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+vim.opt.termguicolors = true
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -93,6 +95,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+--
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -103,6 +106,8 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -149,9 +154,6 @@ require("lazy").setup({
 	--
 	--  This is equivalent to:
 	--    require('Comment').setup({})
-
-	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = {} },
 
 	-- NOTE: Plugins can also be configured to run lua code when they are loaded.
 	--
@@ -255,6 +257,9 @@ require("lazy").setup({
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
+					},
+					frecency = {
+						db_safe_mode = false,
 					},
 				},
 
@@ -474,6 +479,60 @@ require("lazy").setup({
 				rubocop = {},
 				tsserver = {},
 				pyright = {},
+				tailwindcss = {
+					filetypes = {
+						"aspnetcorerazor",
+						"astro",
+						"astro-markdown",
+						"blade",
+						"clojure",
+						"django-html",
+						"htmldjango",
+						"edge",
+						"eelixir",
+						"elixir",
+						"ejs",
+						"erb",
+						"eruby",
+						"gohtml",
+						"gohtmltmpl",
+						"haml",
+						"handlebars",
+						"hbs",
+						"html",
+						"html-eex",
+						"heex",
+						"jade",
+						"leaf",
+						"liquid",
+						"markdown",
+						"mdx",
+						"mustache",
+						"njk",
+						"nunjucks",
+						"php",
+						"razor",
+						"slim",
+						"twig",
+						"css",
+						"less",
+						"postcss",
+						"sass",
+						"scss",
+						"stylus",
+						"sugarss",
+						"javascript",
+						"javascriptreact",
+						"reason",
+						"rescript",
+						"typescript",
+						"typescriptreact",
+						"vue",
+						"svelte",
+						"templ",
+						"ruby",
+					},
+				},
 
 				lua_ls = {
 					-- cmd = {...},
@@ -775,12 +834,27 @@ require("lazy").setup({
 		},
 		config = function()
 			require("toggleterm").setup()
-
-			vim.keymap.set("n", "<leader>tt", "<cmd>ToggleTerm<cr>", { desc = "Open terminal" })
 		end,
 	},
 	{
-		"tpope/vim-fugitive",
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+			{ "<leader>lf", "<cmd>LazyGitFilter<cr>", desc = "LazyGit buffer commits" },
+		},
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
@@ -827,6 +901,9 @@ require("lazy").setup({
 					filter = function(buf, win)
 						return vim.api.nvim_win_get_config(win).relative == ""
 					end,
+					wo = {
+						winfixbuf = true,
+					},
 				},
 				{
 					ft = "lazyterm",
@@ -845,7 +922,6 @@ require("lazy").setup({
 						return vim.bo[buf].buftype == "help"
 					end,
 				},
-				{ ft = "spectre_panel", size = { height = 0.4 } },
 			},
 			left = {
 				-- Neo-tree filesystem always takes half the screen height
@@ -856,6 +932,9 @@ require("lazy").setup({
 						return vim.b[buf].neo_tree_source == "filesystem"
 					end,
 					size = { height = 0.5 },
+					wo = {
+						winfixbuf = true,
+					},
 				},
 				"Trouble",
 
@@ -870,16 +949,22 @@ require("lazy").setup({
 		opts = {},
     -- stylua: ignore
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
 	},
 	{
-		"norcalli/nvim-colorizer.lua",
-		config = true,
+		"brenoprata10/nvim-highlight-colors",
+		config = function()
+			require("nvim-highlight-colors").setup({
+				render = "background",
+				enable_named_colors = true,
+				enable_tailwind = true,
+			})
+		end,
 	},
 	{
 		"rgroli/other.nvim",
@@ -890,11 +975,11 @@ require("lazy").setup({
 				},
 			})
 
-			vim.keymap.set("n", "<leader>ll", "<cmd>:Other<CR>", { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>ltn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
-			vim.keymap.set("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>oo", "<cmd>:Other<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>otn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>op", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>ov", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+			vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
 		end,
 	},
 }, {
