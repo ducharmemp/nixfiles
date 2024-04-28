@@ -295,7 +295,7 @@ require("lazy").setup({
 			vim.keymap.set(
 				"n",
 				"<leader>fb",
-				":Telescope file_browser<CR>",
+				":Telescope file_browser path=%:p:h<CR>",
 				{ noremap = true, desc = "[Open [F]ile [B]rowser" }
 			)
 
@@ -827,121 +827,10 @@ require("lazy").setup({
 	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
 	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		keys = {
-			{ "<leader>t", "<cmd>ToggleTerm<cr>", desc = "Open terminal" },
-		},
-		config = function()
-			require("toggleterm").setup()
-		end,
+		"tpope/vim-dadbod",
 	},
 	{
-		"kdheepak/lazygit.nvim",
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
-		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-			{ "<leader>lf", "<cmd>LazyGitFilter<cr>", desc = "LazyGit buffer commits" },
-		},
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-		},
-		config = function()
-			require("nvim-tree").setup({
-				update_focused_file = {
-					enable = true,
-				},
-				filters = {
-					dotfiles = false,
-					git_ignored = true,
-				},
-			})
-		end,
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-	{
-		"folke/edgy.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.opt.laststatus = 3
-			vim.opt.splitkeep = "screen"
-		end,
-		opts = {
-			animate = {
-				fps = 60,
-			},
-			keys = {
-				["q"] = false,
-				["Q"] = false,
-			},
-			bottom = {
-				-- toggleterm / lazyterm at the bottom with a height of 40% of the screen
-				{
-					ft = "toggleterm",
-					size = { height = 0.3 },
-					-- exclude floating windows
-					filter = function(buf, win)
-						return vim.api.nvim_win_get_config(win).relative == ""
-					end,
-					wo = {
-						winfixbuf = true,
-					},
-				},
-				{
-					ft = "lazyterm",
-					title = "LazyTerm",
-					size = { height = 0.4 },
-					filter = function(buf)
-						return not vim.b[buf].lazyterm_cmd
-					end,
-				},
-				{ ft = "qf", title = "QuickFix" },
-				{
-					ft = "help",
-					size = { height = 20 },
-					-- only show help buffers
-					filter = function(buf)
-						return vim.bo[buf].buftype == "help"
-					end,
-				},
-			},
-			left = {
-				-- Neo-tree filesystem always takes half the screen height
-				{
-					title = "Nvim Tree",
-					ft = "nvim-tree",
-					filter = function(buf)
-						return vim.b[buf].neo_tree_source == "filesystem"
-					end,
-					size = { height = 0.5 },
-					wo = {
-						winfixbuf = true,
-					},
-				},
-				"Trouble",
-
-				-- any other nvim-tree windows
-				"nvim-tree",
-			},
-		},
+		"tpope/vim-fugitive",
 	},
 	{
 		"folke/flash.nvim",
