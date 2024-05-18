@@ -75,7 +75,7 @@
       };
 
       "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+        pkgs = import unstable {
           system = "x86_64-darwin";
           overlays = [
             nixpkgs-ruby.overlays.default
