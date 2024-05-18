@@ -27,6 +27,9 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+          "openssl-1.1.1w"
+      ];
     };
   };
 
@@ -48,11 +51,13 @@
     meslo-lgs-nf
     htop
     nodejs_18
-    openssl
+    openssl_1_1
     (yarn.override {
       nodejs = nodejs_18;
     })
-    pkgs."ruby-3.2.3"
+    (pkgs."ruby-3.2.3".override {
+      openssl = pkgs.openssl_1_1;
+    })
     postgresql_15
     awscli2
     libcxx
@@ -71,6 +76,7 @@
     stylua
     zig
     lazygit
+    du-dust
   ];
 
   fonts.fontconfig.enable = true;
