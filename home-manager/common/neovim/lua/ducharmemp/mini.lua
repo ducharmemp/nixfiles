@@ -40,3 +40,13 @@ statusline.setup({ use_icons = vim.g.have_nerd_font })
 statusline.section_location = function()
 	return "%2l:%-2v"
 end
+
+local animation = require("mini.indentscope").gen_animation.none
+require("mini.indentscope").setup({
+	draw = {
+		animation = animation(),
+	},
+})
+
+require("mini.pairs").setup()
+require("mini.starter").setup()
