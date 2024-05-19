@@ -1,8 +1,28 @@
 local add, later = MiniDeps.add, MiniDeps.later
+
 local build = function(path)
 	local obj = vim.system({ "make", "-C", path, "install_jsregexp" }, { text = true }):wait()
 	vim.print(vim.inspect(obj))
 end
+
+add({
+	source = "hrsh7th/nvim-cmp",
+	depends = {
+		"honza/vim-snippets",
+		"saadparwaiz1/cmp_luasnip",
+		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-path",
+		"rafamadriz/friendly-snippets",
+	},
+})
+
+add("windwp/nvim-autopairs")
+require("nvim-autopairs").setup()
+local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local cmp = require("cmp")
+
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
 add({
 	source = "L3MON4D3/LuaSnip",
 	hooks = {
@@ -14,27 +34,13 @@ add({
 		post_checkout = build,
 	},
 })
-add({
-	source = "hrsh7th/nvim-cmp",
-	depends = {
-		"honza/vim-snippets",
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
-		"hrsh7th/cmp-path",
-		"rafamadriz/friendly-snippets",
-	},
-})
--- See `:help cmp`
-local cmp = require("cmp")
+
 local luasnip = require("luasnip")
 luasnip.config.setup({})
 vim.o.path = vim.o.path .. (vim.fn.stdpath("data") .. "/site/pack/deps/opt/vim-snippets")
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 cmp.setup({
 	snippet = {

@@ -19,13 +19,6 @@ require("mini.ai").setup({
 	},
 })
 
--- Add/delete/replace surroundings (brackets, quotes, etc.)
---
--- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
--- - sd'   - [S]urround [D]elete [']quotes
--- - sr)'  - [S]urround [R]eplace [)] [']
-require("mini.surround").setup()
-
 -- Simple and easy statusline.
 --  You could remove this setup call if you don't like it,
 --  and try some other statusline plugin
@@ -41,12 +34,12 @@ statusline.section_location = function()
 	return "%2l:%-2v"
 end
 
-local animation = require("mini.indentscope").gen_animation.none
-require("mini.indentscope").setup({
-	draw = {
-		animation = animation(),
-	},
-})
-
-require("mini.pairs").setup()
+-- Add/delete/replace surroundings (brackets, quotes, etc.)
+--
+-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+-- - sd'   - [S]urround [D]elete [']quotes
+-- - sr)'  - [S]urround [R]eplace [)] [']
+require("mini.surround").setup()
 require("mini.starter").setup()
+require("mini.sessions").setup()
+require("mini.splitjoin").setup()
