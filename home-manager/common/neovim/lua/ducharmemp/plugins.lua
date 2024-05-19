@@ -5,7 +5,7 @@ add("tpope/vim-sleuth")
 add("tpope/vim-dadbod")
 add("tpope/vim-fugitive")
 add("folke/which-key.nvim")
-add("windwp/nvim-autopairs")
+require("which-key").setup()
 add({
 	source = "folke/todo-comments.nvim",
 	depends = { "nvim-lua/plenary.nvim" },
@@ -15,6 +15,9 @@ require("ducharmemp.cmp")
 require("ducharmemp.lsp")
 require("ducharmemp.conform")
 require("ducharmemp.mini")
+require("ducharmemp.treesitter")
+add("lukas-reineke/indent-blankline.nvim")
+require("ibl").setup()
 add("brenoprata10/nvim-highlight-colors")
 require("nvim-highlight-colors").setup({
 	render = "background",
