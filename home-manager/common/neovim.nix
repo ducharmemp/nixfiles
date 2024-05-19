@@ -7,7 +7,12 @@
     vimdiffAlias = true;
 
     withRuby = false;
+  };
 
-    extraLuaConfig = builtins.readFile ./kickstart.lua;
+  xdg = {
+    configFile."nvim" = {
+      source = ./neovim;
+      recursive = true;
+    };
   };
 }

@@ -44,7 +44,6 @@
 
   home.packages = with pkgs; [
     fontconfig
-    nerdfonts
     fzf
     ripgrep
     beam.interpreters.erlangR26
@@ -61,8 +60,9 @@
     stylua
     unzip
     tree-sitter
-    nodejs_21
+    nodejs_22
     lazygit
+    stylua
   ];
 
   fonts.fontconfig.enable = true;
@@ -87,11 +87,8 @@
       nix-direnv.enable = true;
   };
 
-  programs.zoxide.enable = true;
-
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-  services.vscode-server.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
