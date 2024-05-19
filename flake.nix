@@ -61,7 +61,7 @@
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "ducharmemp@crasher" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs {
+        pkgs = import unstable {
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlay
