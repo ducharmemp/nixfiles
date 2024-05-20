@@ -16,6 +16,8 @@ require("ducharmemp.lsp")
 require("ducharmemp.conform")
 require("ducharmemp.mini")
 require("ducharmemp.treesitter")
+require("ducharmemp.delimiters")
+require("ducharmemp.lint")
 add("lukas-reineke/indent-blankline.nvim")
 require("ibl").setup()
 add("brenoprata10/nvim-highlight-colors")
@@ -28,6 +30,8 @@ add("rgroli/other.nvim")
 require("other-nvim").setup({
 	mappings = { "rails" },
 })
+add("stevearc/oil.nvim")
+require("oil").setup()
 
 vim.keymap.set("n", "<leader>oo", "<cmd>:Other<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>otn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
