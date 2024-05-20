@@ -1,4 +1,4 @@
-local add = MiniDeps.add
+local add, later = MiniDeps.add, MiniDeps.later
 local build = function(path)
 	local obj = vim.system({ "make", "-C", path }, { text = true }):wait()
 	vim.print(vim.inspect(obj))

@@ -40,6 +40,28 @@ end
 -- - sd'   - [S]urround [D]elete [']quotes
 -- - sr)'  - [S]urround [R]eplace [)] [']
 require("mini.surround").setup()
-require("mini.starter").setup()
 require("mini.sessions").setup()
 require("mini.splitjoin").setup()
+
+local art = [[
+   ▄   ▄███▄   ████▄  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
+    █  █▀   ▀  █   █ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
+██   █ ██▄▄    █   █ ███    ███ ███▌ ███   ███   ███
+█ █  █ █▄   ▄▀ ▀████ ███    ███ ███▌ ███   ███   ███
+█  █ █ ▀███▀         ███    ███ ███  ███   ███   ███
+█   ██                ▀██████▀  █▀    ▀█   ███   █▀
+]]
+
+local header = function()
+	local hour = tonumber(vim.fn.strftime("%H"))
+	-- [04:00, 12:00) - morning, [12:00, 20:00) - day, [20:00, 04:00) - evening
+	local part_id = math.floor((hour + 4) / 8) + 1
+	local day_part = ({ "evening", "morning", "afternoon", "evening" })[part_id]
+	local username = vim.loop.os_get_passwd()["username"] or "USERNAME"
+
+	return art .. "\n\n" .. ("Good %s, %s"):format(day_part, username)
+end
+
+require("mini.starter").setup({
+	header = header,
+})

@@ -63,6 +63,8 @@
     nodejs_22
     lazygit
     stylua
+    cargo
+    llvmPackages.libcxxClang
   ];
 
   fonts.fontconfig.enable = true;
