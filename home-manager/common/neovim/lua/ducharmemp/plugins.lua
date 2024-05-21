@@ -4,6 +4,7 @@ require("ducharmemp.theme")
 add("tpope/vim-sleuth")
 add("tpope/vim-dadbod")
 add("tpope/vim-fugitive")
+add("tpope/vim-rhubarb")
 add("folke/which-key.nvim")
 require("which-key").setup()
 add({
@@ -19,7 +20,19 @@ require("ducharmemp.treesitter")
 require("ducharmemp.delimiters")
 require("ducharmemp.lint")
 add("lukas-reineke/indent-blankline.nvim")
-require("ibl").setup()
+local highlight = {
+	"CursorColumn",
+	"Whitespace",
+}
+
+require("ibl").setup({
+	indent = { highlight = highlight, char = "" },
+	whitespace = {
+		highlight = highlight,
+		remove_blankline_trail = false,
+	},
+	scope = { enabled = false },
+})
 add("brenoprata10/nvim-highlight-colors")
 require("nvim-highlight-colors").setup({
 	render = "background",
@@ -38,6 +51,10 @@ vim.keymap.set("n", "<leader>otn", "<cmd>:OtherTabNew<CR>", { noremap = true, si
 vim.keymap.set("n", "<leader>op", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ov", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+local openCommand = vim.fn.has("macunix") and "open" or "xdg-open"
+vim.api.nvim_create_user_command("Browse", function(opts)
+	vim.fn.system({ openCommand, opts.fargs[1] })
+end, { nargs = 1 })
 
 -- {
 -- 	"folke/flash.nvim",

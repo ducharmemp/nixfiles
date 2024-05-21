@@ -1,18 +1,26 @@
 local add = MiniDeps.add
+local Languages = require("ducharmemp.languages")
 add("stevearc/conform.nvim")
-require("conform").setup({
+local conform = require("conform")
+
+local formatters = {}
+for k, v in pairs(Languages) do
+	formatters[k] = v.formatters
+end
+
+conform.setup({
 	notify_on_error = false,
 	format_on_save = {
 		timeout_ms = 500,
 		lsp_fallback = true,
 	},
-	formatters_by_ft = {
-		lua = { "stylua" },
-		-- Conform can also run multiple formatters sequentially
-		-- python = { "isort", "black" },
-		--
-		-- You can use a sub-list to tell conform to run *until* a formatter
-		-- is found.
-		-- javascript = { { "prettierd", "prettier" } },
-	},
+	formatters_by_ft = formatters,
 })
+
+conform.formatters.prettier = {
+	options = {
+		ft_parsers = {
+			eruby = "html",
+		},
+	},
+}
