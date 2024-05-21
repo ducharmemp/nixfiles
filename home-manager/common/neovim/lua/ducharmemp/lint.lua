@@ -1,11 +1,14 @@
 local add = MiniDeps.add
-
+local Languages = require("ducharmemp.languages")
 add("mfussenegger/nvim-lint")
 local lint = require("lint")
-lint.linters_by_ft = {
-	markdown = { "markdownlint" },
-}
 
+local linters = {}
+for k, v in pairs(Languages) do
+	linters[k] = v.linters
+end
+
+lint.linters_by_ft = linters
 -- To allow other plugins to add linters to require('lint').linters_by_ft,
 -- instead set linters_by_ft like this:
 -- lint.linters_by_ft = lint.linters_by_ft or {}

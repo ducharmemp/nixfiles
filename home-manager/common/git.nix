@@ -42,6 +42,7 @@ _: {
     ignores = [
       "*.iml"
       ".DS_Store"
+      ".solargraph.yml"
     ];
   };
 }
