@@ -6,7 +6,7 @@ local Languages = {
 	},
 	eruby = {
 		lsps = { "erb-formatter" },
-		formatters = { "erb_format", "injected" },
+		formatters = { "prettier", "injected" },
 		linters = {},
 	},
 	typescript = {
