@@ -1,10 +1,20 @@
+require("mini.hipatterns").setup({
+	highlighters = {
+		fixme = { pattern = "%f[%w]()[Ff][Ii][Xx][Mm][Ee]()%f[%W]", group = "MiniHipatternsFixme" },
+		hack = { pattern = "%f[%w]()[Hh][Aa][Cc][Kk]()%f[%W]", group = "MiniHipatternsHack" },
+		todo = { pattern = "%f[%w]()[Tt][Oo][Dd][Oo]()%f[%W]", group = "MiniHipatternsTodo" },
+		note = { pattern = "%f[%w]()[Nn][Oo][Tt][Ee]()%f[%W]", group = "MiniHipatternsNote" },
+	},
+})
+
 -- Better Around/Inside textobjects
 --
--- Examples:
+-- Exampless
 --  - va)  - [V]isually select [A]round [)]paren
 --  - yinq - [Y]ank [I]nside [N]ext [']quote
 --  - ci'  - [C]hange [I]nside [']quote
 local spec_treesitter = require("mini.ai").gen_spec.treesitter
+local gen_ai_spec = require("mini.extra").gen_ai_spec
 require("mini.ai").setup({
 	n_lines = 500,
 	custom_textobjects = {
@@ -16,6 +26,11 @@ require("mini.ai").setup({
 			a = { "@conditional.outer", "@loop.outer" },
 			i = { "@conditional.inner", "@loop.inner" },
 		}),
+		D = gen_ai_spec.diagnostic(),
+		I = gen_ai_spec.indent(),
+		L = gen_ai_spec.line(),
+		N = gen_ai_spec.number(),
+		A = gen_ai_spec.buffer(),
 	},
 })
 
@@ -32,6 +47,17 @@ statusline.setup({ use_icons = vim.g.have_nerd_font })
 ---@diagnostic disable-next-line: duplicate-set-field
 statusline.section_location = function()
 	return "%2l:%-2v"
+end
+
+---@diagnostic disable-next-line: duplicate-set-field
+statusline.section_git = function()
+	local branch_name = vim.fn.system({ "git", "rev-parse", "--abbrev-ref", "HEAD" })
+	branch_name = branch_name:match("^%s*(.-)%s*$")
+	if branch_name == "" or branch_name == "HEAD" then
+		branch_name = vim.split(vim.fn.system({ "git", "status" }), "\r?\n")[1]
+		branch_name = branch_name:match("^%s*(.-)%s*$")
+	end
+	return branch_name
 end
 
 -- Add/delete/replace surroundings (brackets, quotes, etc.)

@@ -1,5 +1,4 @@
 local add = MiniDeps.add
-
 require("ducharmemp.theme")
 add("tpope/vim-sleuth")
 add("tpope/vim-dadbod")
@@ -7,10 +6,6 @@ add("tpope/vim-fugitive")
 add("tpope/vim-rhubarb")
 add("folke/which-key.nvim")
 require("which-key").setup()
-add({
-	source = "folke/todo-comments.nvim",
-	depends = { "nvim-lua/plenary.nvim" },
-})
 require("ducharmemp.telescope")
 require("ducharmemp.cmp")
 require("ducharmemp.lsp")
