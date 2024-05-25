@@ -4,8 +4,6 @@ add("tpope/vim-sleuth")
 add("tpope/vim-dadbod")
 add("tpope/vim-fugitive")
 add("tpope/vim-rhubarb")
-add("folke/which-key.nvim")
-require("which-key").setup()
 require("ducharmemp.telescope")
 require("ducharmemp.cmp")
 require("ducharmemp.lsp")
@@ -34,22 +32,46 @@ require("nvim-highlight-colors").setup({
 	enable_named_colors = true,
 	enable_tailwind = true,
 })
+add("stevearc/oil.nvim")
+require("oil").setup()
+
 add("rgroli/other.nvim")
 require("other-nvim").setup({
 	mappings = { "rails" },
 })
-add("stevearc/oil.nvim")
-require("oil").setup()
+vim.keymap.set("n", "<leader>oo", "<cmd>:Other<CR>", { noremap = true, silent = true, desc = "Opens an[o]ther file" })
+vim.keymap.set(
+	"n",
+	"<leader>ot",
+	"<cmd>:OtherTabNew<CR>",
+	{ noremap = true, silent = true, desc = "Opens an[o]ther file in a new [t]ab" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>op",
+	"<cmd>:OtherSplit<CR>",
+	{ noremap = true, silent = true, desc = "Opens an[o]ther file in a new [p]ane" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>ov",
+	"<cmd>:OtherVSplit<CR>",
+	{ noremap = true, silent = true, desc = "Opens an[o]ther file in a new [v]ertical split" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>oc",
+	"<cmd>:OtherClear<CR>",
+	{ noremap = true, silent = true, desc = "Clears the internal reference to the other file" }
+)
 
-vim.keymap.set("n", "<leader>oo", "<cmd>:Other<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>otn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>op", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ov", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>oc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
 local openCommand = vim.fn.has("macunix") and "open" or "xdg-open"
 vim.api.nvim_create_user_command("Browse", function(opts)
 	vim.fn.system({ openCommand, opts.fargs[1] })
 end, { nargs = 1 })
+
+add("folke/which-key.nvim")
+require("which-key").setup()
 
 -- {
 -- 	"folke/flash.nvim",

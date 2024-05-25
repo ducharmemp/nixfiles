@@ -1,9 +1,10 @@
+require("mini.jump").setup()
 require("mini.hipatterns").setup({
 	highlighters = {
 		fixme = { pattern = "%f[%w]()[Ff][Ii][Xx][Mm][Ee]()%f[%W]", group = "MiniHipatternsFixme" },
 		hack = { pattern = "%f[%w]()[Hh][Aa][Cc][Kk]()%f[%W]", group = "MiniHipatternsHack" },
-		todo = { pattern = "%f[%w]()[Tt][Oo][Dd][Oo]()%f[%W]", group = "MiniHipatternsTodo" },
 		note = { pattern = "%f[%w]()[Nn][Oo][Tt][Ee]()%f[%W]", group = "MiniHipatternsNote" },
+		todo = { pattern = "%f[%w]()[Tt][Oo][Dd][Oo]()%f[%W]", group = "MiniHipatternsTodo" },
 	},
 })
 
@@ -19,8 +20,8 @@ require("mini.ai").setup({
 	n_lines = 500,
 	custom_textobjects = {
 		F = spec_treesitter({
-			a = { "@block.outer", "@function.outer" },
-			i = { "@block.inner", "@function.inner" },
+			a = "@function.outer",
+			i = "@function.inner",
 		}),
 		o = spec_treesitter({
 			a = { "@conditional.outer", "@loop.outer" },
@@ -30,11 +31,11 @@ require("mini.ai").setup({
 		I = gen_ai_spec.indent(),
 		L = gen_ai_spec.line(),
 		N = gen_ai_spec.number(),
-		A = gen_ai_spec.buffer(),
+		G = gen_ai_spec.buffer(),
 	},
 })
 
--- Simple and easy statusline.
+-- Simple and easy statuline.
 --  You could remove this setup call if you don't like it,
 --  and try some other statusline plugin
 local statusline = require("mini.statusline")
@@ -70,12 +71,12 @@ require("mini.sessions").setup()
 require("mini.splitjoin").setup()
 
 local art = [[
-   ▄   ▄███▄   ████▄  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
+   ▄   ▄███▄   ████▄  ▄█    █▄	 ▄█    ▄▄▄▄███▄▄▄▄
     █  █▀   ▀  █   █ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
-██   █ ██▄▄    █   █ ███    ███ ███▌ ███   ███   ███
-█ █  █ █▄   ▄▀ ▀████ ███    ███ ███▌ ███   ███   ███
-█  █ █ ▀███▀         ███    ███ ███  ███   ███   ███
-█   ██                ▀██████▀  █▀    ▀█   ███   █▀
+██   █ ██▄▄    █   █ ███    ███ ███▌ ███   ███	 ███
+█ █  █ █▄   ▄▀ ▀████ ███    ███ ███▌ ███   ███	 ███
+█  █ █ ▀███▀	     ███    ███ ███  ███   ███	 ███
+█   ██		      ▀██████▀	█▀    ▀█   ███	 █▀
 ]]
 
 local header = function()
