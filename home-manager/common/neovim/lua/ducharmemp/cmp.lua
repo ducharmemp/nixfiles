@@ -42,7 +42,16 @@ vim.o.path = vim.o.path .. (vim.fn.stdpath("data") .. "/site/pack/deps/opt/vim-s
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 
+add("onsails/lspkind.nvim")
+local lspkind = require("lspkind")
+
 cmp.setup({
+	view = {
+		entries = { name = "custom", selection_order = "near_cursor" },
+	},
+	formatting = {
+		format = lspkind.cmp_format(),
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)

@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     unstable.url = "nixpkgs/nixos-unstable";
 
     # Home manager
@@ -16,7 +16,7 @@
 
     # Darwin
     nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.inputs.nixpkgs.follows = "unstable";
 
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
 
@@ -43,7 +43,6 @@
       # FIXME replace with your hostname
       crasher = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        # > Our main nixos configuration file <
         modules = [./nixos/crasher/configuration.nix];
       };
     };
@@ -51,7 +50,6 @@
     darwinConfigurations = {
       "CN-0082" = nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs outputs;};
-        # > Our main nixos configuration file <
         modules = [./nixos/workLaptop/configuration.nix];
       };
     };
@@ -59,7 +57,6 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      # FIXME replace with your username@hostname
       "ducharmemp@crasher" = home-manager.lib.homeManagerConfiguration {
         pkgs = import unstable {
           system = "x86_64-linux";
@@ -70,7 +67,6 @@
         };
 
         extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
         modules = [./home-manager/crasher/home.nix];
       };
 
@@ -83,7 +79,6 @@
           ];
         };
         extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
         modules = [./home-manager/workLaptop/home.nix];
       };
     };

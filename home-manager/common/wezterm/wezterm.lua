@@ -15,6 +15,14 @@ config.set_environment_variables = {
 	WSLENV = "TERMINFO_DIRS",
 }
 config.term = "wezterm"
+config.exit_behavior = "CloseOnCleanExit"
+config.keys = {
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
+	},
+}
 
 -- and finally, return the configuration to wezterm
 return config
