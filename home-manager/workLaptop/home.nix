@@ -1,12 +1,11 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, outputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   # You can import other home-manager modules here
   imports = [
@@ -18,6 +17,7 @@
     ../common/git.nix
     ../common/fish.nix
     ../common/neovim.nix
+    ../common/wezterm.nix
   ];
 
   nixpkgs = {
@@ -28,7 +28,7 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
       permittedInsecurePackages = [
-          "openssl-1.1.1w"
+        "openssl-1.1.1w"
       ];
     };
   };
@@ -87,8 +87,8 @@
   programs.home-manager.enable = true;
 
   programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   # Nicely reload system units when changing configs
