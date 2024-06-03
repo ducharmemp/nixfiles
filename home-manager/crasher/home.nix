@@ -1,12 +1,11 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, outputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   # You can import other home-manager modules here
   imports = [
@@ -18,7 +17,7 @@
     ../common/git.nix
     ../common/neovim.nix
     ../common/fish.nix
-    "${fetchTarball { url = "https://github.com/msteen/nixos-vscode-server/tarball/master"; sha256 = "0sz8njfxn5bw89n6xhlzsbxkafb6qmnszj4qxy2w0hw2mgmjp829"; }}/modules/vscode-server/home.nix"
+    ../common/wezterm.nix
   ];
 
   nixpkgs = {
@@ -48,7 +47,6 @@
     ripgrep
     beam.interpreters.erlangR26
     beam.packages.erlangR26.elixir_1_15
-    meslo-lgs-nf
     htop
     nixos-generators
     nomad
@@ -85,8 +83,8 @@
   };
 
   programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   # Nicely reload system units when changing configs

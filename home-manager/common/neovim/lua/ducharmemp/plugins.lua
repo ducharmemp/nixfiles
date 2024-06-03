@@ -12,6 +12,8 @@ require("ducharmemp.mini")
 require("ducharmemp.treesitter")
 require("ducharmemp.delimiters")
 require("ducharmemp.lint")
+require("ducharmemp.terminal")
+
 add("lukas-reineke/indent-blankline.nvim")
 local highlight = {
 	"CursorColumn",

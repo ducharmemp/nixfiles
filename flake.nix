@@ -11,7 +11,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # WSL
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/2311.5.3";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
     nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
     # Darwin
