@@ -77,8 +77,6 @@
     zig
     lazygit
     du-dust
-    nodePackages.prettier
-    nodePackages.cspell
   ];
 
   fonts.fontconfig.enable = true;
