@@ -1,12 +1,8 @@
 local Languages = {
-	ruby = {
-		lsps = { "ruby_lsp", "rubocop" },
-		formatters = {},
-		linters = {},
-	},
+	ruby = require("ducharmemp.languages.ruby"),
 	eruby = {
 		lsps = { "erb-formatter" },
-		formatters = { "prettier", "injected" },
+		formatters = { "erb_format", "injected" },
 		linters = {},
 	},
 	typescript = {
