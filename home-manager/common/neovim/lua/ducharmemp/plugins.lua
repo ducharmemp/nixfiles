@@ -36,6 +36,7 @@ require("nvim-highlight-colors").setup({
 })
 add("stevearc/oil.nvim")
 require("oil").setup()
+vim.keymap.set("n", "<leader>fb", ":Oil<CR>", { noremap = true, desc = "Open [F]ile [B]rowser" })
 
 add("rgroli/other.nvim")
 require("other-nvim").setup({
