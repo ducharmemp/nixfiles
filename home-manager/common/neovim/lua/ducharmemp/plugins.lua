@@ -76,6 +76,11 @@ end, { nargs = 1 })
 add("folke/which-key.nvim")
 require("which-key").setup()
 
+add("kevinhwang91/nvim-bqf")
+require("bqf").setup()
+
+add("rcarriga/nvim-notify")
+vim.notify = require("notify")
 -- {
 -- 	"folke/flash.nvim",
 -- 	event = "VeryLazy",

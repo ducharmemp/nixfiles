@@ -55,7 +55,7 @@
     (yarn.override {
       nodejs = nodejs_18;
     })
-    (pkgs."ruby-3.2.3".override {
+    (pkgs."ruby-3.3.1".override {
       openssl = pkgs.openssl_1_1;
     })
     postgresql_15
@@ -77,6 +77,7 @@
     zig
     lazygit
     du-dust
+    gh
   ];
 
   fonts.fontconfig.enable = true;
