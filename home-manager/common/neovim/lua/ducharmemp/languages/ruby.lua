@@ -17,15 +17,20 @@ local config = {
 	lsps = { "ruby_lsp", "rubocop" },
 	formatters = {},
 	linters = {},
-	test = function()
+	test = function(cursor_row)
 		local wezterm = require("wezterm")
 		local current_file = vim.api.nvim_buf_get_name(0)
-		local cursor_row, _cursor_col = unpack(vim.api.nvim_win_get_cursor(0))
 		local bundle_directory =
 			vim.fn.fnamemodify(string.gsub(vim.fn.findfile("Gemfile", ".;"), "/Gemfile$", ""), ":p")
-		vim.notify(vim.inspect(bundle_directory))
+		vim.notify("Running tests in context: " .. vim.inspect(bundle_directory))
 
-		local files_to_test = { current_file .. ":" .. cursor_row }
+		local files_to_test = {}
+		if cursor_row ~= nil then
+			files_to_test = { current_file .. ":" .. cursor_row }
+		else
+			files_to_test = { current_file }
+		end
+
 		if not string.find(current_file, "_spec.rb$") and not string.find(current_file, "_test.rb$") then
 			files_to_test = vim.iter(require("other-nvim").findOther())
 				:filter(function(spec)

@@ -34,8 +34,10 @@ require("nvim-highlight-colors").setup({
 	enable_named_colors = true,
 	enable_tailwind = true,
 })
-add("stevearc/oil.nvim")
-require("oil").setup()
+add({ source = "stevearc/oil.nvim", depends = { "nvim-tree/nvim-web-devicons" } })
+require("oil").setup({
+	view_options = { show_hidden = true },
+})
 vim.keymap.set("n", "<leader>fb", ":Oil<CR>", { noremap = true, desc = "Open [F]ile [B]rowser" })
 
 add("rgroli/other.nvim")
@@ -81,6 +83,43 @@ require("bqf").setup()
 
 add("rcarriga/nvim-notify")
 vim.notify = require("notify")
+
+local handler = function(virtText, lnum, endLnum, width, truncate)
+	local newVirtText = {}
+	local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+	local sufWidth = vim.fn.strdisplaywidth(suffix)
+	local targetWidth = width - sufWidth
+	local curWidth = 0
+	for _, chunk in ipairs(virtText) do
+		local chunkText = chunk[1]
+		local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+		if targetWidth > curWidth + chunkWidth then
+			table.insert(newVirtText, chunk)
+		else
+			chunkText = truncate(chunkText, targetWidth - curWidth)
+			local hlGroup = chunk[2]
+			table.insert(newVirtText, { chunkText, hlGroup })
+			chunkWidth = vim.fn.strdisplaywidth(chunkText)
+			-- str width returned from truncate() may less than 2nd argument, need padding
+			if curWidth + chunkWidth < targetWidth then
+				suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+			end
+			break
+		end
+		curWidth = curWidth + chunkWidth
+	end
+	table.insert(newVirtText, { suffix, "MoreMsg" })
+	return newVirtText
+end
+add({
+	source = "kevinhwang91/nvim-ufo",
+	depends = {
+		"kevinhwang91/promise-async",
+	},
+})
+require("ufo").setup({
+	fold_virt_text_handler = handler,
+})
 -- {
 -- 	"folke/flash.nvim",
 -- 	event = "VeryLazy",
