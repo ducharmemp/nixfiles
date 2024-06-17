@@ -17,5 +17,13 @@ end, { desc = "Spawn a [W]ez[T]erm split below your main window" })
 
 vim.keymap.set("n", "<leader>tt", function()
 	local filetype = vim.bo.filetype
+	local cursor_row, _cursor_col = unpack(vim.api.nvim_win_get_cursor(0))
+
+	---@diagnostic disable-next-line: redundant-parameter
+	languages[filetype].test(cursor_row)
+end, { desc = "Run tests closest to cursor" })
+
+vim.keymap.set("n", "<leader>tf", function()
+	local filetype = vim.bo.filetype
 	languages[filetype].test()
-end)
+end, { desc = "Run tests for whole file" })

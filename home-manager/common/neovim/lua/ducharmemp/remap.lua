@@ -124,3 +124,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- Folds
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
+vim.keymap.set("n", "zR", function()
+	require("ufo").openAllFolds()
+end)
+vim.keymap.set("n", "zM", function()
+	require("ufo").closeAllFolds()
+end)
