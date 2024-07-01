@@ -7,6 +7,7 @@
     vimdiffAlias = true;
 
     withRuby = false;
+    package = pkgs.neovim;
   };
 
   xdg = {
