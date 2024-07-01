@@ -61,7 +61,7 @@
         pkgs = import unstable {
           system = "x86_64-linux";
           overlays = [
-            neovim-nightly-overlay.overlay
+            neovim-nightly-overlay.overlays.default
             nixpkgs-ruby.overlays.default
           ];
         };
@@ -75,7 +75,7 @@
           system = "x86_64-darwin";
           overlays = [
             nixpkgs-ruby.overlays.default
-            neovim-nightly-overlay.overlay
+            neovim-nightly-overlay.overlays.default
           ];
         };
         extraSpecialArgs = {inherit inputs outputs;};

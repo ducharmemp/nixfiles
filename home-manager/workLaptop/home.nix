@@ -46,8 +46,8 @@
     nerdfonts
     fzf
     ripgrep
-    beam.interpreters.erlangR26
-    beam.packages.erlangR26.elixir_1_15
+    beam.interpreters.erlang_27
+    beam.packages.erlang_27.elixir_1_17
     meslo-lgs-nf
     htop
     nodejs_18
