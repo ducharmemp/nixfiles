@@ -69,6 +69,7 @@ end
 require("mini.surround").setup()
 require("mini.sessions").setup()
 require("mini.splitjoin").setup()
+require("mini.icons").setup()
 
 local art = [[
    ▄   ▄███▄   ████▄  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄

@@ -80,6 +80,7 @@
     defaultUser = "ducharmemp";
     startMenuLaunchers = true;
     useWindowsDriver = true;
+    docker-desktop.enable = true;
   };
 
   # TODO: Set your hostname
@@ -100,9 +101,7 @@
 
   programs.fish.enable = true;
   programs.nix-ld.enable = true;
-  virtualisation.docker.enable = true;
   security.sudo.enable = true;
-  environment.enableAllTermInfo = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
