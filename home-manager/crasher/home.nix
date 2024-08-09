@@ -45,8 +45,8 @@
     fontconfig
     fzf
     ripgrep
-    beam.interpreters.erlangR26
-    beam.packages.erlangR26.elixir_1_15
+    beam.interpreters.erlang_27
+    beam.packages.erlang_27.elixir_1_15
     htop
     nixos-generators
     nomad
@@ -54,15 +54,18 @@
     zellij
     fd
     zig
-    clangStdenv
     stylua
     unzip
     tree-sitter
-    nodejs_22
     lazygit
     stylua
     cargo
-    llvmPackages.libcxxClang
+    ruby_3_3
+    bun
+    rubyPackages_3_3.rails
+    rubyPackages_3_3.ruby-lsp
+    gnumake
+    gcc
   ];
 
   fonts.fontconfig.enable = true;
@@ -76,10 +79,6 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-  };
-
-  programs.helix = {
-    enable = true;
   };
 
   programs.direnv = {

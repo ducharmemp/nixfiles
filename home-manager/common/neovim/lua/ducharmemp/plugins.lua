@@ -34,7 +34,7 @@ require("nvim-highlight-colors").setup({
 	enable_named_colors = true,
 	enable_tailwind = true,
 })
-add({ source = "stevearc/oil.nvim", depends = { "nvim-tree/nvim-web-devicons" } })
+add({ source = "stevearc/oil.nvim" })
 require("oil").setup({
 	view_options = { show_hidden = true },
 })
