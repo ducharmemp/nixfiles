@@ -33,6 +33,9 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
     };
   };
 
@@ -60,12 +63,13 @@
     lazygit
     stylua
     cargo
-    ruby_3_3
     bun
-    rubyPackages_3_3.rails
-    rubyPackages_3_3.ruby-lsp
+    (pkgs."ruby-3.3.*".override {
+      openssl = pkgs.openssl_1_1;
+    })
     gnumake
     gcc
+    firefox
   ];
 
   fonts.fontconfig.enable = true;
