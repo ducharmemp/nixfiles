@@ -1,4 +1,4 @@
-# This is your home-manager configuration file
+# This is your home-manager configuration filehomeyny
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , outputs
