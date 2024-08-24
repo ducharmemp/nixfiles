@@ -2,5 +2,6 @@
 
 set -eou pipefail
 
-sudo nixos-rebuild switch --flake .#"$(hostname)"
+export NIX_PATH=$(pwd)
+nixos-rebuild switch --flake .#"$(hostname)" --use-remote-sudo
 home-manager switch --flake .#"$USER"@"$(hostname)"
