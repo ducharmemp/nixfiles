@@ -37,6 +37,14 @@
   in {
     overlays = import ./overlays {inherit inputs outputs;};
 
+    devShells = {
+      x86_64-linux.default = 
+          let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          in pkgs.mkShell {
+        packages = [pkgs.statix];
+      };
+      };
+
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -44,6 +52,11 @@
       crasher = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/crasher/configuration.nix];
+      };
+      
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [./nixos/nixos/configuration.nix];
       };
     };
 
@@ -68,6 +81,19 @@
 
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [./home-manager/crasher/home.nix];
+      };
+
+      "matt@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import unstable {
+          system = "x86_64-linux";
+          overlays = [
+            neovim-nightly-overlay.overlays.default
+            nixpkgs-ruby.overlays.default
+          ];
+        };
+
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [./home-manager/nixos/home.nix];
       };
 
       "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
