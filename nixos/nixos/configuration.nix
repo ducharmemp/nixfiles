@@ -2,15 +2,26 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
+        inputs.nixos-hardware.nixosModules.common-cpu-amd
+        inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./gpu.nix
       ./hardware-configuration.nix
     ];
 
+  # Allow unfree packages
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+    ];
+  };
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/nvme0n1";
@@ -28,7 +39,6 @@
 
   # Set your time zone.
   time.timeZone = "America/New_York";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -48,8 +58,9 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.displayManager.sddm.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.desktopManager.cosmic.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -59,6 +70,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.brlaser];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -77,8 +89,38 @@
   };
   
   # Enable XBox controller support
-  hardware.xone.enable = true;
+  hardware.xpadneo.enable = true;
 
+  hardware.enableAllFirmware = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        ControllerMode = "dual";
+        JustWorksRepairing = "confirm";
+      };
+      LE = {
+        MinConnectionInterval = 7;
+        MaxConnectionInterval = 9;
+        ConnectionLatency = 0;
+      };
+    };
+    input = {
+      General = {
+        UserspaceHID = true;
+      };
+    };
+  };
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -88,8 +130,10 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Matt";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
+      krita
+      libreoffice-qt-fresh
     ];
   };
 
@@ -107,8 +151,6 @@
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
   nix.nixPath = [ "/etc/nix/path" ];
@@ -136,6 +178,7 @@
     curl
     inputs.home-manager.packages.${pkgs.system}.default
     xclip
+    virt-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

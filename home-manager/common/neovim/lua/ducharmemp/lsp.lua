@@ -168,6 +168,7 @@ local servers = {
 	-- But for many setups, the LSP (`tsserver`) will work just fine
 	-- tsserver = {},
 	--
+	rust_analyzer = {},
 
 	lua_ls = {
 		-- cmd = {...},
@@ -203,7 +204,7 @@ local servers = {
 --    :Mason
 --
 --  You can press `g?` for help in this menu
-require("mason").setup()
+require("mason").setup({ PATH = ""})
 
 -- You can add other tools here that you want Mason to install
 -- for you, so that they are available from within Neovim.

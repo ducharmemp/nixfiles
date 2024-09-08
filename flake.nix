@@ -21,6 +21,11 @@
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nixos-cosmic.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs = {
@@ -31,6 +36,7 @@
     nix-darwin,
     nixpkgs-ruby,
     neovim-nightly-overlay,
+    nixos-cosmic,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -48,7 +54,6 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      # FIXME replace with your hostname
       crasher = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [./nixos/crasher/configuration.nix];
@@ -56,7 +61,16 @@
       
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./nixos/nixos/configuration.nix];
+        modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
+            ./nixos/nixos/configuration.nix
+          ];
       };
     };
 
