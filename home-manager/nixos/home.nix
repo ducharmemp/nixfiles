@@ -79,6 +79,7 @@
     lazygit
     du-dust
     gh
+    google-chrome
   ];
 
   fonts.fontconfig.enable = true;
