@@ -5,10 +5,9 @@
   };
 
   services.xserver.videoDrivers = ["nvidia"];
-  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = pkgs.unstable.linuxPackages.nvidiaPackages.latest;
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;

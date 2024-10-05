@@ -121,6 +121,38 @@ add({
 require("ufo").setup({
 	fold_virt_text_handler = handler,
 })
+
+add({
+	source = "olimorris/codecompanion.nvim",
+	depends = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
+		"hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
+		"nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+	},
+})
+require("codecompanion").setup({
+        adapters = {
+anthropic = function()
+return require("codecompanion.adapters").extend("anthropic", {
+env = {
+api_key = "cmd:cat ~/.claude-key"
+}
+})
+end
+},
+	strategies = {
+		chat = {
+			adapter = "anthropic",
+		},
+		inline = {
+			adapter = "anthropic",
+		},
+		agent = {
+			agapter = "anthropic",
+		},
+	},
+})
 -- {
 -- 	"folke/flash.nvim",
 -- 	event = "VeryLazy",
