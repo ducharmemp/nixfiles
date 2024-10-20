@@ -9,6 +9,7 @@ require("ducharmemp.telescope")
 require("ducharmemp.cmp")
 require("ducharmemp.lsp")
 require("ducharmemp.conform")
+require("ducharmemp.dap")
 require("ducharmemp.mini")
 require("ducharmemp.treesitter")
 require("ducharmemp.delimiters")
@@ -132,15 +133,15 @@ add({
 	},
 })
 require("codecompanion").setup({
-        adapters = {
-anthropic = function()
-return require("codecompanion.adapters").extend("anthropic", {
-env = {
-api_key = "cmd:cat ~/.claude-key"
-}
-})
-end
-},
+	adapters = {
+		anthropic = function()
+			return require("codecompanion.adapters").extend("anthropic", {
+				env = {
+					api_key = "cmd:cat ~/.claude-key",
+				},
+			})
+		end,
+	},
 	strategies = {
 		chat = {
 			adapter = "anthropic",
@@ -153,6 +154,8 @@ end
 		},
 	},
 })
+
+vim.cmd("DirenvExport")
 -- {
 -- 	"folke/flash.nvim",
 -- 	event = "VeryLazy",

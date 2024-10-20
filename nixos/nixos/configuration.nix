@@ -27,6 +27,8 @@
   boot.loader.grub.device = "/dev/nvme0n1";
   boot.loader.grub.useOSProber = true;
 
+  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -179,6 +181,7 @@
     inputs.home-manager.packages.${pkgs.system}.default
     xclip
     virt-manager
+    gparted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
