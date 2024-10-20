@@ -8,13 +8,23 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/406f6df6-b478-43b4-aed6-5e9db111f52e";
+      fsType = "ext4";
+    };
+
+  fileSystems."/mnt/bulk" =
+    { device = "/dev/disk/by-uuid/cf86f8fa-d242-44b4-a4f5-6b5485991a2f";
+      fsType = "ext4";
+    };
+
+  fileSystems."/mnt/assort" =
+    { device = "/dev/disk/by-uuid/12d80b44-1f82-42f3-b318-cdcd3bfb9f28";
       fsType = "ext4";
     };
 
@@ -29,7 +39,6 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp7s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0f0u9.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 

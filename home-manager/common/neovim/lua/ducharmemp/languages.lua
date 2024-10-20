@@ -1,5 +1,6 @@
 local Languages = {
 	ruby = require("ducharmemp.languages.ruby"),
+	rust = require("ducharmemp.languages.rust"),
 	eruby = {
 		lsps = { "erb-formatter" },
 		formatters = { "erb_format", "injected" },
