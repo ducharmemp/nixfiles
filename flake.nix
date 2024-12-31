@@ -75,19 +75,6 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
-      "ducharmemp@crasher" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import unstable {
-          system = "x86_64-linux";
-          overlays = [
-            neovim-nightly-overlay.overlays.default
-            nixpkgs-ruby.overlays.default
-          ];
-        };
-
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/crasher/home.nix];
-      };
-
       "matt@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = import unstable {
           system = "x86_64-linux";
