@@ -5,7 +5,7 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 config.color_scheme = "Catppuccin Mocha"
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font("IosevkaTerm Nerd Font Mono")
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.front_end = "WebGpu"
 -- config.webgpu_power_preference = "HighPerformance"

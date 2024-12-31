@@ -93,6 +93,7 @@
   # Enable XBox controller support
   hardware.xpadneo.enable = true;
 
+  services.blueman.enable = true;
   hardware.enableAllFirmware = true;
   hardware.bluetooth = {
     enable = true;
@@ -116,9 +117,8 @@
     };
   };
 
-  virtualisation.docker.rootless = {
+  virtualisation.docker = {
     enable = true;
-    setSocketVariable = true;
   };
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
@@ -132,7 +132,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Matt";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
     packages = with pkgs; [
       krita
       libreoffice-qt-fresh

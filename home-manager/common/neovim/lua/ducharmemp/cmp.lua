@@ -1,4 +1,5 @@
 local add, later = MiniDeps.add, MiniDeps.later
+local MiniIcons = require("mini.icons")
 
 local build = function(path)
 	local obj = vim.system({ "make", "-C", path, "install_jsregexp" }, { text = true }):wait()
@@ -42,15 +43,24 @@ vim.o.path = vim.o.path .. (vim.fn.stdpath("data") .. "/site/pack/deps/opt/vim-s
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_snipmate").lazy_load()
 
-add("onsails/lspkind.nvim")
-local lspkind = require("lspkind")
-
 cmp.setup({
 	view = {
 		entries = { name = "custom", selection_order = "near_cursor" },
 	},
 	formatting = {
-		format = lspkind.cmp_format(),
+		format = function(entry, item)
+			local color_item = require("nvim-highlight-colors").format(entry, { kind = item.kind })
+			local icon, hl, is_default = MiniIcons.get("lsp", item.kind)
+			if not is_default then
+				item.kind = icon .. " " .. item.kind
+				item.kind_hl_group = hl
+			end
+			if color_item.abbr_hl_group then
+				item.kind_hl_group = color_item.abbr_hl_group
+				item.kind = color_item.abbr .. " " .. item.kind
+			end
+			return item
+		end,
 	},
 	snippet = {
 		expand = function(args)
