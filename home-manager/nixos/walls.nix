@@ -1,6 +1,4 @@
 { inputs
-, builtins
-, home
 , outputs
 , lib
 , config
