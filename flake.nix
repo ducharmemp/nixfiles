@@ -14,7 +14,6 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "unstable";
 
-    nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
@@ -30,7 +29,6 @@
     home-manager,
     unstable,
     nix-darwin,
-    nixpkgs-ruby,
     neovim-nightly-overlay,
     nixos-cosmic,
     ...
@@ -80,7 +78,6 @@
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlays.default
-            nixpkgs-ruby.overlays.default
           ];
         };
 
@@ -92,7 +89,6 @@
         pkgs = import unstable {
           system = "x86_64-darwin";
           overlays = [
-            nixpkgs-ruby.overlays.default
             neovim-nightly-overlay.overlays.default
           ];
         };

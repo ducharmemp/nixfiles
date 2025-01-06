@@ -20,6 +20,13 @@
     ../common/wezterm.nix
   ];
 
+  programs.git.ignores = [
+    "**/flake.nix"
+    "**/flake.lock"
+    ".direnv"
+    ".envrc"
+  ];
+
   nixpkgs = {
     # Configure your nixpkgs instance
     config = {
@@ -27,9 +34,6 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
     };
   };
 
@@ -46,17 +50,11 @@
     nerdfonts
     fzf
     ripgrep
-    beam.interpreters.erlang_27
-    beam.packages.erlang_27.elixir_1_17
     meslo-lgs-nf
     htop
     nodejs_18
-    openssl_1_1
     (yarn.override {
       nodejs = nodejs_18;
-    })
-    (pkgs."ruby-3.3.1".override {
-      openssl = pkgs.openssl_1_1;
     })
     postgresql_15
     awscli2
@@ -68,7 +66,7 @@
     babelfish
     git-absorb
     entr
-    python39
+    python312
     terraform
     fd
     tree-sitter
