@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+    programs.oh-my-posh.enable = true;
+    programs.oh-my-posh.useTheme = "catppuccin_macchiato";
     programs.fish = {
         enable = true;
         shellInit = ''
@@ -11,7 +13,6 @@
         '';
         plugins = [
             { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
-            { name = "tide"; inherit (pkgs.fishPlugins.tide) src; }
         ];
   };
 }

@@ -13,11 +13,19 @@ add({
 		"saadparwaiz1/cmp_luasnip",
 		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-path",
+		"hrsh7th/cmp-buffer",
 		"rafamadriz/friendly-snippets",
 	},
 })
 
 add("windwp/nvim-autopairs")
+add("zbirenbaum/copilot.lua")
+add("zbirenbaum/copilot-cmp")
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false } 
+})
+require("copilot_cmp").setup()
 require("nvim-autopairs").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
@@ -110,6 +118,8 @@ cmp.setup({
 	}),
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "copilot" },
+		{ name = "buffer" },
 		{ name = "luasnip" },
 		{ name = "path" },
 	},

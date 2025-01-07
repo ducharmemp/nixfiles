@@ -1,7 +1,7 @@
 local add = MiniDeps.add
 add("catppuccin/nvim")
 require("catppuccin").setup({
-	flavor = 'mocha',
+	flavor = "macchiato",
 	integrations = {
 		cmp = true,
 		treesitter = true,
@@ -10,7 +10,8 @@ require("catppuccin").setup({
 		mason = true,
 		rainbow_delimiters = true,
 		telescope = { enabled = true },
-		which_key = true
-	}
+		which_key = true,
+		notify = true,
+	},
 })
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("catppuccin-macchiato")
