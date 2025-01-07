@@ -45,12 +45,10 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [
+  home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
     fontconfig
-    nerdfonts
     fzf
     ripgrep
-    meslo-lgs-nf
     htop
     nodejs_18
     (yarn.override {
@@ -65,7 +63,6 @@
     k9s
     babelfish
     git-absorb
-    entr
     python312
     terraform
     fd
@@ -73,7 +70,6 @@
     unzip
     stylua
     zig
-    lazygit
     du-dust
     gh
   ];

@@ -43,7 +43,13 @@
           in pkgs.mkShell {
         packages = [pkgs.statix];
       };
+
+      x86_64-darwin.default = 
+          let pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+          in pkgs.mkShell {
+        packages = [pkgs.statix];
       };
+    };
 
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'

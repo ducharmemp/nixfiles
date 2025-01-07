@@ -15,6 +15,7 @@ require("ducharmemp.treesitter")
 require("ducharmemp.delimiters")
 require("ducharmemp.lint")
 require("ducharmemp.terminal")
+require("ducharmemp.copilot")
 
 add("lukas-reineke/indent-blankline.nvim")
 local highlight = {
@@ -32,8 +33,7 @@ require("ibl").setup({
 })
 add("brenoprata10/nvim-highlight-colors")
 require("nvim-highlight-colors").setup({
-	render = "background",
-	enable_named_colors = true,
+	render = "virtual",
 	enable_tailwind = true,
 })
 add({ source = "stevearc/oil.nvim" })
@@ -123,37 +123,7 @@ require("ufo").setup({
 	fold_virt_text_handler = handler,
 })
 
-add({
-	source = "olimorris/codecompanion.nvim",
-	depends = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
-		"hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
-		"nvim-telescope/telescope.nvim", -- Optional: For using slash commands
-	},
-})
-require("codecompanion").setup({
-	adapters = {
-		anthropic = function()
-			return require("codecompanion.adapters").extend("anthropic", {
-				env = {
-					api_key = "cmd:cat ~/.claude-key",
-				},
-			})
-		end,
-	},
-	strategies = {
-		chat = {
-			adapter = "anthropic",
-		},
-		inline = {
-			adapter = "anthropic",
-		},
-		agent = {
-			agapter = "anthropic",
-		},
-	},
-})
+add("mbbill/undotree")
 
 vim.cmd("DirenvExport")
 -- {

@@ -28,6 +28,11 @@
       # Disable if you don't want unfree packages
       allowUnfree = true;
     };
+    flake = {
+
+  setFlakeRegistry = false;
+  setNixPath = false;
+    };
   };
 
   # This will add each flake input as a registry

@@ -138,3 +138,5 @@ end)
 vim.keymap.set("n", "zM", function()
 	require("ufo").closeAllFolds()
 end)
+
+vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
