@@ -10,7 +10,7 @@ config.tab_bar_at_bottom = true
 config.font_size = 14.0
 config.font = wezterm.font("CommitMono Nerd Font")
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.harfbuzz_features = { "ss01", "ss02", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "calt", "dlig" }
+config.harfbuzz_features = { "ss03", "ss04", "ss05" }
 config.colors = {
 	tab_bar = {},
 }
