@@ -19,7 +19,7 @@
     ../common/wezterm.nix
     ../common/fish.nix
 
-    ./walls.nix
+    ./theme.nix
     ./ssh.nix
   ];
 
