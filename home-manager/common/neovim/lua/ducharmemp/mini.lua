@@ -1,4 +1,3 @@
-require("mini.jump").setup()
 require("mini.hipatterns").setup({
 	highlighters = {
 		fixme = { pattern = "%f[%w]()[Ff][Ii][Xx][Mm][Ee]()%f[%W]", group = "MiniHipatternsFixme" },

@@ -65,12 +65,6 @@ vim.keymap.set(
 	"<cmd>:OtherVSplit<CR>",
 	{ noremap = true, silent = true, desc = "Opens an[o]ther file in a new [v]ertical split" }
 )
-vim.keymap.set(
-	"n",
-	"<leader>oc",
-	"<cmd>:OtherClear<CR>",
-	{ noremap = true, silent = true, desc = "Clears the internal reference to the other file" }
-)
 
 local openCommand = vim.fn.has("macunix") and "open" or "xdg-open"
 vim.api.nvim_create_user_command("Browse", function(opts)
@@ -124,6 +118,10 @@ require("ufo").setup({
 })
 
 add("mbbill/undotree")
+add("folke/flash.nvim")
+require("flash").setup()
+add("nvim-orgmode/orgmode")
+require("orgmode").setup()
 
 vim.cmd("DirenvExport")
 -- {

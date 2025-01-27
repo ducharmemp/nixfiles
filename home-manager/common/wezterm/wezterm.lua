@@ -130,7 +130,7 @@ wezterm.on("format-tab-title", function(tab, _, _, conf, _, max_width)
 
 	-- ensure that the titles fit in the available space,
 	-- and that we have room for the edges.
-	title = wezterm.truncate_right(title, max_width - 2)
+	title = wezterm.truncate_right(title, (max_width or 8) - 2)
 
 	return {
 		{ Background = { Color = background } },
