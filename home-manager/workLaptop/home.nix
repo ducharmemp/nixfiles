@@ -54,7 +54,6 @@
     (yarn.override {
       nodejs = nodejs_18;
     })
-    postgresql_15
     awscli2
     libcxx
     libxml2
@@ -72,6 +71,7 @@
     zig
     du-dust
     gh
+    tailwindcss-language-server
   ];
 
   fonts.fontconfig.enable = true;
