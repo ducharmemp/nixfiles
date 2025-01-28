@@ -46,7 +46,6 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
     discord
-    fontconfig 
     inter
     fzf
     ripgrep
@@ -66,6 +65,9 @@
     google-chrome
     ncdu
     ollama-cuda
+    zoom-us
+    nodejs_23
+rpi-imager
   ];
 
   fonts.fontconfig.enable = true;

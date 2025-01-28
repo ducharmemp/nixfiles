@@ -6,6 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     unstable.url = "nixpkgs/nixos-unstable";
 
+    catppuccin.url = "github:catppuccin/nix";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +33,7 @@
     nix-darwin,
     neovim-nightly-overlay,
     nixos-cosmic,
+    catppuccin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -64,6 +67,7 @@
               };
             }
             nixos-cosmic.nixosModules.default
+            catppuccin.nixosModules.catppuccin
             ./nixos/nixos/configuration.nix
           ];
       };
