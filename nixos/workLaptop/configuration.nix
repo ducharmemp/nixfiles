@@ -66,6 +66,7 @@
     inputs.home-manager.packages.${pkgs.system}.default
     statix
     shellcheck
+    rectangle-pro
   ];
 
   users.knownUsers = ["matthewducharme"];
