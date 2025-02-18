@@ -6,21 +6,6 @@ local Languages = {
 		formatters = { "erb_format", "injected" },
 		linters = {},
 	},
-	typescript = {
-		lsps = { "tsserver" },
-		formatters = { "prettier" },
-		linters = {},
-	},
-	javascript = {
-		lsps = {},
-		formatters = { "prettier" },
-		linters = {},
-	},
-	python = {
-		lsps = { "pyright" },
-		formatters = { "isort", "black" },
-		linters = {},
-	},
 	lua = {
 		lsps = {
 			lua_ls = {
@@ -49,11 +34,6 @@ local Languages = {
 		},
 		formatters = { "stylua" },
 		linters = {},
-	},
-	markdown = {
-		lsps = {},
-		formatters = {},
-		linters = { "markdownlint" },
 	},
 }
 

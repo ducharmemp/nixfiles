@@ -1,5 +1,5 @@
 local config = {
-	lsps = { "ruby_lsp", "rubocop" },
+	lsps = { "solargraph", "rubocop" },
 	formatters = {},
 	linters = {},
 	test = function(cursor_row)
