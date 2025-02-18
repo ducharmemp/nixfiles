@@ -10,6 +10,7 @@ require("ducharmemp.cmp")
 require("ducharmemp.lsp")
 require("ducharmemp.conform")
 -- require("ducharmemp.debugging")
+require("ducharmemp.testing")
 require("ducharmemp.mini")
 require("ducharmemp.treesitter")
 require("ducharmemp.delimiters")
@@ -118,8 +119,8 @@ require("ufo").setup({
 })
 
 add("mbbill/undotree")
-add("folke/flash.nvim")
-require("flash").setup()
+-- add("folke/flash.nvim")
+-- require("flash").setup()
 add("nvim-orgmode/orgmode")
 require("orgmode").setup()
 
