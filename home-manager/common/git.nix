@@ -23,8 +23,9 @@ _: {
       transfer.fsckobjects = true;
       fetch.fsckobjects = true;
       receive.fsckObjects = true;
-      maintenance.auto = false;
+      maintenance.auto = true;
       maintenance.strategy = "incremental";
+      gpg.format = "ssh";
     };
 
     aliases = {
@@ -43,6 +44,9 @@ _: {
       "*.iml"
       ".DS_Store"
       ".solargraph.yml"
+      ".envrc"
+      ".direnv"
+      "/direnv"
     ];
   };
 }

@@ -26,6 +26,10 @@
     ".direnv"
     ".envrc"
   ];
+  programs.git.extraConfig = {
+    user.signingkey = "~/.ssh/id_ed25519.pub";
+    commit.gpgsign = true; 
+  };
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -72,6 +76,8 @@
     du-dust
     gh
     tailwindcss-language-server
+    teleport
+    kubectl
   ];
 
   fonts.fontconfig.enable = true;
