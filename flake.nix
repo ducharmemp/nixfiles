@@ -14,6 +14,7 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "unstable";
 
+    mac-app-util.url = "github:hraban/mac-app-util";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
@@ -31,6 +32,7 @@
     nix-darwin,
     neovim-nightly-overlay,
     nixos-cosmic,
+    mac-app-util,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -44,8 +46,8 @@
         packages = [pkgs.statix];
       };
 
-      x86_64-darwin.default = 
-          let pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+      aarch64-darwin.default = 
+          let pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           in pkgs.mkShell {
         packages = [pkgs.statix];
       };
@@ -70,9 +72,9 @@
     };
 
     darwinConfigurations = {
-      "CN-0082" = nix-darwin.lib.darwinSystem {
+      "CN-0171" = nix-darwin.lib.darwinSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./nixos/workLaptop/configuration.nix];
+        modules = [mac-app-util.darwinModules.default ./nixos/workLaptop/configuration.nix];
       };
     };
 
@@ -91,15 +93,15 @@
         modules = [./home-manager/nixos/home.nix];
       };
 
-      "matthewducharme@CN-0082" = home-manager.lib.homeManagerConfiguration {
+      "matthewducharme" = home-manager.lib.homeManagerConfiguration {
         pkgs = import unstable {
-          system = "x86_64-darwin";
+          system = "aarch64-darwin";
           overlays = [
             neovim-nightly-overlay.overlays.default
           ];
         };
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/workLaptop/home.nix];
+        modules = [mac-app-util.homeManagerModules.default ./home-manager/workLaptop/home.nix];
       };
     };
   };

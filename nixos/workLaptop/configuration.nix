@@ -67,6 +67,11 @@
     statix
     shellcheck
     rectangle-pro
+    google-chrome
+    wezterm
+    podman
+    podman-compose
+    aerospace
   ];
 
   users.knownUsers = ["matthewducharme"];
@@ -77,7 +82,6 @@
     };
   };
 
-  services.nix-daemon.enable = true;
   programs.fish.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
