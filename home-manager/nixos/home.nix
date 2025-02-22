@@ -68,7 +68,10 @@
     ollama-cuda
     zoom-us
     nodejs_23
-rpi-imager
+    rclone
+
+    ponyc
+    pony-corral
   ];
 
   fonts.fontconfig.enable = true;
