@@ -141,6 +141,7 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  programs.ladybird.enable = true;
   programs.fish.enable = true;
   programs.steam.enable = true;
   programs.coolercontrol.enable = true;
@@ -182,6 +183,7 @@
     xclip
     virt-manager
     gparted
+    kdePackages.colord-kde
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
