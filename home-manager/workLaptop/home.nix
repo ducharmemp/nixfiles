@@ -18,6 +18,7 @@
     ../common/fish.nix
     ../common/neovim.nix
     ../common/wezterm.nix
+    ../common/psql.nix
   ];
 
   programs.git.ignores = [

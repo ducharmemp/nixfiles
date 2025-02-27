@@ -18,6 +18,7 @@
     ../common/neovim.nix
     ../common/wezterm.nix
     ../common/fish.nix
+    ../common/psql.nix
 
     ./theme.nix
     ./ssh.nix
