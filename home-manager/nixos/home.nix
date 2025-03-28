@@ -65,7 +65,6 @@
     gh
     google-chrome
     ncdu
-    ollama-cuda
     zoom-us
     nodejs_23
     rclone
