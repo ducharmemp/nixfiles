@@ -43,6 +43,12 @@
     homeDirectory = "/home/matt";
   };
 
+  programs.git.extraConfig = {
+    user.signingkey = "~/.ssh/id_ed25519.pub";
+    commit.gpgsign = true; 
+    gpg."ssh".program = "op-ssh-sign";
+  };
+
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
