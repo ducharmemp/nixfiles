@@ -44,7 +44,7 @@
   };
 
   programs.git.extraConfig = {
-    user.signingkey = "~/.ssh/id_ed25519.pub";
+    user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW24VUbwgiLgX4RNe+1KBNWdx6X3CPoYYfJZ37XCAi8";
     commit.gpgsign = true; 
     gpg."ssh".program = "op-ssh-sign";
   };
