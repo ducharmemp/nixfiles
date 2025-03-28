@@ -1,12 +1,10 @@
 local add = MiniDeps.add
 add({ source = "CopilotC-Nvim/CopilotChat.nvim", depends = { "zbirenbaum/copilot.lua", "nvim-lua/plenary.nvim" } })
-local prompts = require("CopilotChat.config.prompts")
 require("CopilotChat").setup({
 	model = "claude-3.5-sonnet",
 	prompts = {
 		Pair = {
-			system_prompt = prompts.COPILOT_INSTRUCTIONS.system_prompt
-				.. [[
+			prompt = [[
 			You are a world class software engineer. Your job is to pair program with another software engineer. The engineer you are pairing with is intelligent, knowledgeable, and has significant experience working on production systems.
 			When pairing consider:
 			1. Best practices of the current language and framework.

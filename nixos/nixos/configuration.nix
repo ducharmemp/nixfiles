@@ -10,6 +10,7 @@
         inputs.nixos-hardware.nixosModules.common-cpu-amd
         inputs.nixos-hardware.nixosModules.common-pc-ssd
       ./gpu.nix
+      ./zen.nix
       ./hardware-configuration.nix
     ];
 

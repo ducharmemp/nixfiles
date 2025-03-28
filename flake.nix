@@ -22,6 +22,8 @@
     nixos-cosmic.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
   outputs = {
