@@ -40,9 +40,27 @@ vim.keymap.set("n", "<leader>wt", function()
 	end
 end, { desc = "Spawn a [W]ez[T]erm split below your main window" })
 
+vim.keymap.set("n", "<leader>wr", function()
+	local needs_new_split = wezterm.get_pane_direction("Right") == nil
+	if needs_new_split then
+		wezterm.split_pane.horizontal({ percent = 20, top_level = true, right = true })
+	else
+		wezterm.switch_pane.direction("Right")
+	end
+end, { desc = "Spawn a [W]ez[T]erm split below your main window" })
+
+vim.keymap.set("n", "<leader>wl", function()
+	local needs_new_split = wezterm.get_pane_direction("Left") == nil
+	if needs_new_split then
+		wezterm.split_pane.horizontal({ percent = 20, top_level = true, left = true })
+	else
+		wezterm.switch_pane.direction("Left")
+	end
+end, { desc = "Spawn a [W]ez[T]erm split below your main window" })
+
 return {
 	exec_in_side_pane = function(cmd, percent_size)
-		local percent = percent_size or 15
+		local percent = percent_size or 20
 		local pane_id = wezterm.get_pane_direction("Right")
 		if pane_id ~= nil then
 			wezterm.exec_sync({ "cli", "kill-pane", "--pane-id", string.format("%d", pane_id) })
