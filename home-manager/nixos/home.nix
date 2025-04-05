@@ -74,9 +74,7 @@
     zoom-us
     nodejs_23
     rclone
-
-    ponyc
-    pony-corral
+    unstable.makemkv
   ];
 
   fonts.fontconfig.enable = true;

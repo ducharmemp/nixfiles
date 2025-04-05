@@ -37,6 +37,7 @@
     mac-app-util,
     ...
   } @ inputs: let
+overlays = import ./overlays {inherit inputs outputs;};
     inherit (self) outputs;
   in {
     overlays = import ./overlays {inherit inputs outputs;};
@@ -88,6 +89,7 @@
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlays.default
+            overlays.unstable-packages
           ];
         };
 
