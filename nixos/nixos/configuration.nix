@@ -129,6 +129,7 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
+  programs.nix-ld.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
