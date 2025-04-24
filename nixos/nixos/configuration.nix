@@ -127,6 +127,10 @@
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.libvirtd.enable = true;
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${lib.makeBinPath [ pkgs.bash ]}"
+  '';
+
   programs.dconf.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
   programs.nix-ld.enable = true;
@@ -139,19 +143,17 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Matt";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    subUidRanges = [{ startUid = 100000; count = 2097152; }];
+    subGidRanges = [{ startGid = 100000; count = 2097152; }];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "podman"];
     packages = with pkgs; [
       krita
       libreoffice-qt-fresh
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-  programs.ladybird.enable = true;
   programs.fish.enable = true;
   programs.steam.enable = true;
-  programs.coolercontrol.enable = true;
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
@@ -191,6 +193,9 @@
     virt-manager
     gparted
     kdePackages.colord-kde
+    catppuccin-kde
+    su
+    unstable.buildah
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
