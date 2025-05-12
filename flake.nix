@@ -24,6 +24,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = {
@@ -35,6 +36,7 @@
     neovim-nightly-overlay,
     nixos-cosmic,
     mac-app-util,
+    catppuccin,
     ...
   } @ inputs: let
 overlays = import ./overlays {inherit inputs outputs;};
@@ -102,10 +104,11 @@ overlays = import ./overlays {inherit inputs outputs;};
           system = "aarch64-darwin";
           overlays = [
             neovim-nightly-overlay.overlays.default
+            overlays.unstable-packages
           ];
         };
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [mac-app-util.homeManagerModules.default ./home-manager/workLaptop/home.nix];
+        modules = [catppuccin.homeModules.catppuccin mac-app-util.homeManagerModules.default ./home-manager/workLaptop/home.nix];
       };
     };
   };

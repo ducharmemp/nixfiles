@@ -50,6 +50,11 @@
     })
     config.nix.registry;
 
+  environment.variables = {
+    OBJC_DISABLE_INITIALIZE_FORK_SAFETY = "YES";
+    BROWSER_PATH = "${pkgs.google-chrome}/bin/google-chrome-stable";
+  };
+
   nix.settings = {
     # Enable flakes and new 'nix' command
     experimental-features = "nix-command flakes";
@@ -66,7 +71,6 @@
     inputs.home-manager.packages.${pkgs.system}.default
     statix
     shellcheck
-    rectangle-pro
     google-chrome
     wezterm
     podman

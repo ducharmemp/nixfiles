@@ -21,16 +21,24 @@
     ../common/psql.nix
   ];
 
+  catppuccin.bat.enable = true;
+  catppuccin.fzf.enable = true;
+  catppuccin.k9s.enable = true;
+  catppuccin.delta.enable = true;
+  catppuccin.spotify-player.enable = true;
+  catppuccin.flavor = "macchiato";
   programs.git.ignores = [
     "**/flake.nix"
     "**/flake.lock"
     ".direnv"
     ".envrc"
   ];
+
   programs.git.extraConfig = {
     user.signingkey = "~/.ssh/id_ed25519.pub";
     commit.gpgsign = true; 
   };
+
 
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -55,9 +63,9 @@
     fzf
     ripgrep
     htop
-    nodejs_18
+    nodejs_22
     (yarn.override {
-      nodejs = nodejs_18;
+      nodejs = nodejs_22;
     })
     awscli2
     libcxx
