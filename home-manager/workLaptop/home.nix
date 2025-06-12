@@ -19,6 +19,7 @@
     ../common/neovim.nix
     ../common/wezterm.nix
     ../common/psql.nix
+    ../common/ghostty.nix
   ];
 
   catppuccin.bat.enable = true;
@@ -75,6 +76,7 @@
     k9s
     babelfish
     git-absorb
+    git-town
     python312
     terraform
     fd
@@ -85,7 +87,7 @@
     du-dust
     gh
     tailwindcss-language-server
-    teleport
+    teleport_16
     kubectl
   ];
 

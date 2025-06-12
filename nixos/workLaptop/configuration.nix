@@ -5,7 +5,6 @@
   lib,
   config,
   pkgs,
-  nixos-wsl,
   ...
 }: {
   # You can import other NixOS modules here
@@ -79,6 +78,7 @@
   ];
 
   users.knownUsers = ["matthewducharme"];
+  system.primaryUser = "matthewducharme";
   users.users = {
     matthewducharme = {
       uid = 502;
