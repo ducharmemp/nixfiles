@@ -72,9 +72,9 @@
     google-chrome
     ncdu
     zoom-us
-    nodejs_23
+    nodejs_22
     rclone
-    unstable.makemkv
+    obs-studio
   ];
 
   fonts.fontconfig.enable = true;
@@ -86,8 +86,6 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  programs.wezterm.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
