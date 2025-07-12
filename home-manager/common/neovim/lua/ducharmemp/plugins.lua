@@ -124,6 +124,12 @@ add("mbbill/undotree")
 add("nvim-orgmode/orgmode")
 require("orgmode").setup()
 
+add({
+        source = "m4xshen/hardtime.nvim", 
+        depends = { "MunifTanjim/nui.nvim"}
+})
+require("hardtime").setup()
+
 vim.cmd("DirenvExport")
 -- {
 -- 	"folke/flash.nvim",
