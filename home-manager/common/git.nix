@@ -15,7 +15,7 @@ _: {
     extraConfig = {
       pull = { ff = "only"; };
       merge = { conflictstyle = "zdiff3"; };
-      rebase = { autosquash = true; autostash = true; };
+      rebase = { autosquash = true; autostash = true; updateRefs = true; };
       rerere = { enabled = true; };
       help = { autocorrect = 10; };
       diff = { algorithm = "histogram"; };
