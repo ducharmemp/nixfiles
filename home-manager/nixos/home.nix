@@ -1,5 +1,3 @@
-# This is your home-manager configuration filehomeyny
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , outputs
 , lib
@@ -7,18 +5,13 @@
 , pkgs
 , ...
 }: {
-  # You can import other home-manager modules here
   imports = [
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
     ../common/git.nix
-    ../common/neovim.nix
+    ../common/nvim.nix
     ../common/wezterm.nix
     ../common/fish.nix
     ../common/psql.nix
+    ../common/zellij.nix
 
     ./theme.nix
     ./ssh.nix
@@ -37,7 +30,6 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "matt";
     homeDirectory = "/home/matt";

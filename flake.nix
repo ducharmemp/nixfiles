@@ -25,6 +25,8 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     catppuccin.url = "github:catppuccin/nix";
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = {
@@ -37,6 +39,7 @@
     nixos-cosmic,
     mac-app-util,
     catppuccin,
+    nixvim,
     ...
   } @ inputs: let
 overlays = import ./overlays {inherit inputs outputs;};
@@ -83,8 +86,6 @@ overlays = import ./overlays {inherit inputs outputs;};
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       "matt@nixos" = home-manager.lib.homeManagerConfiguration {
         pkgs = import unstable {

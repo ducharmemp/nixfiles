@@ -19,7 +19,6 @@
     ../common/neovim.nix
     ../common/wezterm.nix
     ../common/psql.nix
-    ../common/ghostty.nix
   ];
 
   catppuccin.bat.enable = true;
@@ -51,7 +50,6 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "matthewducharme";
     homeDirectory = "/Users/matthewducharme";
@@ -93,7 +91,6 @@
 
   fonts.fontconfig.enable = true;
 
-  # Enable home-manager and git
   programs.home-manager.enable = true;
   programs.spotify-player.enable = true;
 

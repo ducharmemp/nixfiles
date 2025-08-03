@@ -14,11 +14,19 @@
         plugins = [
             { name = "fzf-fish"; inherit (pkgs.fishPlugins.fzf-fish) src; }
         ];
+        shellAliases = {
+          "l" = "eza -alh";
+          "ll" = "eza -l";
+          "ls" = "eza";
+          "cat" = "bat";
+          "man" = "batman";
+        };
     };
 
     home.packages = with pkgs; [
         fzf
         bat
+        bat-extras.batman
         eza
         fd
     ];
