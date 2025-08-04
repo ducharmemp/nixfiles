@@ -12,10 +12,10 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>fb";
+        key = "<leader>e";
         action = "<cmd>Oil<CR>";
         options = {
-        desc = "Open [F]ile [B]rowser";
+        desc = "Open [F]ile [E]xplorer";
         };
       }
     ];
