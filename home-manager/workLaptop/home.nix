@@ -16,9 +16,10 @@
     # ./nvim.nix
     ../common/git.nix
     ../common/fish.nix
-    ../common/neovim.nix
+    ../common/nvim.nix
     ../common/wezterm.nix
     ../common/psql.nix
+    ../common/zellij.nix
   ];
 
   catppuccin.bat.enable = true;

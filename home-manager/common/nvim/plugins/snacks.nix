@@ -64,18 +64,6 @@
           desc = "[N]otification History";
         };
       }
-      {
-        mode = "n";
-        key = "<leader>e";
-        action.__raw = ''
-          function()
-            Snacks.explorer()
-          end
-        '';
-        options = {
-          desc = "File [E]xplorer";
-        };
-      }
       # Find mappings
       {
         mode = "n";
@@ -490,7 +478,7 @@
       }
       {
         mode = "n";
-        key = "<leader>sR";
+        key = "<leader>sr";
         action.__raw = ''
           function()
             Snacks.picker.resume()
