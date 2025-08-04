@@ -13,6 +13,11 @@
   programs.nixvim = {
     enable = true;
     colorschemes.catppuccin.enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+    withRuby = false;
 
     globals = {
       mapleader = " ";
