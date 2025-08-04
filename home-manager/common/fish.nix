@@ -17,6 +17,7 @@
         shellAliases = {
           "l" = "eza -alh";
           "ll" = "eza -l";
+          "find" = "fd";
           "ls" = "eza";
           "cat" = "bat";
           "man" = "batman";
