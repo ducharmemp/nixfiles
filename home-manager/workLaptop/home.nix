@@ -32,7 +32,6 @@
     "**/flake.nix"
     "**/flake.lock"
     ".direnv"
-    ".envrc"
   ];
 
   programs.git.extraConfig = {
