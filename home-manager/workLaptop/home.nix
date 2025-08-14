@@ -22,6 +22,7 @@
     ../common/zellij.nix
   ];
 
+  catppuccin.thunderbird.enable = true;
   catppuccin.bat.enable = true;
   catppuccin.fzf.enable = true;
   catppuccin.k9s.enable = true;
@@ -32,7 +33,6 @@
     "**/flake.nix"
     "**/flake.lock"
     ".direnv"
-    ".envrc"
   ];
 
   programs.git.extraConfig = {
@@ -59,6 +59,7 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
+    devenv
     fontconfig
     fzf
     ripgrep
@@ -74,8 +75,6 @@
     freetds
     k9s
     babelfish
-    git-absorb
-    git-town
     python312
     terraform
     fd
@@ -85,7 +84,6 @@
     zig
     du-dust
     gh
-    tailwindcss-language-server
     teleport_16
     kubectl
   ];
@@ -98,6 +96,11 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+
+  programs.thunderbird.enable = true;
+  programs.thunderbird.profiles.work = {
+    isDefault = true;
   };
 
   # Nicely reload system units when changing configs
