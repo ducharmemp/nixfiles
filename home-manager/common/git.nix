@@ -44,7 +44,6 @@ _: {
       "*.iml"
       ".DS_Store"
       ".solargraph.yml"
-      ".envrc"
       ".direnv"
       "/direnv"
     ];
