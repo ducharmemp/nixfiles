@@ -23,6 +23,7 @@
   ];
 
   catppuccin.thunderbird.enable = true;
+  catppuccin.thunderbird.profile = "work";
   catppuccin.bat.enable = true;
   catppuccin.fzf.enable = true;
   catppuccin.k9s.enable = true;
