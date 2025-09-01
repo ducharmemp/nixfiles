@@ -5,12 +5,7 @@ _: {
     userName = "Matthew DuCharme";
     userEmail = "ducharmemp@gmail.com";
 
-    delta = {
-      enable = true;
-      options = {
-        line-numbers = true;
-      };
-    };
+    difftastic.enable = true;
 
     extraConfig = {
       pull = { ff = "only"; };
@@ -20,6 +15,7 @@ _: {
       help = { autocorrect = 10; };
       diff = { algorithm = "histogram"; };
       url."git@github.com:".insteadOf = "https://github.com/";
+      diff.tool = "vimdif";
       transfer.fsckobjects = true;
       fetch.fsckobjects = true;
       receive.fsckObjects = true;
