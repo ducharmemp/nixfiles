@@ -1,6 +1,7 @@
 {inputs, pkgs, ...} : {
   imports = [
     ./nvim/plugins/oil.nix
+    ./nvim/plugins/flash.nix
     ./nvim/plugins/treesitter.nix
     ./nvim/plugins/blink.nix
     ./nvim/plugins/lsp.nix
