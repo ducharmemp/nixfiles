@@ -18,9 +18,6 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    nixos-cosmic.inputs.nixpkgs.follows = "nixpkgs";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -36,7 +33,6 @@
     unstable,
     nix-darwin,
     neovim-nightly-overlay,
-    nixos-cosmic,
     mac-app-util,
     catppuccin,
     nixvim,
@@ -67,13 +63,6 @@ overlays = import ./overlays {inherit inputs outputs;};
       nixos = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-            {
-              nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-              };
-            }
-            nixos-cosmic.nixosModules.default
             ./nixos/nixos/configuration.nix
           ];
       };
@@ -97,7 +86,7 @@ overlays = import ./overlays {inherit inputs outputs;};
         };
 
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/nixos/home.nix];
+        modules = [catppuccin.homeModules.catppuccin ./home-manager/nixos/home.nix];
       };
 
       "matthewducharme" = home-manager.lib.homeManagerConfiguration {

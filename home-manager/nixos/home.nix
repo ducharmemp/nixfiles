@@ -35,6 +35,15 @@
     homeDirectory = "/home/matt";
   };
 
+  catppuccin.thunderbird.enable = true;
+  catppuccin.thunderbird.profile = "work";
+  catppuccin.bat.enable = true;
+  catppuccin.fzf.enable = true;
+  catppuccin.k9s.enable = true;
+  catppuccin.delta.enable = true;
+  catppuccin.spotify-player.enable = true;
+  catppuccin.flavor = "macchiato";
+
   programs.git.extraConfig = {
     user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW24VUbwgiLgX4RNe+1KBNWdx6X3CPoYYfJZ37XCAi8";
     commit.gpgsign = true; 
@@ -77,6 +86,12 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+  };
+
+  programs.firefox.enable = true;
+  programs.thunderbird.enable = true;
+  programs.thunderbird.profiles.home = {
+    isDefault = true;
   };
 
   # Nicely reload system units when changing configs
