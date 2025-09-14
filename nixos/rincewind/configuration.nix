@@ -7,7 +7,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     ../common
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
@@ -100,7 +101,10 @@
   users.users.matt = {
     isNormalUser = true;
     description = "Matt";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       vim
       git
@@ -129,7 +133,7 @@
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = ["matt"];
+    polkitPolicyOwners = [ "matt" ];
   };
 
   # List packages installed in system profile. To search, run:
