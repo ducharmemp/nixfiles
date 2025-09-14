@@ -24,9 +24,6 @@
 
     nixvim.url = "github:nix-community/nixvim";
 
-    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
-
     wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
@@ -40,7 +37,6 @@
     mac-app-util,
     catppuccin,
     nixvim,
-    firefox-addons,
     ...
   } @ inputs: let
     inherit (self) outputs;
