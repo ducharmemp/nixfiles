@@ -8,7 +8,8 @@
   inputs,
   outputs,
   ...
-}: {
+}:
+{
   imports = [
     ../common
     inputs.nixos-hardware.nixosModules.common-cpu-amd
@@ -64,7 +65,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.brlaser];
+  services.printing.drivers = [ pkgs.brlaser ];
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -119,7 +120,7 @@
   };
   virtualisation.libvirtd.enable = true;
   systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${lib.makeBinPath [pkgs.bash]}"
+    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${lib.makeBinPath [ pkgs.bash ]}"
   '';
 
   programs.dconf.enable = true;
@@ -146,7 +147,13 @@
         count = 2097152;
       }
     ];
-    extraGroups = ["networkmanager" "wheel" "libvirtd" "docker" "podman"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "docker"
+      "podman"
+    ];
     packages = with pkgs; [
       krita
       libreoffice-qt-fresh
@@ -158,7 +165,7 @@
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = ["matt"];
+    polkitPolicyOwners = [ "matt" ];
   };
 
   # List packages installed in system profile. To search, run:

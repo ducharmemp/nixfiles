@@ -5,6 +5,7 @@
   ...
 }: {
   services.hypridle.settings = {
+    enable = true;
     general = {
       lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${config.programs.hyprlock.package}/bin/hyprlock";
       before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";

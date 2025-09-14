@@ -6,7 +6,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # You can import other NixOS modules here
   imports = [
     ../common
@@ -39,7 +40,7 @@
     podman-compose
   ];
 
-  users.knownUsers = ["matthewducharme"];
+  users.knownUsers = [ "matthewducharme" ];
   system.primaryUser = "matthewducharme";
   users.users = {
     matthewducharme = {
