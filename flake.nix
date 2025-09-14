@@ -41,15 +41,13 @@
     mac-app-util,
     catppuccin,
     nixvim,
-    nur,
+    firefox-addons,
     ...
   } @ inputs: let
 overlays = import ./overlays {inherit inputs outputs;};
     inherit (self) outputs;
   in {
     overlays = import ./overlays {inherit inputs outputs;};
-
-    home-manager.useGlobalPkgs = true;
 
     devShells = {
       x86_64-linux.default = 
@@ -78,6 +76,11 @@ overlays = import ./overlays {inherit inputs outputs;};
         specialArgs = {inherit inputs outputs;};
         modules = [
             ./nixos/rincewind/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
           ];
       };
     };
@@ -108,7 +111,7 @@ overlays = import ./overlays {inherit inputs outputs;};
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlays.default
-            nur.overlay.default
+            firefox-addons.overlays.default
             overlays.unstable-packages
           ];
         };

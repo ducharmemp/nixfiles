@@ -28,6 +28,6 @@
     programs.bat.enable = true;
     programs.bat.extraPackages = [pkgs.bat-extras.batman];
     programs.fzf.enable = true;
-    programs.fzf.enalbeFishIntegration = true;
+    programs.fzf.enableFishIntegration = true;
     programs.fd.enable = true;
 }
