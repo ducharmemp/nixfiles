@@ -66,6 +66,12 @@ overlays = import ./overlays {inherit inputs outputs;};
             ./nixos/nixos/configuration.nix
           ];
       };
+      rincewind = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+            ./nixos/rincewind/configuration.nix
+          ];
+      };
     };
 
     darwinConfigurations = {
@@ -87,6 +93,19 @@ overlays = import ./overlays {inherit inputs outputs;};
 
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [catppuccin.homeModules.catppuccin ./home-manager/nixos/home.nix];
+      };
+
+      "matt@rincewind" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import unstable {
+          system = "x86_64-linux";
+          overlays = [
+            neovim-nightly-overlay.overlays.default
+            overlays.unstable-packages
+          ];
+        };
+
+        extraSpecialArgs = {inherit inputs outputs;};
+        modules = [catppuccin.homeModules.catppuccin ./home-manager/rincewind/home.nix];
       };
 
       "matthewducharme" = home-manager.lib.homeManagerConfiguration {
