@@ -17,7 +17,10 @@
 
     ../common/hypridle
     ../common/hyprland
+    ../common/hyprlock
+    ../common/waybar
     ../common/firefox
+    ../common/thunderbird
 
     ./ssh.nix
   ];
