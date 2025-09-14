@@ -1,4 +1,4 @@
-{ ... } : {
+_ : {
   programs.nixvim = {
     plugins.blink-cmp-copilot.enable = true;
     plugins.blink-cmp-git.enable = true;

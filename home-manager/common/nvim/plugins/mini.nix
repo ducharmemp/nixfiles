@@ -1,4 +1,4 @@
-{ ... } : {
+_ : {
   programs.nixvim = {
     plugins.mini-surround.enable = true;
     plugins.mini-pairs.enable = true;

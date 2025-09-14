@@ -13,6 +13,8 @@
 
   nixpkgs = {
     config.allowUnfree = true;
+    # Workaround for https://github.com/nix-community/home-manager/issues/2942
+    config.allowUnfreePredicate = _: true;
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
@@ -109,8 +111,10 @@
     ];
   };
 
-  # Install firefox.
+  programs.zoom-us.enable = true;
+  programs.obs-studio.enable = true;
   programs.firefox.enable = true;
+  programs.thunderbird.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
   programs.hyprland = {
