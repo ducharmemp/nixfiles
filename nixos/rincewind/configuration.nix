@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, outputs, ... }:
 
 {
   imports =
@@ -10,6 +10,15 @@
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
       ./hardware-configuration.nix
     ];
+
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+    ];
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -115,9 +124,6 @@
     enable = true;
     polkitPolicyOwners = ["matt"];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
     # Enable flakes and new 'nix' command

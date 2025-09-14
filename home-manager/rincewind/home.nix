@@ -15,6 +15,7 @@
 
     ../common/hypridle
     ../common/hyprland
+    ../common/firefox
 
     ./theme.nix
     ./ssh.nix
@@ -27,9 +28,6 @@
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
     };
   };
 
