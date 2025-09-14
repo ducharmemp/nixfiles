@@ -5,6 +5,16 @@
 , pkgs
 , ...
 }: {
+  nixpkgs = {
+    # Configure your nixpkgs instance
+    config = {
+      # Disable if you don't want unfree packages
+      allowUnfree = true;
+      # Workaround for https://github.com/nix-community/home-manager/issues/2942
+      allowUnfreePredicate = _: true;
+    };
+  };
+
   imports = [
     ../common/git.nix
     ../common/nvim.nix
@@ -17,19 +27,8 @@
     ../common/hyprland
     ../common/firefox
 
-    ./theme.nix
     ./ssh.nix
   ];
-
-  nixpkgs = {
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = _: true;
-    };
-  };
 
   home = {
     username = "matt";
@@ -73,10 +72,8 @@
     gh
     google-chrome
     ncdu
-    zoom-us
     nodejs_22
     rclone
-    obs-studio
   ];
 
   fonts.fontconfig.enable = true;
@@ -89,15 +86,9 @@
     nix-direnv.enable = true;
   };
 
-  programs.firefox.enable = true;
-  programs.thunderbird.enable = true;
-  programs.thunderbird.profiles.home = {
-    isDefault = true;
-  };
-
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 }

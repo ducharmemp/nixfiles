@@ -16,11 +16,6 @@
   # Allow unfree packages
   nixpkgs = {
     config.allowUnfree = true;
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
   };
   # Bootloader.
   boot.loader.grub.enable = true;

@@ -20,14 +20,15 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     catppuccin.url = "github:catppuccin/nix";
 
     nixvim.url = "github:nix-community/nixvim";
+    nur.url = "github:nix-community/nur";
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    };
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
+
+    wezterm.url = "github:wez/wezterm?dir=nix";
   };
 
   outputs = {
@@ -40,7 +41,7 @@
     mac-app-util,
     catppuccin,
     nixvim,
-    firefox-addons,
+    nur,
     ...
   } @ inputs: let
 overlays = import ./overlays {inherit inputs outputs;};
@@ -103,11 +104,11 @@ overlays = import ./overlays {inherit inputs outputs;};
       };
 
       "matt@rincewind" = home-manager.lib.homeManagerConfiguration {
-        pkgs = import unstable {
+        pkgs = import nixpkgs {
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlays.default
-            firefox-addons.overlays.default
+            nur.overlay.default
             overlays.unstable-packages
           ];
         };
