@@ -100,6 +100,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.matt = {
     isNormalUser = true;
+    shell = pkgs.fish;
     description = "Matt";
     extraGroups = [
       "networkmanager"
@@ -118,18 +119,15 @@
     ];
   };
 
+  programs.fish.enable = true;
   programs.zoom-us.enable = true;
   programs.obs-studio.enable = true;
   programs.firefox.enable = true;
-  programs.thunderbird.enable = true;
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
   };
-  programs.waybar.enable = true;
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
@@ -143,6 +141,12 @@
     wget
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = 1;
+
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
+  virtualisation.libvirtd.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
