@@ -23,7 +23,6 @@
     catppuccin.url = "github:catppuccin/nix";
 
     nixvim.url = "github:nix-community/nixvim";
-    nur.url = "github:nix-community/nur";
 
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
@@ -77,10 +76,6 @@ overlays = import ./overlays {inherit inputs outputs;};
         modules = [
             ./nixos/rincewind/configuration.nix
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            }
           ];
       };
     };
