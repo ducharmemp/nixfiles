@@ -1,4 +1,4 @@
-_ : {
+_: {
   programs.nixvim = {
     plugins.oil = {
       enable = true;
@@ -7,7 +7,7 @@ _ : {
       settings.view_options = {
         show_hidden = true;
       };
-      settings.keymaps = { "y." = "actions.copy_entry_path"; };
+      settings.keymaps = {"y." = "actions.copy_entry_path";};
     };
     keymaps = [
       {
@@ -15,7 +15,7 @@ _ : {
         key = "<leader>e";
         action = "<cmd>Oil<CR>";
         options = {
-        desc = "Open [F]ile [E]xplorer";
+          desc = "Open [F]ile [E]xplorer";
         };
       }
     ];

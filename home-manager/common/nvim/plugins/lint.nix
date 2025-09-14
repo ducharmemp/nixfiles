@@ -1,4 +1,4 @@
-_ : {
+_: {
   programs.nixvim = {
     plugins.lint.enable = true;
   };

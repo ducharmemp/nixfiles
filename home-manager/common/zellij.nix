@@ -1,8 +1,12 @@
-{ lib, pkgs, ... }: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.zellij = {
     enable = true;
     settings = {
-    theme = "catppuccin-mocha";
+      theme = "catppuccin-mocha";
     };
   };
 }

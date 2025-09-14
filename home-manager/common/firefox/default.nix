@@ -2,9 +2,12 @@
   inputs,
   pkgs,
   ...
-} : {
+}: {
+  overlays = [
+    firefox-addons.overlays.default
+  ];
   programs.firefox = {
-    enable = true; 
+    enable = true;
     profiles.matt = {
       settings = {
         CaptivePortal = false;
@@ -19,4 +22,4 @@
       };
     };
   };
-}  
+}

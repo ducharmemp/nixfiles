@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.file = {
     ".psqlrc" = {
-            source = ./psqlrc;
+      source = ./psqlrc;
     };
   };
 }
