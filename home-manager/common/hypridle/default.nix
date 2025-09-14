@@ -3,7 +3,7 @@
   lib,
   pkgs,
   ...
-} : {
+}: {
   services.hypridle.settings = {
     general = {
       lock_cmd = "${pkgs.procps}/bin/pidof hyprlock || ${config.programs.hyprlock.package}/bin/hyprlock";

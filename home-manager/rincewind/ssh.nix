@@ -4,7 +4,7 @@ in {
   programs.ssh = {
     enable = true;
     extraConfig = ''
-          IdentityAgent ${onePassPath}
+      IdentityAgent ${onePassPath}
     '';
   };
 }

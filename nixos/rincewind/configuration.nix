@@ -1,15 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, outputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs = {
     config.allowUnfree = true;
@@ -25,7 +28,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  
+
   hardware.graphics.enable = true;
 
   networking.hostName = "rincewind"; # Define your hostname.
@@ -97,17 +100,17 @@
   users.users.matt = {
     isNormalUser = true;
     description = "Matt";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-       vim
-       git
-       thunderbird
-       kitty
-       rofi-wayland
-       rofi-top
-       rofi-calc
-       cliphist
-       kdePackages.dolphin
+      vim
+      git
+      thunderbird
+      kitty
+      rofi-wayland
+      rofi-top
+      rofi-calc
+      cliphist
+      kdePackages.dolphin
     ];
   };
 
@@ -142,7 +145,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
   ];
-  environment.sessionVariables.NIXOS_OZONE_WL=1;
+  environment.sessionVariables.NIXOS_OZONE_WL = 1;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -170,5 +173,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
 }

@@ -1,4 +1,4 @@
-_ : {
+_: {
   programs.nixvim = {
     plugins.flash = {
       enable = true;

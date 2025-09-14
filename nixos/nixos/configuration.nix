@@ -1,21 +1,24 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, inputs, outputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-        inputs.nixos-hardware.nixosModules.common-cpu-amd
-        inputs.nixos-hardware.nixosModules.common-pc-ssd
-      ./gpu.nix
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  inputs,
+  outputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+    ./gpu.nix
+    ./hardware-configuration.nix
+  ];
 
   # Allow unfree packages
   nixpkgs = {
-    config.allowUnfree = true;
   };
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -83,7 +86,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  
+
   # Enable XBox controller support
   hardware.xpadneo.enable = true;
 
@@ -121,7 +124,7 @@
   };
   virtualisation.libvirtd.enable = true;
   systemd.user.extraConfig = ''
-    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${lib.makeBinPath [ pkgs.bash ]}"
+    DefaultEnvironment="PATH=/run/current-system/sw/bin:/run/wrappers/bin:${lib.makeBinPath [pkgs.bash]}"
   '';
 
   programs.dconf.enable = true;
@@ -136,9 +139,19 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Matt";
-    subUidRanges = [{ startUid = 100000; count = 2097152; }];
-    subGidRanges = [{ startGid = 100000; count = 2097152; }];
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" "podman"];
+    subUidRanges = [
+      {
+        startUid = 100000;
+        count = 2097152;
+      }
+    ];
+    subGidRanges = [
+      {
+        startGid = 100000;
+        count = 2097152;
+      }
+    ];
+    extraGroups = ["networkmanager" "wheel" "libvirtd" "docker" "podman"];
     packages = with pkgs; [
       krita
       libreoffice-qt-fresh
@@ -155,17 +168,17 @@
 
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
-  nix.registry = (lib.mapAttrs (_: flake: { inherit flake; })) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
+  nix.registry = (lib.mapAttrs (_: flake: {inherit flake;})) ((lib.filterAttrs (_: lib.isType "flake")) inputs);
   # This will additionally add your inputs to the system's legacy channels
   # Making legacy nix commands consistent as well, awesome!
-  nix.nixPath = [ "/etc/nix/path" ];
+  nix.nixPath = ["/etc/nix/path"];
   environment.etc =
     lib.mapAttrs'
-      (name: value: {
-        name = "nix/path/${name}";
-        value.source = value.flake;
-      })
-      config.nix.registry;
+    (name: value: {
+      name = "nix/path/${name}";
+      value.source = value.flake;
+    })
+    config.nix.registry;
 
   nix.settings = {
     # Enable flakes and new 'nix' command
@@ -177,7 +190,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    git  
+    git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     curl
@@ -198,5 +211,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

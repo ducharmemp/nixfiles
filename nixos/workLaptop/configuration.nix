@@ -28,9 +28,8 @@
       allowUnfree = true;
     };
     flake = {
-
-  setFlakeRegistry = false;
-  setNixPath = false;
+      setFlakeRegistry = false;
+      setNixPath = false;
     };
   };
 

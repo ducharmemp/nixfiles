@@ -1,11 +1,12 @@
 # This is your home-manager configuration filehomeyny
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs
-, outputs
-, lib
-, config
-, pkgs
-, ...
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
   # You can import other home-manager modules here
   imports = [
@@ -38,7 +39,7 @@
 
   programs.git.extraConfig = {
     user.signingkey = "~/.ssh/id_ed25519.pub";
-    commit.gpgsign = true; 
+    commit.gpgsign = true;
   };
 
   home = {
@@ -48,35 +49,37 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
-    devenv
-    fontconfig
-    fzf
-    ripgrep
-    htop
-    nodejs_22
-    (yarn.override {
-      nodejs = nodejs_22;
-    })
-    awscli2
-    libcxx
-    libxml2
-    libxslt
-    freetds
-    k9s
-    babelfish
-    python312
-    terraform
-    fd
-    tree-sitter
-    unzip
-    stylua
-    zig
-    du-dust
-    gh
-    teleport_16
-    kubectl
-  ];
+  home.packages = with pkgs;
+    (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
+    ++ [
+      devenv
+      fontconfig
+      fzf
+      ripgrep
+      htop
+      nodejs_22
+      (yarn.override {
+        nodejs = nodejs_22;
+      })
+      awscli2
+      libcxx
+      libxml2
+      libxslt
+      freetds
+      k9s
+      babelfish
+      python312
+      terraform
+      fd
+      tree-sitter
+      unzip
+      stylua
+      zig
+      du-dust
+      gh
+      teleport_16
+      kubectl
+    ];
 
   fonts.fontconfig.enable = true;
 

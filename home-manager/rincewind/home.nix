@@ -1,9 +1,10 @@
-{ inputs
-, outputs
-, lib
-, config
-, pkgs
-, ...
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
 }: {
   nixpkgs = {
     # Configure your nixpkgs instance
@@ -46,35 +47,37 @@
 
   programs.git.extraConfig = {
     user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW24VUbwgiLgX4RNe+1KBNWdx6X3CPoYYfJZ37XCAi8";
-    commit.gpgsign = true; 
+    commit.gpgsign = true;
     gpg."ssh".program = "op-ssh-sign";
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts)) ++ [
-    discord
-    inter
-    fzf
-    ripgrep
-    meslo-lgs-nf
-    htop
-    freetds
-    babelfish
-    git-absorb
-    entr
-    fd
-    tree-sitter
-    unzip
-    stylua
-    zig
-    du-dust
-    gh
-    google-chrome
-    ncdu
-    nodejs_22
-    rclone
-  ];
+  home.packages = with pkgs;
+    (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
+    ++ [
+      discord
+      inter
+      fzf
+      ripgrep
+      meslo-lgs-nf
+      htop
+      freetds
+      babelfish
+      git-absorb
+      entr
+      fd
+      tree-sitter
+      unzip
+      stylua
+      zig
+      du-dust
+      gh
+      google-chrome
+      ncdu
+      nodejs_22
+      rclone
+    ];
 
   fonts.fontconfig.enable = true;
 

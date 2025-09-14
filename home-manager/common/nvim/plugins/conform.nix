@@ -1,4 +1,4 @@
-_ : {
+_: {
   programs.nixvim = {
     plugins.conform-nvim.enable = true;
     keymaps = [
@@ -11,7 +11,7 @@ _ : {
           end
         '';
         options = {
-        desc = "[C]onform [F]ile";
+          desc = "[C]onform [F]ile";
         };
       }
     ];
