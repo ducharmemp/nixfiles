@@ -24,6 +24,10 @@
     catppuccin.url = "github:catppuccin/nix";
 
     nixvim.url = "github:nix-community/nixvim";
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    };
   };
 
   outputs = {
@@ -36,12 +40,15 @@
     mac-app-util,
     catppuccin,
     nixvim,
+    firefox-addons,
     ...
   } @ inputs: let
 overlays = import ./overlays {inherit inputs outputs;};
     inherit (self) outputs;
   in {
     overlays = import ./overlays {inherit inputs outputs;};
+
+    home-manager.useGlobalPkgs = true;
 
     devShells = {
       x86_64-linux.default = 
@@ -100,6 +107,7 @@ overlays = import ./overlays {inherit inputs outputs;};
           system = "x86_64-linux";
           overlays = [
             neovim-nightly-overlay.overlays.default
+            firefox-addons.overlays.default
             overlays.unstable-packages
           ];
         };
