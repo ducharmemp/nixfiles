@@ -9,7 +9,7 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    ../common
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
     ./hardware-configuration.nix
   ];
@@ -130,13 +130,6 @@
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = ["matt"];
-  };
-
-  nix.settings = {
-    # Enable flakes and new 'nix' command
-    experimental-features = "nix-command flakes";
-    # Deduplicate and optimize nix store
-    auto-optimise-store = true;
   };
 
   # List packages installed in system profile. To search, run:
