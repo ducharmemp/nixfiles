@@ -3,9 +3,6 @@
   pkgs,
   ...
 }: {
-  overlays = [
-    firefox-addons.overlays.default
-  ];
   programs.firefox = {
     enable = true;
     profiles.matt = {

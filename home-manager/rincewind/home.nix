@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    ../common/
+    ../common
     ../common/git.nix
     ../common/nvim.nix
     ../common/wezterm.nix
