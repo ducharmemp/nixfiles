@@ -4,6 +4,7 @@
   inputs,
   ...
 }: {
+  services.hyprpolkitagent.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
