@@ -4,10 +4,10 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = "Catppuccin Mocha"
 config.window_decorations = "RESIZE"
 config.tab_bar_at_bottom = true
-config.font_size = 14.0
+config.font_size = 12.0
 config.font = wezterm.font("CommitMono Nerd Font")
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 config.harfbuzz_features = { "ss03", "ss04", "ss05" }

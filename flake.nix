@@ -25,6 +25,10 @@
     nixvim.url = "github:nix-community/nixvim";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+
+    astal.url = "github:aylur/astal";
+
+    ags.url = "github:aylur/ags"; 
   };
 
   outputs =

@@ -11,7 +11,7 @@
 {
   imports = [
     ../common
-    ../common/hyprland
+    # ../common/hyprland
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
     ./hardware-configuration.nix
   ];
@@ -66,9 +66,9 @@
   services.xserver.enable = true;
   services.thermald.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.cosmic.xwayland.enable = true;
+  services.desktopManager.cosmic.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -92,6 +92,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "libvirtd"
+      "podman"
     ];
     packages = with pkgs; [
       vim
@@ -121,6 +123,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    virtiofsd
   ];
   environment.sessionVariables.NIXOS_OZONE_WL = 1;
 
@@ -129,6 +132,8 @@
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  programs.nix-ld.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

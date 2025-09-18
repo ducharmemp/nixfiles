@@ -23,6 +23,8 @@
   programs.nixvim = {
     enable = true;
     colorschemes.catppuccin.enable = true;
+    colorschemes.rose-pine.enable = true;
+    colorscheme = "catppuccin-mocha";
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
