@@ -56,6 +56,7 @@
 
   services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
+  xdg.portal.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

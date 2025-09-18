@@ -37,7 +37,7 @@
 
       # exec-once = $terminal
       # exec-once = nm-applet &
-      # exec-once = waybar & hyprpaper & firefox
+      exec-once = ags run & hyprpaper & firefox
       exec-once = wl-paste --type text --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
 
@@ -205,9 +205,7 @@
       }
 
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
-      gestures {
-          workspace_swipe = false
-      }
+      gesture = 3, horizontal, workspace
 
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
