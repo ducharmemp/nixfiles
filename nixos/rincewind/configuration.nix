@@ -99,12 +99,7 @@
       vim
       git
       thunderbird
-      kitty
-      rofi-wayland
-      rofi-top
-      rofi-calc
-      cliphist
-      kdePackages.dolphin
+      unstable.ladybird
     ];
   };
 
@@ -112,6 +107,12 @@
   programs.zoom-us.enable = true;
   programs.obs-studio.enable = true;
   programs.firefox.enable = true;
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
@@ -125,7 +126,6 @@
     wget
     virtiofsd
   ];
-  environment.sessionVariables.NIXOS_OZONE_WL = 1;
 
   virtualisation.podman = {
     enable = true;
