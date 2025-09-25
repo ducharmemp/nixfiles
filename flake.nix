@@ -29,6 +29,8 @@
     astal.url = "github:aylur/astal";
 
     ags.url = "github:aylur/ags"; 
+
+    expert.url = "github:elixir-lang/expert";
   };
 
   outputs =

@@ -1,4 +1,5 @@
-_: {
+{pkgs, inputs, ...}: {
+  home.packages = with pkgs; [inputs.expert.packages.${pkgs.system}.default];
   programs.nixvim = {
     plugins.lspconfig.enable = true;
     lsp = {
@@ -7,23 +8,17 @@ _: {
         yamlls.enable = true;
         html.enable = true;
         ts_ls.enable = true;
-        ruby_lsp = {
-          enable = true;
-          package = null;
-          settings = {
-            cmd = ["gem" "exec" "ruby-lsp"];
-            init_options = {
-              formatter = "rubocop";
-              linters = ["rubocop"];
-              addonSettings.__raw = ''                {
-                                ["Ruby LSP Rails"] = {
-                                  enablePendingMigrationsPrompt = false
-                                }
-                              }'';
-            };
-          };
-        };
+        svelte.enable = true;
+        nextls.enable = true;
       };
     };
+    extraConfigLua = ''
+      vim.lsp.config('expert', {
+        cmd = { '${inputs.expert.packages.${pkgs.system}.default}/bin/expert' },
+        root_markers = { 'mix.exs', '.git' },
+        filetypes = { 'elixir', 'eelixir', 'heex' },
+      })
+      vim.lsp.enable('expert')
+    '';
   };
 }
