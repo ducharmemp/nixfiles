@@ -1,10 +1,10 @@
 {
-  description = "Your new nix config";
+  description = "Matt DuCharme's Nix Configs";
 
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    unstable.url = "nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-25.05";
@@ -15,6 +15,8 @@
     nix-darwin.inputs.nixpkgs.follows = "unstable";
 
     mac-app-util.url = "github:hraban/mac-app-util";
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
