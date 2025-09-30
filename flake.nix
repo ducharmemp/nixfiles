@@ -22,7 +22,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
 
     nixvim.url = "github:nix-community/nixvim";
 
