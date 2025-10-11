@@ -20,9 +20,10 @@
     # ../common/hyprlock
     # ../common/hyprpaper
     # ../common/waybar
-    ../common/firefox
+    ../common/browsers.nix
     ../common/thunderbird
     # ../common/ags
+    ../common/tailscale.nix
 
     ./ssh.nix
   ];
@@ -69,10 +70,10 @@
       zig
       du-dust
       gh
-      google-chrome
       ncdu
       nodejs_22
       rclone
+      libreoffice-fresh
     ];
 
   fonts.fontconfig.enable = true;
