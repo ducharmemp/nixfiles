@@ -96,7 +96,6 @@
       vim
       git
       thunderbird
-      unstable.ladybird
     ];
   };
 

@@ -13,6 +13,7 @@
     inputs.nix-gaming.nixosModules.pipewireLowLatency
     ./audio.nix
     ./printing.nix
+    ./vpn.nix
   ];
 
   nixpkgs = {
