@@ -2,6 +2,7 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 {
   inputs,
+  outputs,
   lib,
   config,
   pkgs,
@@ -10,18 +11,52 @@
 {
   # You can import other NixOS modules here
   imports = [
-    ../common
-
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.home-manager
+    # inputs.home-manager.nixosModules.home-manager
   ];
 
-  nix.settings = {
-    # Deduplicate and optimize nix store
-    # See https://github.com/NixOS/nix/issues/7273#issuecomment-1310213986 for reasoning
-    auto-optimise-store = false;
+  nixpkgs = {
+    config.allowUnfree = true;
+    config.allowUnfreePredicate = _: true;
+
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
+    ];
   };
+
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      linux-builder = {
+        enable = true;
+        systems = ["x86_64-linux" "aarch64-linux"];
+      };
+
+      settings = {
+        # Enable flakes and new 'nix' command
+        experimental-features = "nix-command flakes";
+        # Opinionated: disable global registry
+        flake-registry = lib.mkDefault "";
+        # Workaround for https://github.com/NixOS/nix/issues/9574
+        nix-path = lib.mkDefault config.nix.nixPath;
+        download-buffer-size = 524288000;
+
+        # automatic = lib.mkDefault true;
+      };
+      # Opinionated: disable channels
+      channel.enable = false;
+
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mkForce(lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs);
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
+    };
+
+  # home-manager.useGlobalPkgs = true;
 
   environment.variables = {
     OBJC_DISABLE_INITIALIZE_FORK_SAFETY = "YES";

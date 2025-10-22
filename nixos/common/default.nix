@@ -36,12 +36,12 @@
         # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
         # Opinionated: disable global registry
-        flake-registry = "";
+        flake-registry = lib.mkDefault "";
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = config.nix.nixPath;
         download-buffer-size = 524288000;
 
-        auto-optimise-store = lib.mkDefault true;
+        automatic = lib.mkDefault true;
       };
       # Opinionated: disable channels
       channel.enable = false;
