@@ -53,6 +53,8 @@
   home.packages = with pkgs;
     (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
     ++ [
+      gimp3
+      krita
       discord
       inter
       fzf
