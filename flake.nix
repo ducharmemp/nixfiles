@@ -33,6 +33,11 @@
     ags.url = "github:aylur/ags"; 
 
     expert.url = "github:elixir-lang/expert";
+
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "unstable";
+    };
   };
 
   outputs =
@@ -46,6 +51,7 @@
       mac-app-util,
       catppuccin,
       nixvim,
+      nix-rosetta-builder,
       ...
     }@inputs:
     let
@@ -116,6 +122,17 @@
         "CN-0171" = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
+            # An existing Linux builder is needed to initially bootstrap `nix-rosetta-builder`.
+            # If one isn't already available: comment out the `nix-rosetta-builder` module below,
+            # uncomment this `linux-builder` module, and run `darwin-rebuild switch`:
+            # { nix.linux-builder.enable = true; nix.linux-builder.systems = ["aarch64-linux" "x86_64-linux"]; }
+            # Then: uncomment `nix-rosetta-builder`, remove `linux-builder`, and `darwin-rebuild switch`
+            # a second time. Subsequently, `nix-rosetta-builder` can rebuild itself.
+            nix-rosetta-builder.darwinModules.default
+            {
+              # see available options in module.nix's `options.nix-rosetta-builder`
+              nix-rosetta-builder.onDemand = true;
+            }
             mac-app-util.darwinModules.default
             ./nixos/workLaptop/configuration.nix
           ];

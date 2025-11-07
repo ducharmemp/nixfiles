@@ -32,11 +32,6 @@
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in
     {
-      linux-builder = {
-        enable = true;
-        systems = ["x86_64-linux" "aarch64-linux"];
-      };
-
       settings = {
         # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
@@ -44,7 +39,9 @@
         flake-registry = lib.mkDefault "";
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = lib.mkDefault config.nix.nixPath;
-        download-buffer-size = 524288000;
+        download-buffer-size = 524288000;    
+        trusted-users = [ "@admin" "matthewducharme" ];
+        extra-trusted-users = [ "@admin" "matthewducharme" ];
 
         # automatic = lib.mkDefault true;
       };
