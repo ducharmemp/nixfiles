@@ -13,7 +13,7 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    # inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   nixpkgs = {
@@ -32,6 +32,7 @@
       flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
     in
     {
+      enable = false;
       settings = {
         # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";

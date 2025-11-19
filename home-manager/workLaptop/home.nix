@@ -22,6 +22,7 @@
     ../common/wezterm.nix
     ../common/psql.nix
     ../common/zellij.nix
+    ../common/aerospace.nix
   ];
 
   catppuccin.thunderbird.enable = true;
@@ -54,7 +55,6 @@
     (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
     ++ [
       devenv
-      fontconfig
       fzf
       ripgrep
       htop
@@ -82,10 +82,7 @@
       kubectl
     ];
 
-  fonts.fontconfig.enable = true;
-
   programs.home-manager.enable = true;
-  programs.spotify-player.enable = true;
 
   programs.direnv = {
     enable = true;
@@ -98,7 +95,7 @@
   };
 
   # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  # systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
