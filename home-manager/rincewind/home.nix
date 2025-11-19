@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   imports = [
     ../common
     ../common/git.nix
@@ -52,7 +53,8 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
     ++ [
       gimp3

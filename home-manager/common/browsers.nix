@@ -1,5 +1,9 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [ ./firefox ];
 
-  home.packages = with pkgs; [unstable.ladybird google-chrome];
+  home.packages = with pkgs; [
+    unstable.ladybird
+    google-chrome
+  ];
 }

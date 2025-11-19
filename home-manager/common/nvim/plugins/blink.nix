@@ -6,15 +6,24 @@ _: {
     plugins.blink-cmp = {
       enable = true;
       settings = {
-        sources.default = ["lsp" "path" "buffer" "git" "copilot" "ripgrep"];
+        sources.default = [
+          "lsp"
+          "path"
+          "buffer"
+          "git"
+          "copilot"
+          "ripgrep"
+        ];
         sources.providers = {
           git = {
             module = "blink-cmp-git";
             name = "git";
             score_offset = 100;
             opts = {
-              commit = {};
-              git_centers = {git_hub = {};};
+              commit = { };
+              git_centers = {
+                git_hub = { };
+              };
             };
           };
           copilot = {
@@ -35,10 +44,10 @@ _: {
               project_root_marker = ".git";
               backend.ripgrep.project_root_fallback = true;
               backend.ripgrep.search_casing = "--ignore-case";
-              additional_rg_options = {};
+              additional_rg_options = { };
               fallback_to_regex_highlighting = true;
-              ignore_paths = {};
-              additional_paths = {};
+              ignore_paths = { };
+              additional_paths = { };
               debug = false;
             };
           };

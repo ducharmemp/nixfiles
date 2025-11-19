@@ -264,7 +264,10 @@ _: {
         };
       }
       {
-        mode = ["n" "x"];
+        mode = [
+          "n"
+          "x"
+        ];
         key = "<leader>sw";
         action.__raw = ''
           function()

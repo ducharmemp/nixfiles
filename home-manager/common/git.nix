@@ -9,7 +9,9 @@ _: {
     difftastic.enableAsDifftool = true;
 
     extraConfig = {
-      pull = {ff = "only";};
+      pull = {
+        ff = "only";
+      };
       merge = {
         conflictstyle = "zdiff3";
         tool = "vimdiff";
@@ -19,9 +21,15 @@ _: {
         autostash = true;
         updateRefs = true;
       };
-      rerere = {enabled = true;};
-      help = {autocorrect = 10;};
-      diff = {algorithm = "histogram";};
+      rerere = {
+        enabled = true;
+      };
+      help = {
+        autocorrect = 10;
+      };
+      diff = {
+        algorithm = "histogram";
+      };
       url."git@github.com:".insteadOf = "https://github.com/";
       transfer.fsckobjects = true;
       fetch.fsckobjects = true;

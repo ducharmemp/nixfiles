@@ -2,7 +2,8 @@
   config,
   outputs,
   ...
-}: {
+}:
+{
   nixpkgs = {
     config.allowUnfree = true;
     config.allowUnfreePredicate = _: true;

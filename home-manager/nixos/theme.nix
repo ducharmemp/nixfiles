@@ -5,7 +5,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   xdg = {
     configFile."cosmic-theme" = {
       source = builtins.fetchGit {
