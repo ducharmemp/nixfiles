@@ -49,8 +49,9 @@
 
     clipboard = {
       providers = {
-        wl-copy.enable = true;
-        xsel.enable = true;
+        wl-copy.enable = pkgs.stdenv.isLinux;
+        xsel.enable = pkgs.stdenv.isLinux;
+        # pbcopy.enable = pkgs.stdenv.isDarwin;
       };
       register = "unnamedplus";
     };
