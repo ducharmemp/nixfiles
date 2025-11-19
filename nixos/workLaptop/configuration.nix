@@ -13,7 +13,7 @@
   imports = [
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.darwinModules.home-manager
   ];
 
   nixpkgs = {
@@ -40,9 +40,15 @@
         flake-registry = lib.mkDefault "";
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = lib.mkDefault config.nix.nixPath;
-        download-buffer-size = 524288000;    
-        trusted-users = [ "@admin" "matthewducharme" ];
-        extra-trusted-users = [ "@admin" "matthewducharme" ];
+        download-buffer-size = 524288000;
+        trusted-users = [
+          "@admin"
+          "matthewducharme"
+        ];
+        extra-trusted-users = [
+          "@admin"
+          "matthewducharme"
+        ];
 
         # automatic = lib.mkDefault true;
       };
@@ -50,7 +56,7 @@
       channel.enable = false;
 
       # Opinionated: make flake registry and nix path match flake inputs
-      registry = lib.mkForce(lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs);
+      registry = lib.mkForce (lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs);
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
 

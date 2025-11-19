@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.oh-my-posh.enable = true;
   programs.oh-my-posh.useTheme = "catppuccin_macchiato";
   programs.fish = {
@@ -29,7 +30,7 @@
   programs.eza.enable = true;
   programs.eza.enableFishIntegration = true;
   programs.bat.enable = true;
-  programs.bat.extraPackages = [pkgs.bat-extras.batman];
+  programs.bat.extraPackages = [ pkgs.bat-extras.batman ];
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
   programs.fd.enable = true;

@@ -1,5 +1,6 @@
-{pkgs, inputs, ...}: {
-  home.packages = with pkgs; [inputs.expert.packages.${pkgs.system}.default];
+{ pkgs, inputs, ... }:
+{
+  home.packages = with pkgs; [ inputs.expert.packages.${pkgs.system}.default ];
   programs.nixvim = {
     plugins.lspconfig.enable = true;
     lsp = {
