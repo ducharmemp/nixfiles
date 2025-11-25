@@ -40,8 +40,6 @@
         # Workaround for https://github.com/NixOS/nix/issues/9574
         nix-path = config.nix.nixPath;
         download-buffer-size = 524288000;
-
-        automatic = lib.mkDefault true;
       };
       # Opinionated: disable channels
       channel.enable = false;
