@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.default_prog = {"fish", "-l", "-c", "zellij"}
+config.default_prog = {"zellij"}
 
 config.color_scheme = "Catppuccin Mocha"
 config.window_decorations = "RESIZE"
