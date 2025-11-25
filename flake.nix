@@ -28,10 +28,6 @@
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
-    astal.url = "github:aylur/astal";
-
-    ags.url = "github:aylur/ags"; 
-
     expert.url = "github:elixir-lang/expert";
 
     nix-rosetta-builder = {
