@@ -2,6 +2,10 @@ _: {
   programs.nixvim = {
     plugins.snacks = {
       enable = true;
+      settings.bigfile.enable = true;
+      settings.words.enable = true;
+      settings.picker.enable = true;
+      settings.image.enable = true;
     };
     keymaps = [
       {

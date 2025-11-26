@@ -20,6 +20,16 @@
     inputs.neovim-nightly-overlay.overlays.default
   ];
 
+  home.packages = with pkgs; [
+    # Needed for picker
+    imagemagick
+    ghostscript
+    sqlite
+    # Needed for image
+    texliveSmall
+    mermaid-cli
+  ];
+
   programs.nixvim = {
     enable = true;
     colorschemes.catppuccin.enable = true;
@@ -238,6 +248,7 @@
 
     plugins.sleuth.enable = true;
     plugins.fugitive.enable = true;
+    plugins.rhubarb.enable = true;
     plugins.direnv.enable = true;
     plugins.highlight-colors.enable = true;
     plugins.which-key.enable = true;
