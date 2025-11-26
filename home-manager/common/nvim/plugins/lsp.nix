@@ -10,6 +10,7 @@
         ts_ls.enable = true;
         svelte.enable = true;
         nextls.enable = true;
+        nixd.enable = true;
       };
     };
     extraConfigLua = ''
