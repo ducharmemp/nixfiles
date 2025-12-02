@@ -76,7 +76,7 @@
       unzip
       stylua
       zig
-      du-dust
+      dust
       gh
       teleport_16
       kubectl
