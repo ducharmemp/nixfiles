@@ -34,7 +34,7 @@
     enable = true;
     colorschemes.catppuccin.enable = true;
     colorschemes.rose-pine.enable = true;
-    colorscheme = "catppuccin-mocha";
+    colorscheme = "catppuccin-macchiato";
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;

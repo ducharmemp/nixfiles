@@ -34,8 +34,10 @@
   };
 
   catppuccin.thunderbird.enable = true;
-  catppuccin.thunderbird.profile = "work";
+  catppuccin.thunderbird.profile = "home";
   catppuccin.bat.enable = true;
+  catppuccin.firefox.enable = true;
+  programs.firefox.profiles.matt.extensions.force = true;
   catppuccin.fzf.enable = true;
   catppuccin.k9s.enable = true;
   catppuccin.delta.enable = true;
@@ -70,7 +72,7 @@
       unzip
       stylua
       zig
-      du-dust
+      dust
       gh
       ncdu
       nodejs_22

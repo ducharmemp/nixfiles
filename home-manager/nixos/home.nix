@@ -59,7 +59,7 @@
       unzip
       stylua
       zig
-      du-dust
+      dust
       gh
       google-chrome
       ncdu

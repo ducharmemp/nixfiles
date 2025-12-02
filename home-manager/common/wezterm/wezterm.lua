@@ -6,7 +6,7 @@ local config = wezterm.config_builder()
 
 config.default_prog = {"zellij"}
 
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Catppuccin Macchiato"
 config.window_decorations = "RESIZE"
 config.tab_bar_at_bottom = true
 config.font_size = 12.0
