@@ -28,6 +28,7 @@
   };
 
   programs.eza.enable = true;
+  programs.eza.git = true;
   programs.eza.enableFishIntegration = true;
   programs.bat.enable = true;
   programs.bat.extraPackages = [ pkgs.bat-extras.batman ];

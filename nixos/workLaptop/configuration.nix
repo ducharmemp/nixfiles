@@ -77,6 +77,8 @@
     wezterm
     podman
     podman-compose
+    home-manager
+    aerospace
   ];
 
   users.knownUsers = [ "matthewducharme" ];

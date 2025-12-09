@@ -40,7 +40,7 @@
     ".direnv"
   ];
 
-  programs.git.extraConfig = {
+  programs.git.settings = {
     user.signingkey = "~/.ssh/id_ed25519.pub";
     commit.gpgsign = true;
   };
@@ -80,7 +80,7 @@
       zig
       dust
       gh
-      teleport_16
+      teleport_17
       kubectl
     ];
 

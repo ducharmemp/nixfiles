@@ -1,14 +1,36 @@
 _: {
+  programs.difftastic = {
+    enable = true;
+    git.diffToolMode = true;
+  };
+
   programs.git = {
     enable = true;
 
-    userName = "Matthew DuCharme";
-    userEmail = "ducharmemp@gmail.com";
+    ignores = [
+      "*.iml"
+      ".DS_Store"
+      ".solargraph.yml"
+      ".direnv"
+      "/direnv"
+    ];
+    
+    settings = {
+      user.name = "Matthew DuCharme";
+      user.email = "ducharmemp@gmail.com";
 
-    difftastic.enable = true;
-    difftastic.enableAsDifftool = true;
+      alias = {
+        aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'";
+        pu = "!git push --set-upstream origin $(git branch --show-current)";
+        st = "status";
+        aa = "add --all";
+        co = "checkout";
+        cane = "commit --amend --no-edit";
+        cam = "commit --amend --message";
+        fp = "push --force-with-lease";
+        fixup = "!git commit --fixup";
+      };
 
-    extraConfig = {
       pull = {
         ff = "only";
       };
@@ -38,25 +60,5 @@ _: {
       maintenance.strategy = "incremental";
       gpg.format = "ssh";
     };
-
-    aliases = {
-      aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'";
-      pu = "!git push --set-upstream origin $(git branch --show-current)";
-      st = "status";
-      aa = "add --all";
-      co = "checkout";
-      cane = "commit --amend --no-edit";
-      cam = "commit --amend --message";
-      fp = "push --force-with-lease";
-      fixup = "!git commit --fixup";
-    };
-
-    ignores = [
-      "*.iml"
-      ".DS_Store"
-      ".solargraph.yml"
-      ".direnv"
-      "/direnv"
-    ];
   };
 }
