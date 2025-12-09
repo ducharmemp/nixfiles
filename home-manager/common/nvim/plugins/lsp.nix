@@ -5,6 +5,7 @@
     plugins.lspconfig.enable = true;
     lsp = {
       servers = {
+        ruby_lsp.enable = true;
         tailwindcss.enable = true;
         yamlls.enable = true;
         html.enable = true;
