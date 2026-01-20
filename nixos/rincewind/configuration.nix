@@ -16,6 +16,8 @@
     ./hardware-configuration.nix
   ];
 
+  nix.settings.trusted-users = ["matt"];
+
   nixpkgs = {
     config.allowUnfree = true;
     # Workaround for https://github.com/nix-community/home-manager/issues/2942
@@ -30,8 +32,12 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = with pkgs; [
+      intel-media-driver
+      ];
 
   networking.hostName = "rincewind"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -126,6 +132,10 @@
 
   virtualisation.podman = {
     enable = true;
+    # Create a `docker` alias for podman, to use it as a drop-in replacement
+    dockerCompat = true;
+
+    # Required for containers under podman-compose to be able to talk to each other.
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.libvirtd.enable = true;

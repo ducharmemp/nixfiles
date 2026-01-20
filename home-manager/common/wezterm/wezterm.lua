@@ -8,6 +8,7 @@ config.default_prog = {"zellij"}
 
 config.color_scheme = "Catppuccin Macchiato"
 config.window_decorations = "RESIZE"
+config.window_background_opacity = 0.8
 config.tab_bar_at_bottom = true
 config.font_size = 12.0
 config.font = wezterm.font("CommitMono Nerd Font")

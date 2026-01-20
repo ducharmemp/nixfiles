@@ -5,8 +5,9 @@ in
 {
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      IdentityAgent ${onePassPath}
-    '';
+    enableDefaultConfig = false;
+    matchBlocks."*" = {
+      identityAgent = onePassPath;
+    };
   };
 }
