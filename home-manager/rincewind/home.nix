@@ -80,6 +80,7 @@
       nodejs_22
       rclone
       libreoffice-fresh
+      moonlight-qt
     ];
 
   fonts.fontconfig.enable = true;

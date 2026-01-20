@@ -90,14 +90,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            ./nixos/nixos/configuration.nix
-          ];
-        };
-
-        rincewind = nixpkgs.lib.nixosSystem {
+        rincewind = unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./nixos/rincewind/configuration.nix
@@ -115,17 +108,8 @@
       };
 
       homeConfigurations = {
-        "matt@nixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            catppuccin.homeModules.catppuccin
-            ./home-manager/nixos/home.nix
-          ];
-        };
-
         "matt@rincewind" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = unstable.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             catppuccin.homeModules.catppuccin

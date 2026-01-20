@@ -13,6 +13,7 @@
         svelte.enable = true;
         nextls.enable = true;
         nixd.enable = true;
+        rust_analyzer.enable = true;
       };
     };
     extraConfigLua = ''
