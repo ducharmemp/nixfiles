@@ -14,7 +14,7 @@ _: {
       ".direnv"
       "/direnv"
     ];
-    
+
     settings = {
       user.name = "Matthew DuCharme";
       user.email = "ducharmemp@gmail.com";

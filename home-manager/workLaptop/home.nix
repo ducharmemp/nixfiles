@@ -1,22 +1,11 @@
-# This is your home-manager configuration filehomeyny
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
-  inputs,
-  outputs,
   lib,
-  config,
   pkgs,
   ...
 }:
 {
-  # You can import other home-manager modules here
   imports = [
     ../common
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./nvim.nix
     ../common/git.nix
     ../common/fish.nix
     ../common/nvim.nix

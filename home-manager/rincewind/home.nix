@@ -1,8 +1,5 @@
 {
-  inputs,
-  outputs,
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -16,14 +13,8 @@
     ../common/psql.nix
     ../common/zellij.nix
 
-    # ../common/hypridle
-    # ../common/hyprland
-    # ../common/hyprlock
-    # ../common/hyprpaper
-    # ../common/waybar
     ../common/browsers.nix
     ../common/thunderbird
-    # ../common/ags
     ../common/tailscale.nix
 
     ./ssh.nix
