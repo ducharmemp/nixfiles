@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   inputs,
   outputs,
@@ -9,11 +8,10 @@
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.nix-gaming.nixosModules.platformOptimizations
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
     ./audio.nix
     ./printing.nix
     ./vpn.nix
+    ./kernel.nix
   ];
 
   nixpkgs = {
@@ -45,6 +43,4 @@
     };
 
   home-manager.useGlobalPkgs = true;
-
-  programs.steam.platformOptimizations.enable = true;
 }

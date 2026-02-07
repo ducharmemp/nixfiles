@@ -6,9 +6,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    unstable-home-manager.url = "github:nix-community/home-manager/master";
+    unstable-home-manager.inputs.nixpkgs.follows = "unstable";
 
     # Darwin
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
@@ -20,13 +25,15 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.url = "github:catppuccin/nix/release-25.11";
 
     nixvim.url = "github:nix-community/nixvim";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
 
     expert.url = "github:elixir-lang/expert";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -34,11 +41,11 @@
       self,
       nixpkgs,
       home-manager,
+      unstable-home-manager,
       unstable,
       nix-darwin,
-      neovim-nightly-overlay,
       catppuccin,
-      nixvim,
+      agenix,
       ...
     }@inputs:
     let
@@ -69,23 +76,44 @@
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
-      devShells = {
-        x86_64-linux.default =
-          let
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          in
-          pkgs.mkShell {
-            packages = [ pkgs.statix ];
-          };
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          formatter = forAllSystems (
+            system:
+            let
+              pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            in
+            pkgs.writeShellApplication {
+              name = "nixfmt-wrapper";
 
-        aarch64-darwin.default =
-          let
-            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-          in
-          pkgs.mkShell {
-            packages = [ pkgs.statix ];
+              runtimeInputs = [
+                pkgs.fd
+                pkgs.nixfmt-rfc-style
+              ];
+
+              text = ''
+                fd "$@" -t f -e nix -x nixfmt '{}'
+              '';
+            }
+          );
+          default = pkgs.mkShell {
+            packages =
+              with pkgs;
+              [
+                statix
+                shellcheck
+                nil
+              ]
+              ++ [
+                agenix.packages.${system}.default
+              ];
           };
-      };
+        }
+      );
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
@@ -108,10 +136,11 @@
       };
 
       homeConfigurations = {
-        "matt@rincewind" = home-manager.lib.homeManagerConfiguration {
+        "matt@rincewind" = unstable-home-manager.lib.homeManagerConfiguration {
           pkgs = unstable.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
             ./home-manager/rincewind/home.nix
           ];
@@ -121,6 +150,7 @@
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
+            agenix.homeManagerModules.default
             catppuccin.homeModules.catppuccin
             ./home-manager/workLaptop/home.nix
           ];

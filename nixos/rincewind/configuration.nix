@@ -2,32 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   inputs,
-  outputs,
   ...
 }:
 {
   imports = [
     ../common
-    # ../common/hyprland
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
     ./hardware-configuration.nix
   ];
 
-  nix.settings.trusted-users = ["matt"];
-
-  nixpkgs = {
-    config.allowUnfree = true;
-    # Workaround for https://github.com/nix-community/home-manager/issues/2942
-    config.allowUnfreePredicate = _: true;
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-    ];
-  };
+  nix.settings.trusted-users = [ "matt" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -36,15 +22,11 @@
 
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
-      intel-media-driver
-      ];
+    intel-media-driver
+  ];
 
   networking.hostName = "rincewind"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   zramSwap.enable = true;
 
   # Enable networking
@@ -68,8 +50,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
   services.thermald.enable = true;
   services.system76-scheduler.enable = true;
 
@@ -77,7 +57,6 @@
   services.desktopManager.cosmic.xwayland.enable = true;
   services.desktopManager.cosmic.enable = true;
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -122,44 +101,21 @@
     polkitPolicyOwners = [ "matt" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     virtiofsd
   ];
 
   virtualisation.podman = {
     enable = true;
-    # Create a `docker` alias for podman, to use it as a drop-in replacement
     dockerCompat = true;
-
-    # Required for containers under podman-compose to be able to talk to each other.
     defaultNetwork.settings.dns_enabled = true;
   };
   virtualisation.libvirtd.enable = true;
+
   programs.virt-manager.enable = true;
   programs.nix-ld.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

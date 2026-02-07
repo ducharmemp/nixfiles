@@ -14,7 +14,7 @@ _: {
       ".direnv"
       "/direnv"
     ];
-    
+
     settings = {
       user.name = "***REMOVED***";
       user.email = "***REMOVED***";
