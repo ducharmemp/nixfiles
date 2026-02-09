@@ -24,8 +24,6 @@
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
