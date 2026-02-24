@@ -33,11 +33,11 @@
       ids.gids.nixbld = 350;
 
       nix.settings.trusted-users = [
-        "matt"
+        "matthewducharme"
         "@admin"
       ];
       nix.settings.extra-trusted-users = [
-        "matt"
+        "matthewducharme"
         "@admin"
       ];
 
@@ -65,6 +65,7 @@
       users.users = {
         matthewducharme = {
           uid = 502;
+          home = "/Users/matthewducharme";
           shell = pkgs.fish;
         };
       };
@@ -73,6 +74,7 @@
 
       home-manager.users.matthewducharme = {
         imports = [
+          self.homeModules.jujutsu
           self.homeModules.git
           self.homeModules.nvim
           self.homeModules.wezterm
@@ -91,12 +93,6 @@
         };
 
         catppuccin.thunderbird.profile = "work";
-
-        programs.git.ignores = [
-          "**/flake.nix"
-          "**/flake.lock"
-          ".direnv"
-        ];
 
         programs.git.settings = {
           user.signingkey = "~/.ssh/id_ed25519.pub";
@@ -124,7 +120,7 @@
           isDefault = true;
         };
 
-        home.stateVersion = "25.05";
+        home.stateVersion = "25.11";
       };
 
       system.stateVersion = 4;

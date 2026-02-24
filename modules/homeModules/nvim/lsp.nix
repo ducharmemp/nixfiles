@@ -8,7 +8,6 @@
         plugins.lspconfig.enable = true;
         lsp = {
           servers = {
-            ruby_lsp.enable = true;
             tailwindcss.enable = true;
             yamlls.enable = true;
             html.enable = true;
@@ -20,6 +19,22 @@
           };
         };
         extraConfigLua = ''
+          vim.lsp.config('ruby-lsp', {
+            filetypes = { "ruby", "eruby" },
+
+            cmd = { "bundle", "exec", "ruby-lsp" },
+
+            root_markers = { "Gemfile", ".git" },
+            
+            init_options = {
+              addonSettings = {
+                ["Ruby LSP Rails"] = {
+                  enablePendingMigrationsPrompt = false,
+                },
+              },
+            },
+          })
+          vim.lsp.enable('ruby-lsp')
           vim.lsp.config('expert', {
             cmd = { '${inputs.expert.packages.${pkgs.system}.default}/bin/expert' },
             root_markers = { 'mix.exs', '.git' },
