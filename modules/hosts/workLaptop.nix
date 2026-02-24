@@ -31,6 +31,7 @@
     {
       nixpkgs.hostPlatform = "aarch64-darwin";
       ids.gids.nixbld = 350;
+      nix.enable = false; # Leverage DetNix for this instead of nix-darwin
 
       nix.settings.trusted-users = [
         "matthewducharme"
