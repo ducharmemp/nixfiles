@@ -21,6 +21,16 @@
   flake.nixosConfigurations.rincewind = inputs.unstable.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
+      {
+        nixpkgs.overlays = [
+          (_final: _prev: {
+            makemkv = (import inputs.nixpkgs-master {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            }).makemkv;
+          })
+        ];
+      }
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.nix-settings
@@ -122,6 +132,7 @@
         vim
         wget
         virtiofsd
+        makemkv
       ];
 
       virtualisation.podman = {

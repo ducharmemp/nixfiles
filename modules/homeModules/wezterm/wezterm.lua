@@ -13,9 +13,9 @@ if wezterm.target_triple ~= "aarch64-apple-darwin" and wezterm.target_triple ~= 
 end
 config.tab_bar_at_bottom = true
 config.font_size = 12.0
-config.font = wezterm.font("CommitMono Nerd Font")
+config.font = wezterm.font("Berkeley MonoNerdFont Nerd Font")
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-config.harfbuzz_features = { "ss03", "ss04", "ss05" }
+-- config.harfbuzz_features = { "ss03", "ss04", "ss05" }
 config.colors = {
 	tab_bar = {},
 }
