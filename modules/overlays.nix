@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.overlays = {
-    additions = final: _prev: import ../pkgs { pkgs = final; };
+    additions = final: _prev: import ../pkgs final;
 
     modifications = final: prev: { };
 

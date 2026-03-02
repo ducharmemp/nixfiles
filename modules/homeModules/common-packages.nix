@@ -20,6 +20,7 @@
           dust
           gh
           nodejs_22
+          berkeley-mono
         ];
 
       fonts.fontconfig.enable = true;
