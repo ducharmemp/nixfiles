@@ -4,7 +4,7 @@
    stdenvNoCC,
    unzip,
    nerd-font-patcher,
-   variant ? "ligaturesoff-0variant0-7variant0",
+   variant ? "26030184XPX2RZ98",
 }:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
@@ -12,7 +12,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
    version = "1.009";
 
    src = requireFile rec {
-      name = "${finalAttrs.pname}-${variant}-${finalAttrs.version}.zip";
+      name = "${variant}.zip";
       sha256 = "0yjjck6j86xm201g4ws164q7pl56kdwfrizah4p118291qw30s1h";
       message = ''
          This file needs to be manually downloaded from the Berkeley Graphics
@@ -23,7 +23,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
          Then run:
 
-         nix-prefetch-url --type sha256 file://\$PWD/2603012RM5MRVJ06.zip
+         nix-prefetch-url --type sha256 file://\$PWD/26030184XPX2RZ98.zip
       '';
    };
 
