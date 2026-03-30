@@ -1,12 +1,10 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gflash =
+  flake.homeModules.nvim-lint =
     { pkgs, ... }:
     {
       programs.nixvim = {
-        plugins.flash = {
-          enable = true;
-        };
+        plugins.lint.enable = true;
       };
     };
 }

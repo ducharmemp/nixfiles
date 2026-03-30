@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gconform =
+  flake.homeModules.nvim-conform =
     { pkgs, ... }:
     {
       programs.nixvim = {

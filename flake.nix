@@ -40,16 +40,5 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        inputs.home-manager.flakeModules.home-manager
-        (inputs.import-tree ./modules)
-      ];
-      systems = [
-        "x86_64-linux"
-        "aarch64-darwin"
-      ];
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

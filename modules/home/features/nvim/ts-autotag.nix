@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gts-autotag =
+  flake.homeModules.nvim-ts-autotag =
     { pkgs, ... }:
     {
       programs.nixvim = {

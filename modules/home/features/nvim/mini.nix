@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gmini =
+  flake.homeModules.nvim-mini =
     { pkgs, ... }:
     {
       programs.nixvim = {

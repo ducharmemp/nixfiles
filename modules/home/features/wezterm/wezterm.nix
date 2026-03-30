@@ -10,7 +10,7 @@
 
       xdg = {
         configFile."wezterm" = {
-          source = ./homeModules/wezterm;
+          source = ./.;
           recursive = true;
         };
       };

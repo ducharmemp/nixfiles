@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.glsp =
+  flake.homeModules.nvim-lsp =
     { pkgs, ... }:
     {
       home.packages = with pkgs; [ inputs.expert.packages.${pkgs.system}.default ];

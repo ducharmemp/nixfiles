@@ -5,16 +5,16 @@
     {
       imports = [
         inputs.nixvim.homeModules.nixvim
-        self.homeModules.goil
-        self.homeModules.gflash
-        self.homeModules.gtreesitter
-        self.homeModules.gblink
-        self.homeModules.glsp
-        self.homeModules.gmini
-        self.homeModules.gconform
-        self.homeModules.gsnacks
-        self.homeModules.glint
-        self.homeModules.gts-autotag
+        self.homeModules.nvim-oil
+        self.homeModules.nvim-flash
+        self.homeModules.nvim-treesitter
+        self.homeModules.nvim-blink
+        self.homeModules.nvim-lsp
+        self.homeModules.nvim-mini
+        self.homeModules.nvim-conform
+        self.homeModules.nvim-snacks
+        self.homeModules.nvim-lint
+        self.homeModules.nvim-ts-autotag
       ];
 
       home.packages = with pkgs; [

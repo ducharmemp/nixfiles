@@ -24,10 +24,11 @@
       {
         nixpkgs.overlays = [
           (_final: _prev: {
-            makemkv = (import inputs.nixpkgs-master {
-              system = "x86_64-linux";
-              config.allowUnfree = true;
-            }).makemkv;
+            makemkv =
+              (import inputs.nixpkgs-master {
+                system = "x86_64-linux";
+                config.allowUnfree = true;
+              }).makemkv;
           })
         ];
       }

@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gtreesitter =
+  flake.homeModules.nvim-treesitter =
     { pkgs, ... }:
     {
       programs.nixvim = {

@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.goil =
+  flake.homeModules.nvim-oil =
     { pkgs, ... }:
     {
       programs.nixvim = {

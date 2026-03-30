@@ -1,6 +1,6 @@
 { inputs, self, ... }:
 {
-  flake.homeModules.gblink =
+  flake.homeModules.nvim-blink =
     { pkgs, ... }:
     {
       programs.nixvim = {
