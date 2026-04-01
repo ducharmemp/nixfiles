@@ -10,19 +10,6 @@
         plugins.mini-statusline.enable = true;
         plugins.mini-extra.enable = true;
         plugins.mini-ai.enable = true;
-        plugins.mini-starter = {
-          enable = true;
-          settings = {
-            header = ''
-                 ▄   ▄███▄   ████▄  ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄
-                  █  █▀   ▀  █   █ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄
-              ██   █ ██▄▄    █   █ ███    ███ ███▌ ███   ███   ███
-              █ █  █ █▄   ▄▀ ▀████ ███    ███ ███▌ ███   ███   ███
-              █  █ █ ▀███▀         ███    ███ ███  ███   ███   ███
-              █   ██                ▀██████▀  █▀    ▀█   ███   █▀
-            '';
-          };
-        };
       };
     };
 }

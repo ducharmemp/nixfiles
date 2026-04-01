@@ -37,6 +37,7 @@
         vimAlias = true;
         vimdiffAlias = true;
         withRuby = false;
+        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
 
         globals = {
           mapleader = " ";
@@ -254,7 +255,6 @@
         # plugins.gufo.enable = true;
         plugins.undotree.enable = true;
         # plugins.indent-blankline.enable = true;
-        plugins.rainbow-delimiters.enable = true;
       };
     };
 }

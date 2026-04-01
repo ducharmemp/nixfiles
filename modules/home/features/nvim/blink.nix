@@ -7,6 +7,7 @@
         plugins.blink-cmp-copilot.enable = true;
         plugins.blink-cmp-git.enable = true;
         plugins.blink-ripgrep.enable = true;
+        plugins.blink-pairs.enable = true;
         plugins.blink-cmp = {
           enable = true;
           settings = {
