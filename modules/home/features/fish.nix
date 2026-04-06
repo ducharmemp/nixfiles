@@ -3,11 +3,6 @@
   flake.homeModules.fish =
     { pkgs, ... }:
     {
-      programs.oh-my-posh.enable = true;
-      programs.oh-my-posh.package = pkgs.unstable.oh-my-posh;
-      programs.oh-my-posh.enableFishIntegration = true;
-      programs.oh-my-posh.settings = builtins.fromJSON (builtins.readFile ./catppuccin_macchiato.omp.json);
-
       programs.fish = {
         enable = true;
         shellInit = ''

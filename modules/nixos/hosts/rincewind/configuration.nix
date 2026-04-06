@@ -12,7 +12,7 @@
         extraSpecialArgs = { inherit inputs outputs self; };
         modules = [
           inputs.agenix.homeManagerModules.default
-          inputs.catppuccin.homeModules.catppuccin
+          inputs.stylix.homeModules.stylix
           self.homeModules.nix-settings
           self.homeModules.matt
         ];
@@ -33,6 +33,7 @@
         ];
       }
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+      inputs.stylix.nixosModules.stylix
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.nix-settings
       self.nixosModules.audio

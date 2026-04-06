@@ -8,6 +8,7 @@
         self.homeModules.nvim
         self.homeModules.wezterm
         self.homeModules.fish
+        self.homeModules.oh-my-posh
         self.homeModules.psql
         self.homeModules.zellij
         self.homeModules.browsers
@@ -23,8 +24,6 @@
         homeDirectory = "/home/matt";
       };
 
-      catppuccin.thunderbird.profile = "home";
-      catppuccin.firefox.enable = true;
       programs.firefox.profiles.matt.extensions.force = true;
 
       programs.git.settings = {

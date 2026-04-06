@@ -1,14 +1,11 @@
 { inputs, self, ... }:
 {
   flake.homeModules.theme =
-    { ... }:
+    { pkgs, ... }:
     {
-      catppuccin.flavor = "macchiato";
-      catppuccin.bat.enable = true;
-      catppuccin.fzf.enable = true;
-      catppuccin.k9s.enable = true;
-      catppuccin.delta.enable = true;
-      catppuccin.spotify-player.enable = true;
-      catppuccin.thunderbird.enable = true;
+      stylix.enable = true;
+      stylix.autoEnable = true;
+      stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+      stylix.image = null;
     };
 }

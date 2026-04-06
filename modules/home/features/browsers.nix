@@ -23,5 +23,7 @@
       programs.chromium = {
         enable = true;
       };
+
+      programs.librewolf.enable = true;
     };
 }

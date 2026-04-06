@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = "stylix"
 config.window_decorations = "RESIZE"
 if wezterm.target_triple ~= "aarch64-apple-darwin" and wezterm.target_triple ~= "x86_64-apple-darwin" then
 	config.window_background_opacity = 0.8
@@ -14,10 +14,6 @@ config.font_size = 12.0
 config.font = wezterm.font("BerkeleyMonoNerdFont Nerd Font")
 -- config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 -- config.harfbuzz_features = { "ss03", "ss04", "ss05" }
-config.colors = {
-	tab_bar = {},
-}
-
 config.front_end = "WebGpu"
 -- config.webgpu_power_preference = "HighPerformance"
 config.enable_wayland = true

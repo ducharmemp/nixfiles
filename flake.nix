@@ -29,8 +29,6 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
-
     nixvim.url = "github:nix-community/nixvim";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
@@ -38,6 +36,11 @@
     expert.url = "github:elixir-lang/expert";
 
     agenix.url = "github:ryantm/agenix";
+
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

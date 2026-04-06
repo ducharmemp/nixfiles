@@ -3,6 +3,7 @@
   flake.darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
     modules = [
       inputs.home-manager.darwinModules.home-manager
+      inputs.stylix.darwinModules.stylix
       self.darwinModules.nix-settings
       self.darwinModules.workLaptop
     ];
@@ -62,20 +63,18 @@
           self.homeModules.nvim
           self.homeModules.wezterm
           self.homeModules.fish
+          self.homeModules.oh-my-posh
           self.homeModules.psql
           self.homeModules.zellij
           self.homeModules.aerospace
           self.homeModules.theme
           self.homeModules.common-packages
-          inputs.catppuccin.homeModules.catppuccin
         ];
 
         home = {
           username = "matthewducharme";
           homeDirectory = "/Users/matthewducharme";
         };
-
-        catppuccin.thunderbird.profile = "work";
 
         programs.git.settings = {
           user.signingkey = "~/.ssh/id_ed25519.pub";
