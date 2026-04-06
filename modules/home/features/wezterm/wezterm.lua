@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
-config.color_scheme = "stylix"
+config.color_scheme = "Catppuccin Mocha"
 config.window_decorations = "RESIZE"
 if wezterm.target_triple ~= "aarch64-apple-darwin" and wezterm.target_triple ~= "x86_64-apple-darwin" then
 	config.window_background_opacity = 0.8

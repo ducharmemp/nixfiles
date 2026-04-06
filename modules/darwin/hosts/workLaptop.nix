@@ -3,7 +3,7 @@
   flake.darwinConfigurations.workLaptop = inputs.nix-darwin.lib.darwinSystem {
     modules = [
       inputs.home-manager.darwinModules.home-manager
-      inputs.stylix.darwinModules.stylix
+      { home-manager.sharedModules = [ self.homeModules.theme ]; }
       self.darwinModules.nix-settings
       self.darwinModules.workLaptop
     ];
@@ -29,6 +29,9 @@
         OBJC_DISABLE_INITIALIZE_FORK_SAFETY = "YES";
         BROWSER_PATH = "${pkgs.google-chrome}/bin/google-chrome-stable";
       };
+
+      homebrew.enable = true;
+      homebrew.casks = [ "ghostty" ];
 
       environment.systemPackages = with pkgs; [
         vim
@@ -67,7 +70,6 @@
           self.homeModules.psql
           self.homeModules.zellij
           self.homeModules.aerospace
-          self.homeModules.theme
           self.homeModules.common-packages
         ];
 

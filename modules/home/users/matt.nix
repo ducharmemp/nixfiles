@@ -15,7 +15,6 @@
         self.homeModules.thunderbird
         self.homeModules.tailscale
         self.homeModules.ssh
-        self.homeModules.theme
         self.homeModules.common-packages
       ];
 
