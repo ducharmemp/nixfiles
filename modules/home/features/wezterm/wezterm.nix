@@ -6,13 +6,7 @@
       programs.wezterm = {
         enable = true;
         package = inputs.wezterm.packages.${pkgs.system}.default;
-      };
-
-      xdg = {
-        configFile."wezterm" = {
-          source = ./.;
-          recursive = true;
-        };
+        extraConfig = builtins.readFile ./wezterm.lua;
       };
     };
 }

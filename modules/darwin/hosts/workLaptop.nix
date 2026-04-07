@@ -30,9 +30,6 @@
         BROWSER_PATH = "${pkgs.google-chrome}/bin/google-chrome-stable";
       };
 
-      homebrew.enable = true;
-      homebrew.casks = [ "ghostty" ];
-
       environment.systemPackages = with pkgs; [
         vim
         wget
@@ -58,6 +55,17 @@
       };
 
       programs.fish.enable = true;
+      system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+      system.defaults.CustomUserPreferences."com.apple.WindowManager".HideDesktopMenuBar = true;
+      services.sketchybar.enable = true;
+      services.jankyborders = {
+        enable = true;
+        style = "round";
+        width = 6.0;
+        hidpi = true;
+        active_color = "0xfff0c6c6";
+        inactive_color = "0xff363a4f";
+      };
 
       home-manager.users.matthewducharme = {
         imports = [
@@ -70,6 +78,7 @@
           self.homeModules.psql
           self.homeModules.zellij
           self.homeModules.aerospace
+          self.homeModules.sketchybar
           self.homeModules.common-packages
         ];
 
