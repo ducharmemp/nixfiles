@@ -27,9 +27,6 @@
             statix
             shellcheck
             nil
-          ]
-          ++ [
-            inputs.agenix.packages.${system}.default
           ];
       };
     };

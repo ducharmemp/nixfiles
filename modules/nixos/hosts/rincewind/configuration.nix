@@ -11,7 +11,6 @@
         pkgs = inputs.unstable.legacyPackages.x86_64-linux;
         extraSpecialArgs = { inherit inputs outputs self; };
         modules = [
-          inputs.agenix.homeManagerModules.default
           self.homeModules.theme
           self.homeModules.matt
         ];

@@ -13,8 +13,8 @@
         package = pkgs.unstable.jujutsu;
 
         settings = {
-          user.name = "***REMOVED***";
-          user.email = "***REMOVED***";
+          user.name = inputs.profile.user.name;
+          user.email = inputs.profile.user.email;
 
           # signing.behavior = "own";
           # signing.backend = "ssh";

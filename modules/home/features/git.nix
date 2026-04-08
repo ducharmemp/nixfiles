@@ -20,8 +20,8 @@
         ];
 
         settings = {
-          user.name = "***REMOVED***";
-          user.email = "***REMOVED***";
+          user.name = inputs.profile.user.name;
+          user.email = inputs.profile.user.email;
 
           alias = {
             aliases = "!git config --get-regexp '^alias\\.' | cut -c 7- | sed 's/ / = /'";
