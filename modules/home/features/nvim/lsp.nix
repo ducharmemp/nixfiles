@@ -3,7 +3,7 @@
   flake.homeModules.nvim-lsp =
     { pkgs, ... }:
     {
-      home.packages = with pkgs; [ inputs.expert.packages.${pkgs.system}.default ];
+      home.packages = with pkgs; [ inputs.expert.packages.${pkgs.stdenv.hostPlatform.system}.default ];
       programs.nixvim = {
         plugins.lspconfig.enable = true;
         lsp = {
@@ -13,7 +13,6 @@
             html.enable = true;
             ts_ls.enable = true;
             svelte.enable = true;
-            nextls.enable = true;
             nixd.enable = true;
             rust_analyzer.enable = true;
           };
@@ -36,7 +35,7 @@
           })
           vim.lsp.enable('ruby-lsp')
           vim.lsp.config('expert', {
-            cmd = { '${inputs.expert.packages.${pkgs.system}.default}/bin/expert' },
+            cmd = { '${inputs.expert.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/expert' },
             root_markers = { 'mix.exs', '.git' },
             filetypes = { 'elixir', 'eelixir', 'heex' },
           })

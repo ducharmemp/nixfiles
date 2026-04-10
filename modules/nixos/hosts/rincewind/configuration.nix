@@ -8,7 +8,16 @@
   flake.homeConfigurations."matt@rincewind" =
     inputs.unstable-home-manager.lib.homeManagerConfiguration
       {
-        pkgs = inputs.unstable.legacyPackages.x86_64-linux;
+        pkgs = import inputs.unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+          overlays = [
+            self.overlays.additions
+            self.overlays.modifications
+            self.overlays.unstable-packages
+            self.overlays.neovim-nightly
+          ];
+        };
         extraSpecialArgs = { inherit inputs outputs self; };
         modules = [
           self.homeModules.theme

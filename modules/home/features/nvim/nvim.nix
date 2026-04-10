@@ -34,7 +34,7 @@
         vimAlias = true;
         vimdiffAlias = true;
         withRuby = false;
-        package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+        package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
         globals = {
           mapleader = " ";
