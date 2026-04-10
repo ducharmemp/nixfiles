@@ -92,6 +92,10 @@
           commit.gpgsign = true;
         };
 
+        programs.jujutsu.settings = {
+          signing.key = "~/.ssh/id_ed25519.pub";
+        };
+
         home.packages = with pkgs; [
           devenv
           (yarn.override {

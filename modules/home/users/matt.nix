@@ -1,7 +1,7 @@
 { inputs, self, ... }:
 {
   flake.homeModules.matt =
-    { pkgs, self, ... }:
+    { pkgs, lib, self, ... }:
     {
       imports = [
         self.homeModules.jujutsu
@@ -30,6 +30,11 @@
         user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW24VUbwgiLgX4RNe+1KBNWdx6X3CPoYYfJZ37XCAi8";
         commit.gpgsign = true;
         gpg."ssh".program = "op-ssh-sign";
+      };
+
+      programs.jujutsu.settings = {
+        signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIW24VUbwgiLgX4RNe+1KBNWdx6X3CPoYYfJZ37XCAi8";
+        signing.backends.ssh.program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
       };
 
       home.packages = with pkgs; [

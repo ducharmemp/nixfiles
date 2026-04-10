@@ -1,4 +1,4 @@
-{ inputs, self, lib, ... }:
+{ inputs, self, ... }:
 {
   flake.homeModules.jujutsu =
     { pkgs, ... }:
@@ -29,8 +29,8 @@
             )
           '';
 
-          # signing.behavior = "own";
-          # signing.backend = "ssh";
+          signing.behavior = "own";
+          signing.backend = "ssh";
         };
       };
     };
