@@ -1,9 +1,10 @@
-{ inputs, self, ... }:
+{ inputs, self, lib, ... }:
 {
   flake.homeModules.jujutsu =
     { pkgs, ... }:
     {
       programs.delta = {
+        enable = true;
         enableJujutsuIntegration = true;
       };
 
