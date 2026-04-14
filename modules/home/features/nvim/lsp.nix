@@ -12,6 +12,7 @@
             yamlls.enable = true;
             jsonls.enable = true;
             html.enable = true;
+            helm_ls.enable = true;
             ts_ls.enable = true;
             svelte.enable = true;
             nixd.enable = true;
@@ -19,6 +20,7 @@
             herb_ls.enable = true;
             cssls.enable = true;
             bashls.enable = true;
+            terraformls.enable = true;
           };
         };
         extraConfigLua = ''

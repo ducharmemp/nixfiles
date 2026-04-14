@@ -100,28 +100,26 @@
             };
           }
           # TIP: Disable arrow keys in normal mode
-          /*
-            {
-              mode = "n";
-              key = "<left>";
-              action = "<cmd>echo 'Use h to move!!'<CR>";
-            }
-            {
-              mode = "n";
-              key = "<right>";
-              action = "<cmd>echo 'Use l to move!!'<CR>";
-            }
-            {
-              mode = "n";
-              key = "<up>";
-              action = "<cmd>echo 'Use k to move!!'<CR>";
-            }
-            {
-              mode = "n";
-              key = "<down>";
-              action = "<cmd>echo 'Use j to move!!'<CR>";
-            }
-          */
+          {
+            mode = "n";
+            key = "<left>";
+            action = "<cmd>echo 'Use h to move!!'<CR>";
+          }
+          {
+            mode = "n";
+            key = "<right>";
+            action = "<cmd>echo 'Use l to move!!'<CR>";
+          }
+          {
+            mode = "n";
+            key = "<up>";
+            action = "<cmd>echo 'Use k to move!!'<CR>";
+          }
+          {
+            mode = "n";
+            key = "<down>";
+            action = "<cmd>echo 'Use j to move!!'<CR>";
+          }
           # Keybinds to make split navigation easier.
           #  Use CTRL+<hjkl> to switch between windows
           #
@@ -249,10 +247,19 @@
         plugins.direnv.enable = true;
         plugins.highlight-colors.enable = true;
         plugins.which-key.enable = true;
-        plugins.gbqf.enable = true;
-        # plugins.gufo.enable = true;
+        plugins.nvim-bqf.enable = true;
+        # plugins.nvim-ufo.enable = true;
         plugins.undotree.enable = true;
-        # plugins.indent-blankline.enable = true;
+        plugins.indent-blankline.enable = true;
+        plugins.indent-blankline.settings = {
+          indent = { highlight = ["CursorColumn" "Whitespace"]; char = ""; };
+          whitespace = {
+            highlight = ["CursorColumn" "Whitespace"];
+            remove_blankline_trail = false;
+          };
+          scope = { enabled = false; };
+        };
+        plugins.hardtime.enable = true;
       };
     };
 }

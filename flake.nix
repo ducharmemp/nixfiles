@@ -38,6 +38,8 @@
     catppuccin.url = "github:catppuccin/nix/release-25.11";
 
     profile.url = "git+ssh://git@github.com/ducharmemp/profile";
+
+    direnv-instant.url = "github:Mic92/direnv-instant";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

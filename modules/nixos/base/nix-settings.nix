@@ -22,6 +22,11 @@
           download-buffer-size = 524288000;
           auto-optimise-store = true;
         };
+        gc = {
+          automattic = true;
+          dates = "daily";
+          options = "--delete-older-than 30d";
+        };
         channel.enable = false;
       };
 

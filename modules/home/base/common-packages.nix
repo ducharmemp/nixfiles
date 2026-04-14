@@ -3,6 +3,10 @@
   flake.homeModules.common-packages =
     { pkgs, lib, ... }:
     {
+      imports = [
+        inputs.direnv-instant.homeModules.direnv-instant
+      ];
+
       home.packages =
         with pkgs;
         (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
@@ -30,6 +34,11 @@
       programs.direnv = {
         enable = true;
         nix-direnv.enable = true;
+        package = pkgs.direnv.overrideAttrs (old: {
+          doCheck = false;
+        });
       };
+
+      programs.direnv-instant.enable = true;
     };
 }
