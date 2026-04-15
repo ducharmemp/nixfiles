@@ -10,11 +10,15 @@
           servers = {
             tailwindcss.enable = true;
             yamlls.enable = true;
+            jsonls.enable = true;
             html.enable = true;
             ts_ls.enable = true;
             svelte.enable = true;
             nixd.enable = true;
             rust_analyzer.enable = true;
+            herb_ls.enable = true;
+            cssls.enable = true;
+            bashls.enable = true;
           };
         };
         extraConfigLua = ''

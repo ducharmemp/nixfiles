@@ -18,6 +18,9 @@
           user.email = inputs.profile.user.email;
 
           revset-aliases = {
+            "slice()" = "slice(@)";
+            "slice(from)" = "ancestors(reachable(from, mutable()), 2)";
+
             "branch_start(to)" = "heads(::to & trunk())+ & ::to";
             "trunk()" = ''
             coalesce(
@@ -31,6 +34,7 @@
           };
 
           aliases = {
+            slice = ["log" "-r" "slice()"];
             collapse = ["squash" "-f" "branch_start(@)+::@" "-t" "branch_start(@)"];
             open = ["log" "-r" "heads(mine()) ~ ::trunk()"];
             nt = ["new" "trunk()"];

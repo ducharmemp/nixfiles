@@ -53,6 +53,7 @@
 
         opts = {
           number = true;
+          relativenumber = true;
           mouse = "a";
           showmode = false;
           breakindent = true;
