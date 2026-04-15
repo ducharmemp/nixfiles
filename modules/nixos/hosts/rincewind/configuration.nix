@@ -68,7 +68,11 @@
 
       networking.hostName = "rincewind";
 
-      zramSwap.enable = true;
+      boot.kernelParams = [
+        "zswap.enabled=1"
+        "zswap.compressor=zstd"
+        "zswap.max_pool_percent=20"
+      ];
 
       networking.networkmanager.enable = true;
 
