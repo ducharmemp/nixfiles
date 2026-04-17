@@ -260,6 +260,10 @@
           scope = { enabled = false; };
         };
         plugins.hardtime.enable = true;
+        plugins.octo.enable = true;
+        plugins.octo.settings = {
+          picker = "snacks";
+        };
       };
     };
 }

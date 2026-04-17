@@ -7,7 +7,7 @@
     catppuccin.accent = "flamingo";
   };
   flake.homeModules.theme =
-    { config, ... }:
+    { config, lib, ... }:
     {
       imports = [ inputs.catppuccin.homeModules.catppuccin ];
       catppuccin.enable = true;
@@ -22,5 +22,10 @@
         enable = true;
         settings.flavour = config.catppuccin.flavor;
       };
+      programs.nixvim.colorschemes.cyberdream.enable = true;
+      programs.nixvim.colorschemes.tokyonight.enable = true;
+      programs.nixvim.colorschemes.kanagawa.enable = true;
+      programs.nixvim.colorschemes.gruvbox.enable = true;
+      programs.nixvim.colorscheme = lib.mkForce "catppuccin";
     };
 }

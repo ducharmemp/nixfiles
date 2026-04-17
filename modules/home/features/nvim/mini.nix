@@ -7,6 +7,7 @@
         plugins.mini-surround.enable = true;
         plugins.mini-pairs.enable = true;
         plugins.mini-icons.enable = true;
+        plugins.mini-icons.mockDevIcons = true;
         plugins.mini-statusline.enable = true;
         plugins.mini-extra.enable = true;
         plugins.mini-ai = {
