@@ -121,14 +121,12 @@
         packages = with pkgs; [
           vim
           git
-          thunderbird
         ];
       };
 
       programs.fish.enable = true;
       programs.zoom-us.enable = true;
       programs.obs-studio.enable = true;
-      programs.firefox.enable = true;
       programs.steam = {
         enable = true;
         remotePlay.openFirewall = true;

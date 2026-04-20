@@ -3,8 +3,11 @@
   flake.homeModules.thunderbird =
     { pkgs, ... }:
     {
-      # programs.thunderbird = {
-      #   enable = true;
-      # };
+      programs.thunderbird = {
+        enable = true;
+        profiles.matt = {
+          isDefault = true;
+        };
+      };
     };
 }

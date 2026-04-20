@@ -23,7 +23,7 @@
           auto-optimise-store = true;
         };
         gc = {
-          automattic = true;
+          automatic = true;
           dates = "daily";
           options = "--delete-older-than 30d";
         };
