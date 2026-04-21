@@ -17,9 +17,12 @@
           user.name = inputs.profile.user.name;
           user.email = inputs.profile.user.email;
 
+          "remotes.origin".auto-track-bookmarks = "*";
+
           revset-aliases = {
             "slice()" = "slice(@)";
             "slice(from)" = "ancestors(reachable(from, mutable()), 2)";
+            "closest_merge(to)" = "heads(::to & merges())";
 
             "branch_start(to)" = "heads(::to & trunk())+ & ::to";
             "trunk()" = ''
@@ -39,6 +42,7 @@
             open = ["log" "-r" "heads(mine()) ~ ::trunk()"];
             nt = ["new" "trunk()"];
             sync = ["git" "fetch" "--all-remotes"];
+            stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
           };
 
           templates.draft_commit_description = ''
