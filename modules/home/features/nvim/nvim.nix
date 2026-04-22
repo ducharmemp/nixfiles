@@ -15,6 +15,7 @@
         self.homeModules.nvim-snacks
         self.homeModules.nvim-lint
         self.homeModules.nvim-ts-autotag
+        self.homeModules.nvim-octo
       ];
 
       home.packages = with pkgs; [
@@ -260,10 +261,6 @@
           scope = { enabled = false; };
         };
         plugins.hardtime.enable = true;
-        plugins.octo.enable = true;
-        plugins.octo.settings = {
-          picker = "snacks";
-        };
       };
     };
 }

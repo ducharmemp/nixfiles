@@ -66,7 +66,7 @@
         active_color = "0xfff0c6c6";
         inactive_color = "0xff363a4f";
       };
-
+      home-manager.backupFileExtension = "backup";
       home-manager.users.matthewducharme = {
         imports = [
           self.homeModules.jujutsu
@@ -79,6 +79,7 @@
           self.homeModules.zellij
           self.homeModules.aerospace
           self.homeModules.sketchybar
+          self.homeModules.browsers
           self.homeModules.common-packages
         ];
 

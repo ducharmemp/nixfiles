@@ -17,6 +17,9 @@
         enable = true;
 
         profiles.matt = {
+          path = "gma6439v.default-release";
+          isDefault = true;
+          extensions.force = true;
           search = {
             default = "kagi";
             force = true;
@@ -199,7 +202,7 @@
       };
 
       programs.chromium = {
-        enable = true;
+        enable = !pkgs.stdenv.isDarwin;
       };
     };
 }

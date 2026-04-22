@@ -7,7 +7,6 @@
         enable = true;
         launchd.enable = true;
         userSettings = {
-          config-version = 2;
           after-startup-command = [ ];
           start-at-login = false;
           enable-normalization-flatten-containers = true;
@@ -17,19 +16,12 @@
           default-root-container-orientation = "auto";
           on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
           automatically-unhide-macos-hidden-apps = false;
-          persistent-workspaces = [
-            "1" "2" "3" "4" "5" "6" "7" "8" "9"
-            "A" "B" "C" "D" "E" "F" "G" "I" "M"
-            "N" "O" "P" "Q" "R" "S" "T" "U" "V"
-            "W" "X" "Y" "Z"
-          ];
-          on-mode-changed = [ ];
           key-mapping.preset = "qwerty";
           gaps.inner.horizontal = 0;
           gaps.inner.vertical = 0;
           gaps.outer.left = 0;
           gaps.outer.bottom = 0;
-          gaps.outer.top = 0;
+          gaps.outer.top = 40;
           gaps.outer.right = 0;
           mode.main.binding = {
             alt-slash = "layout tiles horizontal vertical";

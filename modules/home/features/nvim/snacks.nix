@@ -10,6 +10,8 @@
           settings.words.enable = true;
           settings.picker.enable = true;
           settings.image.enable = true;
+          settings.notifier.enable = true;
+          settings.gitbrowse.enable = true;
         };
         keymaps = [
           {
@@ -228,6 +230,18 @@
             '';
             options = {
               desc = "[G]it Log [F]ile";
+            };
+          }
+          {
+            mode = ["n" "v"];
+            key = "<leader>gB";
+            action.__raw = ''
+              function()
+                Snacks.picker.gitbrowse()
+              end
+            '';
+            options = {
+              desc = "[G]it [B]rowse";
             };
           }
           # Grep mappings
