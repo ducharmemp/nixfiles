@@ -1,7 +1,7 @@
 { inputs, self, ... }:
 {
   flake.homeModules.browsers =
-    { pkgs, ... }:
+    { pkgs, config, lib, ... }:
     let
       lock-false = {
         Value = false;
@@ -15,9 +15,10 @@
     {
       programs.firefox = {
         enable = true;
+        configPath = lib.mkDefault "${config.xdg.configHome}/mozilla/firefox";
 
         profiles.matt = {
-          path = "gma6439v.default-release";
+          path = lib.mkDefault "matt";
           isDefault = true;
           extensions.force = true;
           search = {

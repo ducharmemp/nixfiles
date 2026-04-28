@@ -5,8 +5,6 @@
 
     modifications = final: prev: { };
 
-    neovim-nightly = inputs.neovim-nightly-overlay.overlays.default;
-
     unstable-packages = final: _prev: {
       unstable = import inputs.unstable {
         inherit (final) system;

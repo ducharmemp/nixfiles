@@ -15,7 +15,6 @@
             self.overlays.additions
             self.overlays.modifications
             self.overlays.unstable-packages
-            self.overlays.neovim-nightly
           ];
         };
         extraSpecialArgs = { inherit inputs outputs self; };

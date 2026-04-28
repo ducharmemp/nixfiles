@@ -67,7 +67,7 @@
         inactive_color = "0xff363a4f";
       };
       home-manager.backupFileExtension = "backup";
-      home-manager.users.matthewducharme = {
+      home-manager.users.matthewducharme = { config, ... }: {
         imports = [
           self.homeModules.jujutsu
           self.homeModules.git
@@ -117,6 +117,9 @@
         programs.thunderbird.profiles.work = {
           isDefault = true;
         };
+
+        programs.firefox.configPath = "${config.home.homeDirectory}/Library/Application Support/Firefox";
+        programs.firefox.profiles.matt.path = "gma6439v.default-release";
 
         home.stateVersion = "25.11";
       };
