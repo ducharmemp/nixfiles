@@ -31,6 +31,7 @@
     nixvim.inputs.nixpkgs.follows = "unstable";
 
     wezterm.url = "github:wez/wezterm?dir=nix";
+    wezterm.inputs.nixpkgs.follows = "nixpkgs";
 
     expert.url = "github:elixir-lang/expert";
 

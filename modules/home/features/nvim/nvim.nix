@@ -246,7 +246,7 @@
         plugins.fugitive.enable = true;
         plugins.rhubarb.enable = true;
         plugins.direnv.enable = true;
-        plugins.highlight-colors.enable = true;
+        plugins.colorizer.enable = true;
         plugins.which-key.enable = true;
         plugins.nvim-bqf.enable = true;
         # plugins.nvim-ufo.enable = true;
