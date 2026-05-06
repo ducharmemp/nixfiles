@@ -249,7 +249,6 @@
         plugins.colorizer.enable = true;
         plugins.which-key.enable = true;
         plugins.nvim-bqf.enable = true;
-        # plugins.nvim-ufo.enable = true;
         plugins.undotree.enable = true;
         plugins.indent-blankline.enable = true;
         plugins.indent-blankline.settings = {
@@ -261,6 +260,7 @@
           scope = { enabled = false; };
         };
         plugins.hardtime.enable = true;
+        plugins.obsidian.enable = true;
       };
     };
 }

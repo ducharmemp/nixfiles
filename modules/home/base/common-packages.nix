@@ -25,6 +25,8 @@
           gh
           nodejs_22
           berkeley-mono
+          syncthing
+          obsidian
         ];
 
       fonts.fontconfig.enable = true;
