@@ -260,7 +260,7 @@
           scope = { enabled = false; };
         };
         plugins.hardtime.enable = true;
-        plugins.obsidian.enable = true;
+        # plugins.obsidian.enable = true;
       };
     };
 }

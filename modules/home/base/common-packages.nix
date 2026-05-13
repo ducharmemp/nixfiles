@@ -27,6 +27,7 @@
           berkeley-mono
           syncthing
           obsidian
+          unstable.spotify
         ];
 
       fonts.fontconfig.enable = true;
