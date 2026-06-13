@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-snacks =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.snacks = {

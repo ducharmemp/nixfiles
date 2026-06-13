@@ -1,5 +1,4 @@
 {
-  lib,
   requireFile,
   stdenvNoCC,
   unzip,
@@ -7,7 +6,7 @@
   variant ? "26030184XPX2RZ98",
 }:
 
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenvNoCC.mkDerivation (_: {
   pname = "berkeley-mono";
   version = "1.009";
 

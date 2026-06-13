@@ -1,17 +1,6 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
-  flake.homeModules.nix-settings =
-    { config, lib, ... }:
-    {
-      nixpkgs = {
-        config.allowUnfree = true;
-        config.allowUnfreePredicate = _: true;
-
-        overlays = [
-          self.overlays.additions
-          self.overlays.modifications
-          self.overlays.unstable-packages
-        ];
-      };
-    };
+  flake.homeModules.nix-settings = {
+    nixpkgs = self.lib.nixpkgsSettings;
+  };
 }

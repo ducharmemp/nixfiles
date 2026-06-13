@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-mini =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.mini-surround.enable = true;

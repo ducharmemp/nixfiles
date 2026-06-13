@@ -1,19 +1,8 @@
-{ inputs, self, ... }:
+{ self, ... }:
 {
-  flake.darwinModules.nix-settings =
-    { config, lib, ... }:
-    {
-      nixpkgs = {
-        config.allowUnfree = true;
-        config.allowUnfreePredicate = _: true;
+  flake.darwinModules.nix-settings = {
+    nixpkgs = self.lib.nixpkgsSettings;
 
-        overlays = [
-          self.overlays.additions
-          self.overlays.modifications
-          self.overlays.unstable-packages
-        ];
-      };
-
-      home-manager.useGlobalPkgs = true;
-    };
+    home-manager.useGlobalPkgs = true;
+  };
 }

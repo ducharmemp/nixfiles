@@ -1,9 +1,7 @@
-{ inputs, ... }:
-{
+_: {
   perSystem =
     {
       pkgs,
-      system,
       ...
     }:
     {
@@ -21,13 +19,12 @@
       };
 
       devShells.default = pkgs.mkShell {
-        packages =
-          with pkgs;
-          [
-            statix
-            shellcheck
-            nil
-          ];
+        packages = with pkgs; [
+          statix
+          deadnix
+          shellcheck
+          nil
+        ];
       };
     };
 }

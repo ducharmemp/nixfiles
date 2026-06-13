@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.ssh =
-    { pkgs, ... }:
+    _:
     let
       onePassPath = "~/.1password/agent.sock";
     in

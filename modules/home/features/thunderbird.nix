@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.thunderbird =
-    { pkgs, ... }:
+    _:
     {
       programs.thunderbird = {
         enable = true;

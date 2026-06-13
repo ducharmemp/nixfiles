@@ -30,6 +30,13 @@
 
       programs.nixvim = {
         enable = true;
+        # nixvim follows `unstable` (now 26.11-dev), where lib.systems.elaborate
+        # rejects the `linux-kernel` field. The host pkgs is 26.05, whose
+        # already-elaborated platform still carries that field, so seeding
+        # nixvim's host/buildPlatform from it and re-elaborating throws. Pass
+        # plain system strings instead so the newer elaborate starts clean.
+        nixpkgs.hostPlatform = pkgs.stdenv.hostPlatform.system;
+        nixpkgs.buildPlatform = pkgs.stdenv.buildPlatform.system;
         defaultEditor = true;
         viAlias = true;
         vimAlias = true;

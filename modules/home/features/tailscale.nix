@@ -1,4 +1,4 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.tailscale =
     { pkgs, ... }:

@@ -12,8 +12,6 @@
 
     import-tree.url = "github:vic/import-tree";
 
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -38,8 +36,6 @@
     catppuccin.url = "github:catppuccin/nix/release-26.05";
 
     profile.url = "git+ssh://git@github.com/ducharmemp/profile";
-
-    direnv-instant.url = "github:Mic92/direnv-instant";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

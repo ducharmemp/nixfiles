@@ -10,7 +10,7 @@
   };
 
   flake.darwinModules.workLaptop =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       nixpkgs.hostPlatform = "aarch64-darwin";
       ids.gids.nixbld = 350;

@@ -1,6 +1,5 @@
 {
   inputs,
-  outputs,
   self,
   ...
 }:
@@ -10,14 +9,9 @@
       {
         pkgs = import inputs.unstable {
           system = "x86_64-linux";
-          config.allowUnfree = true;
-          overlays = [
-            self.overlays.additions
-            self.overlays.modifications
-            self.overlays.unstable-packages
-          ];
+          inherit (self.lib.nixpkgsSettings) config overlays;
         };
-        extraSpecialArgs = { inherit inputs outputs self; };
+        extraSpecialArgs = { inherit inputs self; };
         modules = [
           self.homeModules.theme
           self.homeModules.matt
@@ -30,11 +24,15 @@
       {
         nixpkgs.overlays = [
           (_final: _prev: {
-            makemkv =
-              (import inputs.nixpkgs-master {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-              }).makemkv;
+            inherit
+              (
+                (import inputs.nixpkgs-master {
+                  system = "x86_64-linux";
+                  config.allowUnfree = true;
+                })
+              )
+              makemkv
+              ;
           })
         ];
       }
@@ -52,7 +50,7 @@
   };
 
   flake.nixosModules.rincewind =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       nix.settings.trusted-users = [ "matt" ];
 

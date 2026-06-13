@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-flash =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.flash = {

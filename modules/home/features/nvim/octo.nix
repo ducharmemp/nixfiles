@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-octo =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.octo = {

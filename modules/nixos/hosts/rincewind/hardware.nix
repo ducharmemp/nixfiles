@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}:
+_:
 {
   flake.nixosModules.rincewind-hardware =
     {

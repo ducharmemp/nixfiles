@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-blink =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.blink-cmp-copilot.enable = true;

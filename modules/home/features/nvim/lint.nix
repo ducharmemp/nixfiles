@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-lint =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.lint.enable = true;

@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-ts-autotag =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.ts-autotag.enable = true;

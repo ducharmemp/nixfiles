@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.zellij =
-    { pkgs, ... }:
+    _:
     {
       programs.zellij = {
         enable = true;

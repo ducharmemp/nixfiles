@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.psql =
-    { pkgs, ... }:
+    _:
     {
       home.file = {
         ".psqlrc" = {

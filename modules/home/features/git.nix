@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+{ inputs, ... }:
 {
   flake.homeModules.git =
-    { pkgs, ... }:
+    _:
     {
       programs.difftastic = {
         enable = true;

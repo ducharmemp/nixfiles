@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-conform =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.conform-nvim.enable = true;

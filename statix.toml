@@ -1,0 +1,4 @@
+# `repeated_keys` is recursive and fights the flat dotted-key style used
+# throughout this config (e.g. `services.foo.enable` / `services.bar.enable`),
+# so it is disabled. All other lints stay on.
+disabled = ["repeated_keys"]

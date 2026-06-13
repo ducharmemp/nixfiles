@@ -1,7 +1,7 @@
-{ inputs, self, ... }:
+_:
 {
   flake.homeModules.nvim-oil =
-    { pkgs, ... }:
+    _:
     {
       programs.nixvim = {
         plugins.oil = {
