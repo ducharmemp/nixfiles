@@ -8,6 +8,8 @@
         enableJujutsuIntegration = true;
       };
 
+      programs.git.ignores = [".attic"];
+
       programs.jjui.enable = true;
       programs.jujutsu = {
         enable = true;
@@ -23,6 +25,12 @@
             "slice()" = "slice(@)";
             "slice(from)" = "ancestors(reachable(from, mutable()), 2)";
             "closest_merge(to)" = "heads(::to & merges())";
+            "stack()" = "stack(@)";
+            "stack(x)" = "stack(x, 2)";
+            "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+            tip = "exactly(heads(@-::~@), 1)";
+            "closest_pushable(to)"= "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
+            "closest_bookmark(to)" = "heads(::to & bookmarks())";
 
             "branch_start(to)" = "heads(::to & trunk())+ & ::to";
             "trunk()" = ''
@@ -43,6 +51,8 @@
             nt = ["new" "trunk()"];
             sync = ["git" "fetch" "--all-remotes"];
             stack = ["rebase" "--after" "trunk()" "--before" "closest_merge(@)" "--revision"];
+            restack = ["rebase" "-o" "trunk()" "-s" "roots(trunk()..) & stack()"];
+            plan = ["new" "--no-edit" "heads(@::)" "-m"];
           };
 
           templates.draft_commit_description = ''

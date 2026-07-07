@@ -71,6 +71,7 @@
         imports = [
           self.homeModules.jujutsu
           self.homeModules.git
+          self.homeModules.llms
           self.homeModules.nvim
           self.homeModules.wezterm
           self.homeModules.fish
