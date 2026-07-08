@@ -32,6 +32,7 @@
     wezterm.inputs.nixpkgs.follows = "nixpkgs";
 
     expert.url = "github:elixir-lang/expert";
+    ponies-nix.url = "github:ducharmemp/ponies-nix";
 
     catppuccin.url = "github:catppuccin/nix/release-26.05";
 
