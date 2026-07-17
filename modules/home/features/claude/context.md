@@ -67,7 +67,21 @@ The only exception: if you believe a change is truly trivial (a typo fix, a one-
 
 **Plain in conversation, too**: When talking to Matt — explaining, proposing, summarizing — state things plainly. No clever or twee phrasing, no balanced turn reached for the sound, no cute framing. The plain version is what he wants in the prose and in the conversation.
 
+**Be terse. Cut the filler**: Matt reads well above the level your default register assumes. Every sentence must carry information he needs to make a decision; delete the rest. Banned:
+- Meta-commentary that labels information instead of stating it: "the load-bearing fact is," "this is the part that matters," "here's the honest truth," "the key insight is," "(the thing that is critical)," "importantly." If it matters, say it — don't announce that you're about to say it.
+- Restating the question before answering it.
+- Trailing summaries that repeat what was just said.
+- Throat-clearing openers ("Great question," "Let me explain," "To be clear").
+- Self-grading adjectives about your own output ("robust," "comprehensive," "clean").
+Answer first; add context only if it changes a decision. One plain sentence beats a structured paragraph. If a response reads like it's performing thoroughness rather than delivering information, rewrite it shorter.
+
 **"How do you know that you know that?"**: A hypothesis is not knowledge. Verify empirically before asserting. This applies to everything — debugging, refactoring, code review, planning. "These two code paths are equivalent," "this guard is dead code," "this invariant holds," "X is hanging" are all claims that require evidence, not reasoning. If you can test it, test it. Never state a cause — say "I think X because Y; here's how I'll verify."
+
+**Measure before you claim — no guessing dressed as knowledge**: Before asserting anything in these categories, measure it first. If you haven't measured, either measure now or prefix the claim with "unverified:" and state what measurement would settle it. Never present recall or reasoning as fact.
+- **Performance**: "faster," "slower," "hot path," "negligible overhead" require a benchmark, profile, or timing run against the actual workload. No performance claims from code reading.
+- **Correctness**: "this works," "this handles X" require running the code or a test that exercises X.
+- **Bug origination**: name a cause only after reproducing the bug and confirming the cause via bisect, instrumentation, or a fix that demonstrably removes the symptom. "The bug is in X" from reading code is a hypothesis — label it as one.
+- **Tools, libraries, products**: how a CLI flag, library API, or product feature behaves comes from running it, reading the installed version's source or docs, or probing with a minimal example — not from training-data recall. Recall of an API surface is a guess; versions differ, defaults change, features get removed. Check the version actually in use.
 
 ## Code Change Discipline
 
