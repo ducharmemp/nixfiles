@@ -16,6 +16,7 @@
         self.homeModules.nvim-lint
         self.homeModules.nvim-ts-autotag
         self.homeModules.nvim-octo
+        self.homeModules.nvim-straps
       ];
 
       home.packages = with pkgs; [

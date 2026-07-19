@@ -36,6 +36,10 @@
 
     catppuccin.url = "github:catppuccin/nix/release-26.05";
 
+    # Private repo, so ssh instead of the github: fetcher.
+    straps.url = "git+ssh://git@github.com/ducharmemp/straps";
+    straps.inputs.nixpkgs.follows = "unstable";
+
     profile.url = "git+ssh://git@github.com/ducharmemp/profile";
   };
 
