@@ -8,7 +8,7 @@
         enableJujutsuIntegration = true;
       };
 
-      programs.git.ignores = [".attic"];
+      programs.git.ignores = [".attic" ".straps*"];
 
       programs.jjui.enable = true;
       programs.jujutsu = {

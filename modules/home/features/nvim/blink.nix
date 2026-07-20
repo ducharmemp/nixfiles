@@ -4,7 +4,6 @@ _:
     _:
     {
       programs.nixvim = {
-        plugins.blink-cmp-copilot.enable = true;
         plugins.blink-cmp-git.enable = true;
         plugins.blink-ripgrep.enable = true;
         plugins.blink-pairs.enable = true;
@@ -16,7 +15,6 @@ _:
               "path"
               "buffer"
               "git"
-              "copilot"
               "ripgrep"
             ];
             sources.providers = {
@@ -30,12 +28,6 @@ _:
                     git_hub = { };
                   };
                 };
-              };
-              copilot = {
-                async = true;
-                module = "blink-cmp-copilot";
-                name = "copilot";
-                score_offset = 100;
               };
               ripgrep = {
                 async = true;

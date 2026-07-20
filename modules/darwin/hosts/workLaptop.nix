@@ -90,12 +90,13 @@
         };
 
         programs.git.settings = {
-          user.signingkey = "~/.ssh/id_ed25519.pub";
+          # Dedicated signing key, separate from the auth/push key (~/.ssh/id_ed25519).
+          user.signingkey = "~/.ssh/id_ed25519_sign.pub";
           commit.gpgsign = true;
         };
 
         programs.jujutsu.settings = {
-          signing.key = "~/.ssh/id_ed25519.pub";
+          signing.key = "~/.ssh/id_ed25519_sign.pub";
         };
 
         home.packages = with pkgs; [
