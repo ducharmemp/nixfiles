@@ -28,18 +28,6 @@ _:
           }
           {
             mode = "n";
-            key = "<leader>,";
-            action.__raw = ''
-              function()
-                Snacks.picker.buffers()
-              end
-            '';
-            options = {
-              desc = "Buffers";
-            };
-          }
-          {
-            mode = "n";
             key = "<leader>/";
             action.__raw = ''
               function()
@@ -48,18 +36,6 @@ _:
             '';
             options = {
               desc = "Grep";
-            };
-          }
-          {
-            mode = "n";
-            key = "<leader>:";
-            action.__raw = ''
-              function()
-                Snacks.picker.command_history()
-              end
-            '';
-            options = {
-              desc = "Command History";
             };
           }
           {
@@ -475,18 +451,6 @@ _:
             '';
             options = {
               desc = "[S]earch [M]an Pages";
-            };
-          }
-          {
-            mode = "n";
-            key = "<leader>sp";
-            action.__raw = ''
-              function()
-                Snacks.picker.lazy()
-              end
-            '';
-            options = {
-              desc = "[S]earch for [P]lugin Spec";
             };
           }
           {

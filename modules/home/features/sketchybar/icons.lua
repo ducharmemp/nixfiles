@@ -49,7 +49,7 @@ local icons = {
     apple = "",
     gear = "",
     cpu = "",
-    clipboard = "Missing Icon",
+    clipboard = "",
 
     switch = {
       on = "󱨥",
@@ -75,7 +75,7 @@ local icons = {
       download = "",
       connected = "󰖩",
       disconnected = "󰖪",
-      router = "Missing Icon"
+      router = "󰑀"
     },
     media = {
       back = "",

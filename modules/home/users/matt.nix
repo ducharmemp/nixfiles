@@ -17,6 +17,7 @@ _:
         self.homeModules.tailscale
         self.homeModules.ssh
         self.homeModules.common-packages
+        self.homeModules.llms
       ];
 
       home = {

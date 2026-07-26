@@ -20,8 +20,6 @@ stdenvNoCC.mkDerivation (_: {
 
       Download the zip file then run:
 
-      Then run:
-
       nix-prefetch-url --type sha256 file://\$PWD/26030184XPX2RZ98.zip
     '';
   };

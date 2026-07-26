@@ -1,13 +1,15 @@
-
-{ inputs, ... }:
+_:
 {
   flake.homeModules.llms =
-    { pkgs, ... }:
+    { config, ... }:
+    let
+      context = ./llms/context.md;
+      claude = ./llms/claude.md;
+    in
     {
-      programs.claude-code = {
-        enable = true;
-        context = ./claude/context.md;
-        rulesDir = ./claude/rules;
+      home.file = {
+        "AGENTS.md".source = context;
+        ".claude/CLAUDE.md".source = claude;
       };
     };
 }

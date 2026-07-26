@@ -54,7 +54,6 @@
         clipboard = {
           providers = {
             wl-copy.enable = pkgs.stdenv.isLinux;
-            xsel.enable = pkgs.stdenv.isLinux;
             # pbcopy.enable = pkgs.stdenv.isDarwin;
           };
           register = "unnamedplus";
@@ -246,6 +245,10 @@
           };
         };
         extraConfigLuaPost = ''
+          -- octo buffers have no parser of their own; render-markdown only
+          -- walks markdown language trees.
+          vim.treesitter.language.register("markdown", "octo")
+
           -- The line beneath this is called `modeline`. See `:help modeline`
           -- vim: ts=2 sts=2 sw=2 et
         '';
@@ -258,6 +261,14 @@
         plugins.which-key.enable = true;
         plugins.nvim-bqf.enable = true;
         plugins.undotree.enable = true;
+        plugins.render-markdown.enable = true;
+        plugins.render-markdown.settings = {
+          file_types = [ "markdown" "straps" "octo" ];
+          win_options = {
+            conceallevel = { default = 2; rendered = 3; };
+            concealcursor = { default = "nc"; rendered = "nc"; };
+          };
+        };
         plugins.indent-blankline.enable = true;
         plugins.indent-blankline.settings = {
           indent = { highlight = ["CursorColumn" "Whitespace"]; char = ""; };
@@ -268,7 +279,6 @@
           scope = { enabled = false; };
         };
         plugins.hardtime.enable = true;
-        # plugins.obsidian.enable = true;
       };
     };
 }

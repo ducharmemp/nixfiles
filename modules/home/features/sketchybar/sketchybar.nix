@@ -44,7 +44,6 @@ _:
           package.cpath = package.cpath .. ";${pkgs.sbarlua}/lib/lua/${pkgs.lua5_4.luaversion}/?.so"
           os.execute("(cd $CONFIG_DIR/helpers && make)")
         '';
-        "sketchybar/helpers/default_font.lua".source = ./helpers/default_font.lua;
         "sketchybar/helpers/app_icons.lua".source = ./helpers/app_icons.lua;
         "sketchybar/helpers/makefile".source = ./helpers/makefile;
 

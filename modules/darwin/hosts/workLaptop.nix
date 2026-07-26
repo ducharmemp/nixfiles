@@ -71,7 +71,6 @@
         imports = [
           self.homeModules.jujutsu
           self.homeModules.git
-          self.homeModules.llms
           self.homeModules.nvim
           self.homeModules.wezterm
           self.homeModules.fish
@@ -82,6 +81,7 @@
           self.homeModules.sketchybar
           self.homeModules.browsers
           self.homeModules.common-packages
+          self.homeModules.llms
         ];
 
         home = {

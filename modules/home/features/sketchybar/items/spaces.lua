@@ -1,7 +1,6 @@
 local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
-local app_icons = require("helpers.app_icons")
 
 -- Register aerospace workspace change event
 sbar.add("event", "aerospace_workspace_change")
