@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-master.url = "github:nixos/nixpkgs/69cbb6b7b66d93fd1b239ecb95bdd3ac827daf24";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -39,6 +39,9 @@
     # Private repo, so ssh instead of the github: fetcher.
     straps.url = "git+ssh://git@github.com/ducharmemp/straps";
     straps.inputs.nixpkgs.follows = "unstable";
+
+    open-floorplan.url = "git+ssh://git@github.com/ducharmemp/open-floorplan.nvim";
+    open-floorplan.inputs.nixpkgs.follows = "unstable";
 
     profile.url = "git+ssh://git@github.com/ducharmemp/profile";
   };
