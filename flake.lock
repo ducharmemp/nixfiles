@@ -434,11 +434,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785713302,
-        "narHash": "sha256-79eyM20dk7lYja0zfxvf/9vlDeaEx5+eZ2zMPZloxJQ=",
+        "lastModified": 1785714215,
+        "narHash": "sha256-h6KVXpSQQX/0H0U7RZTXnvthpGQj8eKCEOVBST+Mp0w=",
         "ref": "refs/heads/main",
-        "rev": "76882180f5893228f6870dc758e14b50db012381",
-        "revCount": 1,
+        "rev": "35cb71280658e872f626b99c65c86c113808b856",
+        "revCount": 2,
         "type": "git",
         "url": "ssh://git@github.com/ducharmemp/open-floorplan.nvim"
       },
@@ -532,11 +532,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785182229,
-        "narHash": "sha256-e8fk6RN3CUJxfrOfTBNsDrlrXqqg2Z35i/Dhm2nmn08=",
+        "lastModified": 1785428170,
+        "narHash": "sha256-L1xV/dB5e1wNNIfZCtuyiQbR9E0fTmjuSAtOwqfPfUg=",
         "ref": "refs/heads/main",
-        "rev": "8c5be4eba6c7adb85b7d3dcfcd08dcc9bf0c0efb",
-        "revCount": 22,
+        "rev": "ca2394d77c89cb5036203aa7c3200806c16bdd44",
+        "revCount": 23,
         "type": "git",
         "url": "ssh://git@github.com/ducharmemp/straps"
       },
