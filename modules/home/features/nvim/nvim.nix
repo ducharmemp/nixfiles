@@ -17,6 +17,7 @@
         self.homeModules.nvim-ts-autotag
         self.homeModules.nvim-octo
         self.homeModules.nvim-straps
+        self.homeModules.nvim-presenterm
         self.homeModules.nvim-open-floorplan
       ];
 

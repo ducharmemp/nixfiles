@@ -16,6 +16,7 @@ _:
               "buffer"
               "git"
               "ripgrep"
+              "presenterm"
             ];
             sources.providers = {
               git = {
