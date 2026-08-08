@@ -33,6 +33,11 @@
 
       programs.nixvim = {
         enable = true;
+        # nixvim's flake input follows `unstable`. Setting `nixpkgs.source`
+        # explicitly to the same input acknowledges that pin and suppresses
+        # the "source default value affected by your flake input follows"
+        # warning nixvim emits when the followed rev differs from its own.
+        nixpkgs.source = inputs.unstable;
         # nixvim follows `unstable` (now 26.11-dev), where lib.systems.elaborate
         # rejects the `linux-kernel` field. The host pkgs is 26.05, whose
         # already-elaborated platform still carries that field, so seeding
@@ -204,6 +209,21 @@
             callback.__raw = ''
               function()
                 vim.hl.on_yank()
+              end
+            '';
+          }
+          # Straps session buffers read like prose: wrap long lines at word
+          # boundaries and keep relative line numbers. These are window-local
+          # (setlocal), so the global defaults do not change.
+          {
+            event = [ "FileType" ];
+            pattern = [ "straps" ];
+            desc = "relativenumber, wrap and linebreak for straps buffers";
+            callback.__raw = ''
+              function()
+                vim.opt_local.relativenumber = true
+                vim.opt_local.wrap = true
+                vim.opt_local.linebreak = true
               end
             '';
           }

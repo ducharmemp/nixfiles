@@ -532,11 +532,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786120510,
-        "narHash": "sha256-5Eutt4gPc8PM8GjKYWTo+eBxlqjD18qd3l2iCuACS5E=",
+        "lastModified": 1786325223,
+        "narHash": "sha256-vp/0y/geEsqAqZjrbaIx04wMneDrf7Qe5M4l0ffYK3k=",
         "ref": "refs/heads/main",
-        "rev": "cd2d419c614d46fa121640f6e473544859efebd3",
-        "revCount": 26,
+        "rev": "e6a3b7ebc269acc84d527320d183f22675024d29",
+        "revCount": 35,
         "type": "git",
         "url": "ssh://git@github.com/ducharmemp/straps"
       },

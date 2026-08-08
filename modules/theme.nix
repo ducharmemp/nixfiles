@@ -14,6 +14,11 @@
       catppuccin.flavor = "macchiato";
       catppuccin.accent = "flamingo";
       catppuccin.nvim.enable = true;
+      # catppuccin's release-26.05 gemini-cli module sets the old
+      # `programs.gemini-cli.settings` path, renamed to `antigravity-cli` in
+      # our `unstable` home-manager. We do not use gemini-cli, so disable the
+      # integration to drop the deprecation warning.
+      catppuccin.gemini-cli.enable = false;
       catppuccin.wezterm = {
         enable = true;
         apply = true;
