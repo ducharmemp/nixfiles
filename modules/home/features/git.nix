@@ -5,7 +5,8 @@
     {
       programs.difftastic = {
         enable = true;
-        git.mode = "both";
+        git.enable = true;
+        git.diffToolMode = true;
       };
 
       programs.git = {

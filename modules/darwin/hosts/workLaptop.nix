@@ -41,8 +41,22 @@
         podman
         podman-compose
         home-manager
-        aerospace
+        rift
       ];
+
+      # Run rift as a per-user launchd agent. On first launch macOS prompts for
+      # Accessibility permission for the rift binary; grant it, then the agent
+      # keeps rift alive across logins. rift reads ~/.config/rift/config.toml.
+      launchd.user.agents.rift = {
+        serviceConfig = {
+          ProgramArguments = [ "${pkgs.rift}/bin/rift" ];
+          RunAtLoad = true;
+          KeepAlive = true;
+          ProcessType = "Interactive";
+          StandardOutPath = "/tmp/rift.out.log";
+          StandardErrorPath = "/tmp/rift.err.log";
+        };
+      };
 
       users.knownUsers = [ "matthewducharme" ];
       system.primaryUser = "matthewducharme";
@@ -77,7 +91,7 @@
           self.homeModules.oh-my-posh
           self.homeModules.psql
           self.homeModules.zellij
-          self.homeModules.aerospace
+          self.homeModules.rift
           self.homeModules.sketchybar
           self.homeModules.browsers
           self.homeModules.common-packages

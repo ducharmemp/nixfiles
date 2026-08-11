@@ -2,8 +2,10 @@ local colors = require("colors")
 local icons = require("icons")
 local settings = require("settings")
 
--- Register aerospace workspace change event
-sbar.add("event", "aerospace_workspace_change")
+-- Register the rift workspace change event. rift itself installs the
+-- workspace_changed -> rift_workspace_changed bridge via run_on_start (see
+-- the rift home module); rift sets RIFT_WORKSPACE_ID (0-based) on the trigger.
+sbar.add("event", "rift_workspace_changed")
 
 local spaces = {}
 
@@ -51,8 +53,8 @@ for i = 1, 9, 1 do
     width = settings.group_paddings,
   })
 
-  space:subscribe("aerospace_workspace_change", function(env)
-    local selected = env.FOCUSED_WORKSPACE == tostring(i)
+  space:subscribe("rift_workspace_changed", function(env)
+    local selected = env.RIFT_WORKSPACE_ID == tostring(i - 1)
     local color = selected and colors.grey or colors.bg2
     space:set({
       icon = { highlight = selected },
@@ -62,7 +64,7 @@ for i = 1, 9, 1 do
   end)
 
   space:subscribe("mouse.clicked", function(env)
-    sbar.exec("aerospace workspace " .. i)
+    sbar.exec("rift-cli execute workspace switch " .. (i - 1))
   end)
 end
 

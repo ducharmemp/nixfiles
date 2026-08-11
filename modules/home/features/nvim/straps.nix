@@ -6,6 +6,7 @@
       programs.nixvim = {
         imports = [ inputs.straps.nixvimModules.default ];
         plugins.straps.enable = true;
+        plugins.straps.settings.model = "claude-opus-4-8";
       };
     };
 }

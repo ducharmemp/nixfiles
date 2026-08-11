@@ -8,12 +8,16 @@ _:
         nowplaying-cli
         switchaudio-osx
         sbarlua
-        lua5_4
+        # sbarlua is built against Lua 5.5 (pkgs.sbarlua == lua5.5-sbarLua), so
+        # the interpreter, the sketchybarrc shebang, and the cpath below must all
+        # use lua5_5 or `require("sketchybar")` fails and the bar stays empty.
+        lua5_5
+        rift # provides rift-cli, used by items/spaces.lua
       ];
 
       xdg.configFile = {
         "sketchybar/sketchybarrc" = {
-          text = "#!${pkgs.lua5_4}/bin/lua\n" + builtins.readFile ./sketchybarrc;
+          text = "#!${pkgs.lua5_5}/bin/lua\n" + builtins.readFile ./sketchybarrc;
           executable = true;
         };
         "sketchybar/init.lua".source = ./init.lua;
@@ -31,6 +35,7 @@ _:
         "sketchybar/items/media.lua".source = ./items/media.lua;
         "sketchybar/items/menus.lua".source = ./items/menus.lua;
         "sketchybar/items/spaces.lua".source = ./items/spaces.lua;
+        "sketchybar/items/keybindings.lua".source = ./items/keybindings.lua;
 
         # Widgets
         "sketchybar/items/widgets/init.lua".source = ./items/widgets/init.lua;
@@ -41,7 +46,7 @@ _:
 
         # Helpers
         "sketchybar/helpers/init.lua".text = ''
-          package.cpath = package.cpath .. ";${pkgs.sbarlua}/lib/lua/${pkgs.lua5_4.luaversion}/?.so"
+          package.cpath = package.cpath .. ";${pkgs.sbarlua}/lib/lua/${pkgs.lua5_5.luaversion}/?.so"
           os.execute("(cd $CONFIG_DIR/helpers && make)")
         '';
         "sketchybar/helpers/app_icons.lua".source = ./helpers/app_icons.lua;
