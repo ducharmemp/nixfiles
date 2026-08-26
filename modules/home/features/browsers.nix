@@ -27,7 +27,7 @@ _:
             engines = {
               "kagi" = {
                 urls = [{ template = "https://kagi.com/search?q={searchTerms}"; }];
-                iconUpdateURL = "https://kagi.com/favicon.ico";
+                icon = "https://kagi.com/favicon.ico";
                 definedAliases = [ "@k" ];
               };
               "google".metaData.hidden = true;
@@ -123,6 +123,10 @@ _:
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/1password-x-password-manager/latest.xpi";
               installation_mode = "force_installed";
             };
+            "{f0bda7ce-0cda-42dc-9ea8-126b20fed280}" = {
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/hister/latest.xpi";
+              installation_mode = "force_installed";
+            };
           };
 
           # Locked preferences (global, not per-profile)
@@ -203,7 +207,7 @@ _:
       };
 
       programs.chromium = {
-        enable = !pkgs.stdenv.isDarwin;
+        enable = !pkgs.stdenv.hostPlatform.isDarwin;
       };
     };
 }

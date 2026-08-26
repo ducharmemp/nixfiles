@@ -34,6 +34,9 @@
     expert.url = "github:elixir-lang/expert";
     ponies-nix.url = "github:ducharmemp/ponies-nix";
 
+    hister.url = "github:asciimoo/hister/v0.18.0";
+    hister.inputs.nixpkgs.follows = "nixpkgs";
+
     catppuccin.url = "github:catppuccin/nix/release-26.05";
 
     # Private repo, so ssh instead of the github: fetcher.

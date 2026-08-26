@@ -18,6 +18,7 @@ _:
         self.homeModules.ssh
         self.homeModules.common-packages
         self.homeModules.llms
+        self.homeModules.hister
       ];
 
       home = {
@@ -48,7 +49,7 @@ _:
         entr
         ncdu
         rclone
-        libreoffice-fresh
+        libreoffice-stable
         moonlight-qt
       ];
 
