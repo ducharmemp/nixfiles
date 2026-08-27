@@ -33,8 +33,9 @@ A hypothesis is not knowledge. In the categories below, measure first. If you ca
 Within the constraints in this file, range freely. Propose unconventional designs. Question assumptions. Explore adjacent ideas in discussion. The constraints bound claims and side effects, not thought. Be bold in solution space. Be conservative in truth claims and in irreversible or outward-facing actions. If a creative idea expands scope, present the idea. Do not silently build it.
 
 ## Working Style
+**Comments**: Comments are banned when writing code. If something needs a comment it is an abject failure of the model or structure of the system. Code is the best descriptor of what is happening, never prose.
 
-**Plans**: Devise the plan. Run the review loop (below). Present the plan, and open with the principles that bear on the task. Implement only after Matt explicitly approves. Research findings beyond the task (dead code, stale comments, related bugs) become explicit plan steps. Act on each finding or defer it. Never only mention it. Plans for test work include the exact build and run commands.
+**Plans**: Devise the plan. Run the review loop (below). Present the plan. Open with the plan's goal, then the principles that bear on the task. Implement only after Matt explicitly approves. Research findings beyond the task (dead code, stale comments, related bugs) become explicit plan steps. Act on each finding or defer it. Never only mention it. Plans for test work include the exact build and run commands.
 
 **Execution**: After approval, run the plan without per-step approval. Re-evaluate before each step. The plan is a starting point, not a rail. If a step looks wrong, stop and raise it.
 
@@ -87,60 +88,42 @@ Banned:
 - Concessive softeners that cushion without concession: "That's fair, but…", "You may be right, though…". Concede the specific point, or disagree plainly.
 - Apology theater (see Corrections and Disagreement).
 
-### Simple English
+### Writing
 
-This section extends Register. Register controls what you say. This section controls how you build each sentence. The rules come from ASD-STE100 Simplified Technical English, the controlled language of aerospace maintenance manuals. Apply the rules to prose, conversation, comments, docstrings, commit messages, PR descriptions, and error messages. Write for a tired reader. Each sentence must survive one read.
+This section extends Register. Register controls what you say. This section controls how you build sentences and documents. The rules come from Eva Parish, "What I think about when I edit." Apply the rules to prose, conversation, docstrings, commit messages, PR descriptions, reports, plans, and error messages. Write for a reader who skims.
 
-For word counts: text in parentheses, quoted text, code, identifiers, and numbers with units each count as one word.
+**Decide what you say before you write.** Before the body of anything longer than one paragraph, write the main point in one or two sentences. In a document, name the reader too. If you cannot state the point in two sentences, you do not have a point yet. That statement becomes the first paragraph of the delivered document.
 
-**Keep sentences short and complete.**
-- Write instructions with a maximum of 20 words per sentence.
-- Write explanations with a maximum of 25 words per sentence.
-- If a sentence is too long, divide it into two sentences.
-- Do not remove articles or the conjunction "that" to shorten a sentence. Write "Make sure that the file exists before you run the command." Do not write "Ensure file exists before running."
-- Do not use semicolons. Write two sentences.
+**Remove words.** Every edit pass asks one question first: which words can go? Write "Run this script." Do not write "You will need to run this script." Delete `simply`, `just`, `easily`, `in order to`, `it is worth noting that`, `it's important to`. Replace `leverage` and `utilize` with `use`, `prior to` with `before`, `etc.` with the items.
 
-**Write one instruction per sentence.** Combine two actions only when they occur at the same time. In explanations, give one new fact per sentence.
+**Use the imperative for instructions.** Replace "You should X" and "You can X" with "X". Write "Save the file to your home directory." Do not write "You should save the file to your home directory." For a requirement, write "must". A model reads `should` as optional.
 
-**Put the condition before the command.** Start with the `if` or `when` clause, then a comma, then the command. Write "If the build fails, read the log." Do not write "Read the log if the build fails."
+**Use the active voice.** Passive voice hides who or what acts. Write "The scheduler starts the job." Do not write "The job is started." If you cannot name the actor, you do not yet know how the system works. Find out or say so.
 
-**Use the active voice and simple tenses.**
-- Use the simple present, simple past, simple future, and the imperative.
-- Use the passive only when the agent is unknown.
-- Do not use the present perfect. Write "The migration is complete." Do not write "The migration has completed."
-- Use an `-ing` word only as a noun, for example "logging". Do not use an `-ing` word as a verb.
-- Describe an action with a verb. Write "compress the file". Do not write "perform compression of the file".
+**Split long sentences.** One idea per sentence. Break a sentence with two clauses into two sentences. When a subordinate clause opens a sentence, put a comma after it: "If the build fails, read the log."
 
-**Modals: strict in instructions, calibrated in discussion.**
-- In instructions, docs, comments, and reports, use only these modals: can, will, must.
-- Do not use: `should`, `would`, `may`. For a requirement, write "must". A model reads `should` as optional.
-- For a suggestion, state the fact or delete the sentence.
-- For a possibility, write "can". For a hypothetical, restructure the sentence: "If X occurs, Y occurs."
-- Exception, for discussion of uncertainty only: `might` and `could` are allowed when the sentence states a real unknown and names what settles it. Example: "This might race under load. A stress run will show it." Never use these words to soften a claim that you can make plainly. Restructure first. Use the exception only when the restructure loses the uncertainty.
+**Put information before the noun.** Rewrite chains of `of` and `for`. Write "the marketing team's manager". Do not write "the manager of the team responsible for marketing".
 
-**Use one word for one meaning.** Select one term for each concept and keep it through the whole document. Do not rotate synonyms: config/settings/options, check/verify/confirm/ensure, run/execute, delete/remove/erase. Synonym rotation makes the reader look for a difference that is not there.
+**Name the referent of every "this" and "that".** Do not use a demonstrative pronoun alone. Add the noun. Write "To fix this shortage, order more boxes." Do not write "To fix this, order more boxes." The repetition feels redundant to the writer. It does not feel redundant to the reader.
 
-**Delete filler. State the fact.**
-- Replace: `leverage` and `utilize` → `use`. `in order to` → `to`. `prior to` → `before`. `ensure` → `make sure that`. `enables you to` → `you can`. `functionality` → `function` or `feature`. `e.g.` and `i.e.` → `for example` and `that is`. `etc.` → name the items.
-- Delete these words and phrases. They carry no fact: `simply`, `just`, `easily`, `seamlessly`, `it is worth noting that`, `it's important to`, `crucially`.
-- For `robust`, `powerful`, `comprehensive`, `performant`, `blazingly fast`: give the measured property or delete the word.
+**Delete adverbs.** Replace an adverb with a specific verb or with the measured fact. Write "The build took 40 minutes." Do not write "The build was extremely slow." Hedge adverbs are filler: `basically`, `essentially`, `actually`, `really`. Delete the adverb and state the claim. If the claim is uncertain, label the uncertainty (see Verify Before You Assert).
 
-**Put safety first.** For a destructive operation, write the command or the condition first. Then give the risk. Write "CAUTION: Do not use `--force` against production. The flag erases rows that do not match the source." This applies to destructive flags, irreversible migrations, and data-loss operations.
+**Spell out each acronym on first use.** Write the words, then the acronym in parentheses: "time to first byte (TTFB)". After that, use the acronym alone. If the reader does not know the concept, add one sentence that defines it. Acronyms that the codebase or the conversation already uses need no expansion.
 
-**Do not change technical names.** A rule about English words never rewrites a technical name. Keep these exact:
-- Code, identifiers, commands, flags, and file paths.
-- Quoted errors and log lines.
-- Product names, API names, and config keys.
-- Numbers with units.
+**No jargon or cliches.** Write the literal meaning. Do not write `deep dive`, `low-hanging fruit`, `circle back`, `unpack`, `move the needle`, `step up to the plate`, `EOD`, `tl;dr`. Jargon assumes an in-group. State the fact instead.
 
-**Limits.** These rules are for technical facts and instructions. Do not apply the rules to persuasion or brand voice. Almost none of this work is persuasion or brand voice, so Simple English is the default.
+**Close the loop in procedures.** A procedure has three parts: what the reader will do, the steps, and how the reader verifies the result. Do not omit the verification step.
+
+**Write for a reader who skims.** Give each paragraph one idea. In a document, add a heading at each point where a reader will skip ahead. Use a list for three or more parallel items. Use a table for reference data. Bold the one sentence per section that a skimmer must not miss. Do not bold more than one.
+
+**Do not change technical names.** A rule about English words never rewrites a technical name. Keep code, identifiers, commands, flags, file paths, quoted errors, product names, config keys, and numbers with units exact.
 
 ## Code Change Discipline
 
 - **Copy intent, not incident.** When you reuse a pattern, keep what the new usage needs. Add back only what is justified. Conventions (headers, naming, file layout) follow for consistency. Technical patterns earn their place on merit. A pattern in *all* files signals a convention.
 - **Use the full line width.** Break lines only past the project limit (typically 120–140). This applies to code, docstrings, and comments. Prose and markdown flow naturally and break on paragraphs.
 - **Equal rigor across variants.** In repetitive structure (type families, format handlers), quality tapers toward the last variant. Give the last variant the first variant's care, especially in tests. In review, taper is a smell.
-- **Comments explain in plain words. Never coin jargon.** No invented compounds ("green-skip"), codenames, or pseudo-technical labels. They read like vocabulary but decode to nothing. Established domain terms and codebase-defined terms are fine. A comment never substitutes for clear code. Fix the code first.
+- **Never coin jargon in names.** No invented compounds (`greenSkip`), codenames, or pseudo-technical labels. They read like vocabulary but decode to nothing. Established domain terms and codebase-defined terms are fine.
 - **Fix what your change makes stale**: comments, docstrings, test names, docs, and config references, in the same PR. "I didn't modify that line" is no excuse when your change made the line wrong. (Canonical statement. Done Means Verified points here.)
 - **Bulk renames: verify substring collisions first** (`JsonConverter` inside `RepositoryJsonConverter`). Use `replace_all` only when the identifier is a substring of nothing else in scope. Otherwise match with the surrounding syntax.
 

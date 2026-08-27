@@ -3,12 +3,6 @@
   flake.homeModules.git =
     _:
     {
-      programs.difftastic = {
-        enable = true;
-        git.enable = true;
-        git.mode = "both";
-      };
-
       programs.git = {
         enable = true;
 

@@ -104,12 +104,6 @@
           homeDirectory = "/Users/matthewducharme";
         };
 
-        programs.git.settings = {
-          # Dedicated signing key, separate from the auth/push key (~/.ssh/id_ed25519).
-          user.signingkey = "~/.ssh/id_ed25519_sign.pub";
-          commit.gpgsign = true;
-        };
-
         programs.jujutsu.settings = {
           signing.key = "~/.ssh/id_ed25519_sign.pub";
         };
