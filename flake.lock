@@ -180,6 +180,27 @@
         "type": "github"
       }
     },
+    "foyer": {
+      "inputs": {
+        "multiverse": "multiverse",
+        "nixpkgs": [
+          "unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789241977,
+        "narHash": "sha256-m+YbqGT2YE/EUnhSoxPRkjepvqZemt1ody04xEg4u4s=",
+        "owner": "ducharmemp",
+        "repo": "foyer",
+        "rev": "275e1096347c0ebed0968621bb7fbd61176afd99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ducharmemp",
+        "repo": "foyer",
+        "type": "github"
+      }
+    },
     "freetype2": {
       "flake": false,
       "locked": {
@@ -286,6 +307,21 @@
         "owner": "pnggroup",
         "ref": "v1.6.44",
         "repo": "libpng",
+        "type": "github"
+      }
+    },
+    "multiverse": {
+      "locked": {
+        "lastModified": 1789158812,
+        "narHash": "sha256-f7ImFehiGdNILVIyZXdJBoYJQYoyfoovIvqWFQ3s8Rc=",
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
+        "rev": "c0a4b9aa6abeb72e0bf44cc6111b7b0424f2836a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fzakaria",
+        "repo": "nixpkgs-multiverse",
         "type": "github"
       }
     },
@@ -531,6 +567,7 @@
         "catppuccin": "catppuccin",
         "expert": "expert",
         "flake-parts": "flake-parts_2",
+        "foyer": "foyer",
         "hister": "hister",
         "home-manager": "home-manager",
         "import-tree": "import-tree",

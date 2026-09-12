@@ -46,6 +46,9 @@
     open-floorplan.url = "git+ssh://git@github.com/ducharmemp/open-floorplan.nvim";
     open-floorplan.inputs.nixpkgs.follows = "unstable";
 
+    foyer.url = "github:ducharmemp/foyer";
+    foyer.inputs.nixpkgs.follows = "unstable";
+
     profile.url = "git+ssh://git@github.com/ducharmemp/profile";
   };
 

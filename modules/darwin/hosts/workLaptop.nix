@@ -84,6 +84,7 @@
       home-manager.users.matthewducharme = { config, ... }: {
         imports = [
           self.homeModules.jujutsu
+          self.homeModules.foyer
           self.homeModules.git
           self.homeModules.nvim
           self.homeModules.wezterm
