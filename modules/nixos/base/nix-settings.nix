@@ -7,7 +7,7 @@
 
       nix = {
         settings = {
-          experimental-features = "nix-command flakes";
+          experimental-features = [ "nix-command" "flakes" ];
           nix-path = config.nix.nixPath;
           download-buffer-size = 524288000;
           auto-optimise-store = true;
