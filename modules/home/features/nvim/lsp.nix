@@ -21,7 +21,6 @@
             cssls.enable = true;
             bashls.enable = true;
             terraformls.enable = true;
-            marksman.enable = true;
             postgres_lsp.enable = true;
           };
         };
