@@ -4,9 +4,10 @@
     _:
     {
       programs.nixvim = {
-        imports = [ inputs.straps.nixvimModules.default ];
+        imports = [ inputs.straps.nixvimModules.default inputs.straps-classifier.nixvimModules.default];
         plugins.straps.enable = true;
         plugins.straps.settings.model = "claude-opus-4-8";
+        plugins.straps-classifier.enable = true;
       };
     };
 }

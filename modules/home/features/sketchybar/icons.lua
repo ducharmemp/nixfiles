@@ -40,6 +40,10 @@ local icons = {
       forward = "􀊌",
       play_pause = "􀊈",
     },
+    caffeine = {
+      on = "\u{F0176}",
+      off = "\u{F06CA}",
+    },
   },
 
   -- Alternative NerdFont icons
@@ -81,6 +85,10 @@ local icons = {
       back = "",
       forward = "",
       play_pause = "",
+    },
+    caffeine = {
+      on = "\u{F0176}",
+      off = "\u{F06CA}",
     },
   },
 }

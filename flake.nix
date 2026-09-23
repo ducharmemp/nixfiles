@@ -42,6 +42,8 @@
     # Private repo, so ssh instead of the github: fetcher.
     straps.url = "git+ssh://git@github.com/ducharmemp/straps";
     straps.inputs.nixpkgs.follows = "unstable";
+    straps-classifier.url = "git+ssh://git@github.com/ducharmemp/straps-classifier";
+    straps-classifier.inputs.nixpkgs.follows = "unstable";
 
     open-floorplan.url = "git+ssh://git@github.com/ducharmemp/open-floorplan.nvim";
     open-floorplan.inputs.nixpkgs.follows = "unstable";

@@ -58,6 +58,44 @@
         };
       };
 
+      launchd.user.agents.sketchybar-watchdog = {
+        serviceConfig = {
+          ProgramArguments = [
+            "${pkgs.writeShellApplication {
+              name = "sketchybar-watchdog";
+              runtimeInputs = [
+                pkgs.coreutils
+                pkgs.sketchybar
+              ];
+              text = ''
+                state=/tmp/sketchybar-watchdog.failures
+                if out=$(timeout -k 1 3 sketchybar --query bar 2>/dev/null) && [ -n "$out" ]; then
+                  echo 0 > "$state"
+                  exit 0
+                fi
+                failures=$(( $(cat "$state" 2>/dev/null || echo 0) + 1 ))
+                if [ "$failures" -lt 2 ]; then
+                  echo "$failures" > "$state"
+                  exit 0
+                fi
+                echo 0 > "$state"
+                service="gui/$(/usr/bin/id -u)/org.nixos.sketchybar"
+                pid=$(/bin/launchctl print "$service" 2>/dev/null | awk '$1 == "pid" { print $3 }')
+                echo "$(date '+%F %T') sketchybar unresponsive (pid ''${pid:-none}), restarting"
+                /usr/bin/pkill -f 'sketchybar --trigger' || true
+                if [ -n "$pid" ]; then
+                  /usr/bin/pkill -KILL -P "$pid" || true
+                fi
+                /bin/launchctl kill SIGKILL "$service" || true
+              '';
+            }}/bin/sketchybar-watchdog"
+          ];
+          StartInterval = 60;
+          StandardOutPath = "/tmp/sketchybar-watchdog.out.log";
+          StandardErrorPath = "/tmp/sketchybar-watchdog.err.log";
+        };
+      };
+
       users.knownUsers = [ "matthewducharme" ];
       system.primaryUser = "matthewducharme";
       users.users = {

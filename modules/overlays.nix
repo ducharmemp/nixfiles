@@ -3,7 +3,14 @@
   flake.overlays = {
     additions = final: _prev: import ../pkgs final;
 
-    modifications = _final: _prev: { };
+    modifications = _final: prev: {
+      sketchybar = prev.sketchybar.overrideAttrs (o: {
+        patches = (o.patches or [ ]) ++ [ ../pkgs/patches/sketchybar-send-timeout.patch ];
+      });
+      sbarlua = prev.sbarlua.overrideAttrs (o: {
+        patches = (o.patches or [ ]) ++ [ ../pkgs/patches/sbarlua-send-timeout.patch ];
+      });
+    };
 
     unstable-packages = final: _prev: {
       unstable = import inputs.unstable {

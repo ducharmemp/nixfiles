@@ -43,6 +43,7 @@ _:
         "sketchybar/items/widgets/cpu.lua".source = ./items/widgets/cpu.lua;
         "sketchybar/items/widgets/volume.lua".source = ./items/widgets/volume.lua;
         "sketchybar/items/widgets/wifi.lua".source = ./items/widgets/wifi.lua;
+        "sketchybar/items/widgets/caffeine.lua".source = ./items/widgets/caffeine.lua;
 
         # Helpers
         "sketchybar/helpers/init.lua".text = ''
