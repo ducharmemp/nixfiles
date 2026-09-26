@@ -160,6 +160,7 @@
           terraform
           teleport_17
           kubectl
+          pup
         ];
 
         programs.thunderbird.enable = true;

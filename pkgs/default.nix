@@ -3,5 +3,6 @@
 pkgs: {
   berkeley-mono = pkgs.callPackage ./berkeley-mono.nix { };
   rift = pkgs.callPackage ./rift.nix { };
+  pup = pkgs.callPackage ./pup.nix { };
 
 }
