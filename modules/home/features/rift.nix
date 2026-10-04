@@ -1,11 +1,22 @@
 _:
 {
   flake.homeModules.rift =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     let
       # rift config is plain TOML; build it from a Nix attrset so it stays
       # nix-native and reviewable. rift hot-reloads it (settings.hot_reload).
       tomlFormat = pkgs.formats.toml { };
+
+      workspaceKeys = lib.mergeAttrsList (
+        map (n: {
+          "Alt + ${toString n}" = {
+            switch_to_workspace = n;
+          };
+          "comb1 + ${toString n}" = {
+            move_window_to_workspace = n;
+          };
+        }) (lib.range 0 9)
+      );
 
       config = {
         settings = {
@@ -54,7 +65,8 @@ _:
 
         virtual_workspaces = {
           enabled = true;
-          default_workspace_count = 4;
+          default_workspace_count = 10;
+          default_workspace = 1;
           auto_assign_windows = true;
           preserve_focus_per_workspace = true;
           workspace_auto_back_and_forth = false;
@@ -66,8 +78,7 @@ _:
 
         modifier_combinations.comb1 = "Alt + Shift";
 
-        # rift's default keybindings (4 workspaces).
-        keys = {
+        keys = workspaceKeys // {
           "Alt + Z" = "toggle_space_activated";
 
           "Alt + H" = {
@@ -94,32 +105,6 @@ _:
           };
           "comb1 + L" = {
             move_node = "right";
-          };
-
-          "Alt + 0" = {
-            switch_to_workspace = 0;
-          };
-          "Alt + 1" = {
-            switch_to_workspace = 1;
-          };
-          "Alt + 2" = {
-            switch_to_workspace = 2;
-          };
-          "Alt + 3" = {
-            switch_to_workspace = 3;
-          };
-
-          "comb1 + 0" = {
-            move_window_to_workspace = 0;
-          };
-          "comb1 + 1" = {
-            move_window_to_workspace = 1;
-          };
-          "comb1 + 2" = {
-            move_window_to_workspace = 2;
-          };
-          "comb1 + 3" = {
-            move_window_to_workspace = 3;
           };
 
           "Alt + Tab" = "switch_to_last_workspace";

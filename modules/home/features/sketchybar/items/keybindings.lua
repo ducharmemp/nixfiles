@@ -11,7 +11,7 @@ local settings = require("settings")
 local groups = {
   { header = "Focus / Workspace (Alt)" },
   { key = "Alt + H / J / K / L", desc = "focus left / down / up / right" },
-  { key = "Alt + 0 .. 3", desc = "switch to workspace N" },
+  { key = "Alt + 0 .. 9", desc = "switch to workspace N" },
   { key = "Alt + Tab", desc = "last workspace" },
   { key = "Alt + Z", desc = "toggle rift on this space" },
   { key = "Alt + F", desc = "fullscreen" },
@@ -21,7 +21,7 @@ local groups = {
 
   { header = "Move / Resize (Alt + Shift)" },
   { key = "Alt + Shift + H / J / K / L", desc = "move node left / down / up / right" },
-  { key = "Alt + Shift + 0 .. 3", desc = "move window to workspace N" },
+  { key = "Alt + Shift + 0 .. 9", desc = "move window to workspace N" },
   { key = "Alt + Shift + ← / → / ↑ / ↓", desc = "join window" },
   { key = "Alt + Shift + Space", desc = "toggle floating" },
   { key = "Alt + Shift + = / -", desc = "grow / shrink" },

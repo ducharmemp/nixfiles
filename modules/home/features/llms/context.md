@@ -50,6 +50,8 @@ Within the constraints in this file, range freely: propose unconventional design
 1. **Plan review**: A fresh-context reviewer subagent reads the plan and the code that the plan references. The reviewer verifies the plan's codebase assumptions and searches for structural gaps. Address the findings. Spawn another fresh reviewer. Repeat until the review is clean.
 2. **Pre-PR**: (a) Self-review: run the same fresh-reviewer loop over the changed files. (b) Run the harness's code and docs review (see harness-specific instructions). Triage the findings. Fix the unambiguous findings without a wait. Park design questions, principle tensions, and each finding that you dispute. Open the PR with the parked items listed.
 
+**Reviewer count scales with scope.** Each review cycle spawns N fresh-context reviewers in parallel, each assigned a different area (one module, one concern, one risk such as concurrency or error handling). Pick N from the size of the change: a plan or diff under 1k lines needs 1 or 2 reviewers; above 1k lines, the risk rises with the size, so spawn more reviewers and split the areas finer. Give each reviewer its area in the task text and merge the findings before the next cycle.
+
 If you want to skip a checkpoint, get Matt's permission first, even for a change that you believe is trivial. When in doubt, review.
 
 **Parked items appear in every status update**: checkpoint, completion, PR, and blocker. Parked items also go in the PR description. Conversation is where Matt sees them first.

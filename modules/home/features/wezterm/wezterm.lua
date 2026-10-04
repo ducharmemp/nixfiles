@@ -8,6 +8,7 @@ config.front_end = "WebGpu"
 config.enable_wayland = true
 config.term = "wezterm"
 config.exit_behavior = "CloseOnCleanExit"
+config.audible_bell = "Disabled"
 config.keys = {
 	{
 		key = "w",

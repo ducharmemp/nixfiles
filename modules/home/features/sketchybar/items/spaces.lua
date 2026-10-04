@@ -9,7 +9,7 @@ sbar.add("event", "rift_workspace_changed")
 
 local spaces = {}
 
-for i = 1, 9, 1 do
+for i = 0, 9, 1 do
   local space = sbar.add("item", "space." .. i, {
     icon = {
       font = { family = settings.font.numbers },
@@ -54,7 +54,7 @@ for i = 1, 9, 1 do
   })
 
   space:subscribe("rift_workspace_changed", function(env)
-    local selected = env.RIFT_WORKSPACE_ID == tostring(i - 1)
+    local selected = env.RIFT_WORKSPACE_ID == tostring(i)
     local color = selected and colors.grey or colors.bg2
     space:set({
       icon = { highlight = selected },
@@ -64,7 +64,7 @@ for i = 1, 9, 1 do
   end)
 
   space:subscribe("mouse.clicked", function(env)
-    sbar.exec("rift-cli execute workspace switch " .. (i - 1))
+    sbar.exec("rift-cli execute workspace switch " .. i)
   end)
 end
 

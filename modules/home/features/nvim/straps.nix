@@ -9,6 +9,126 @@
         plugins.straps.settings.model = "claude-opus-4-8";
         extraConfigLua = ''
           require("straps").setup({ max_spawn_depth = 2 })
+
+          local straps_attn = { focused = true, done = {} }
+          local straps_grp = vim.api.nvim_create_augroup("StrapsAttention", { clear = true })
+
+          local function straps_visible(buf)
+            for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+              if vim.api.nvim_win_get_buf(win) == buf then return true end
+            end
+            return false
+          end
+
+          local function straps_toplevel(buf)
+            return vim.b[buf].straps_parent == nil
+          end
+
+          local function straps_redraw()
+            vim.schedule(function() vim.cmd.redrawstatus({ bang = true }) end)
+          end
+
+          local function straps_clear_visible()
+            local changed = false
+            for buf in pairs(straps_attn.done) do
+              if not vim.api.nvim_buf_is_valid(buf) or straps_visible(buf) then
+                straps_attn.done[buf] = nil
+                changed = true
+              end
+            end
+            if changed then straps_redraw() end
+          end
+
+          function _G.StrapsAttentionStatus()
+            local running, done = 0, 0
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+              if vim.api.nvim_buf_is_loaded(buf) and straps_toplevel(buf)
+                and vim.b[buf].straps_status == "running" then
+                running = running + 1
+              end
+            end
+            for buf in pairs(straps_attn.done) do
+              if vim.api.nvim_buf_is_valid(buf) then done = done + 1 end
+            end
+            local parts = {}
+            if running > 0 then parts[#parts + 1] = "󰚩 " .. running .. " working" end
+            if done > 0 then parts[#parts + 1] = "󰋼 " .. done .. " waiting" end
+            return table.concat(parts, "  ")
+          end
+
+          vim.api.nvim_create_autocmd("User", {
+            group = straps_grp,
+            pattern = "StrapsRunStart",
+            callback = function(ev)
+              straps_attn.done[ev.data.bufnr] = nil
+              straps_redraw()
+            end,
+          })
+
+          vim.api.nvim_create_autocmd("User", {
+            group = straps_grp,
+            pattern = "StrapsRunEnd",
+            callback = function(ev)
+              local buf, reason = ev.data.bufnr, ev.data.reason
+              straps_redraw()
+              if not vim.api.nvim_buf_is_valid(buf) then return end
+              if not straps_toplevel(buf) or reason == "cancelled" then return end
+              if straps_attn.focused and straps_visible(buf) then return end
+              straps_attn.done[buf] = reason
+              if vim.env.ZELLIJ then pcall(vim.api.nvim_ui_send, "\a") end
+            end,
+          })
+
+          vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufWipeout" }, {
+            group = straps_grp,
+            callback = function(ev)
+              if straps_attn.done[ev.buf] then
+                straps_attn.done[ev.buf] = nil
+                straps_redraw()
+              end
+            end,
+          })
+
+          vim.api.nvim_create_autocmd("FocusGained", {
+            group = straps_grp,
+            callback = function()
+              straps_attn.focused = true
+              straps_clear_visible()
+            end,
+          })
+          vim.api.nvim_create_autocmd("TabEnter", {
+            group = straps_grp,
+            callback = straps_clear_visible,
+          })
+          vim.api.nvim_create_autocmd("FocusLost", {
+            group = straps_grp,
+            callback = function() straps_attn.focused = false end,
+          })
+        '';
+
+        plugins.mini-statusline.settings.content.active.__raw = ''
+          function()
+            local ms = MiniStatusline
+            local mode, mode_hl = ms.section_mode({ trunc_width = 120 })
+            local git = ms.section_git({ trunc_width = 40 })
+            local diff = ms.section_diff({ trunc_width = 75 })
+            local diagnostics = ms.section_diagnostics({ trunc_width = 75 })
+            local lsp = ms.section_lsp({ trunc_width = 75 })
+            local filename = ms.section_filename({ trunc_width = 140 })
+            local fileinfo = ms.section_fileinfo({ trunc_width = 120 })
+            local location = ms.section_location({ trunc_width = 75 })
+            local search = ms.section_searchcount({ trunc_width = 75 })
+            return ms.combine_groups({
+              { hl = mode_hl, strings = { mode } },
+              { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+              "%<",
+              { hl = "MiniStatuslineFilename", strings = { filename } },
+              "%=",
+              { hl = "DiagnosticWarn", strings = { _G.StrapsAttentionStatus and _G.StrapsAttentionStatus() or "" } },
+              { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+              { hl = mode_hl, strings = { search, location } },
+            })
+          end
         '';
 
         plugins.straps-classifier = {
