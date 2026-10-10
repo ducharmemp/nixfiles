@@ -188,20 +188,24 @@ _:
             # Disable safe browsing remote lookups (privacy tradeoff)
             "browser.safebrowsing.downloads.remote.enabled" = lock-false;
 
+            # Master switch for the local inference engine (ONNX-based)
+            "browser.ml.enable" = false;
+
+            # Features built on it
+            "browser.ml.chat.enabled" = false;          # AI chatbot sidebar
+            "browser.ml.linkPreview.enabled" = false;   # AI link previews
+            "browser.tabs.groups.smart.enabled" = false; # smart tab grouping suggestions
+            "pdfjs.enableAltText" = false;              # generated alt text in the PDF viewer
+            "extensions.ml.enabled" = false;            # ML API for extensions
             # AI Browsing disabled
             "browser.ai.control.default" = "blocked";
             "browser.ai.control.linkPreviewKeyPoints" = "blocked";
             "browser.ai.control.pdfjsAltText" = "blocked";
             "browser.ai.control.sidebarChatbot" = "blocked";
             "browser.ai.control.smartTabGroups" = "blocked";
-            "browser.ml.chat.enabled" = false;
             "browser.ml.chat.page" = false;
-            "browser.ml.linkPreview.enabled" = false;
-            "browser.tabs.groups.smart.enabled" = false;
             "browser.tabs.groups.smart.userEnabled" = false;
             # "browser.translations.enable" = false; # Local model only, so not a privacy concern
-            "extensions.ml.enabled" = false;
-            "pdfjs.enableAltText" = false;
           };
         };
       };

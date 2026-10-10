@@ -1,8 +1,13 @@
 { inputs, ... }:
 {
   flake.homeModules.nvim-straps =
-    _:
+    { config, ... }:
     {
+      imports = [ inputs.agenix.homeManagerModules.default ];
+
+      age.identityPaths = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+      age.secrets.llamacpp-url.file = ../../../../secrets/llamacpp-url.age;
+
       programs.nixvim = {
         imports = [ 
           inputs.straps.nixvimModules.default 
@@ -10,11 +15,16 @@
           inputs.straps-divergent.nixvimModules.default
           inputs.straps-renamer.nixvimModules.default
           inputs.straps-exoskeleton.nixvimModules.default
+          inputs.straps-chartifier.nixvimModules.default
+          inputs.straps-buff.nixvimModules.default
         ];
         plugins.straps.enable = true;
-        plugins.straps.settings.model = "claude-opus-4-8";
+        plugins.straps.settings.model = "claude-opus-5-5";
         extraConfigLua = ''
-          require("straps").setup({ max_spawn_depth = 2 })
+          require("straps").setup({
+            max_spawn_depth = 2,
+            llamacpp_base_url = vim.trim(table.concat(vim.fn.readfile(vim.fn.expandcmd(${builtins.toJSON config.age.secrets.llamacpp-url.path})), "\n")),
+          })
 
           local straps_attn = { focused = true, done = {} }
           local straps_grp = vim.api.nvim_create_augroup("StrapsAttention", { clear = true })
@@ -138,8 +148,10 @@
         '';
 
         plugins.straps-divergent.enable = true;
-        plugins.straps-renamer.enable = true;
+        plugins.straps-renamer.enable = false;
         plugins.straps-exoskeleton.enable = true;
+        plugins.straps-chartifier.enable = true;
+        plugins.straps-buff.enable = true;
         plugins.straps-classifier = {
           enable = true;
           settings = {

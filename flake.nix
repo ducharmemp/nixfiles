@@ -12,6 +12,9 @@
 
     import-tree.url = "github:vic/import-tree";
 
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +55,12 @@
     straps-renamer.inputs.nixpkgs.follows = "unstable";
     straps-exoskeleton.url = "git+ssh://git@github.com/ducharmemp/straps-exoskeleton";
     straps-exoskeleton.inputs.nixpkgs.follows = "unstable";
+    straps-chartifier.url = "git+ssh://git@github.com/ducharmemp/straps-chartifier";
+    straps-chartifier.inputs.nixpkgs.follows = "unstable";
+    straps-buff.url = "git+ssh://git@github.com/ducharmemp/straps-buff";
+    straps-buff.inputs.nixpkgs.follows = "unstable";
+    buff.url = "git+ssh://git@github.com/ducharmemp/buff.nvim";
+    buff.inputs.nixpkgs.follows = "unstable";
 
     open-floorplan.url = "git+ssh://git@github.com/ducharmemp/open-floorplan.nvim";
     open-floorplan.inputs.nixpkgs.follows = "unstable";

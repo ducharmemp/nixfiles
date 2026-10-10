@@ -41,6 +41,8 @@ _:
         signing.backends.ssh.program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";
       };
 
+      programs.ghostty.enable = true;
+
       home.packages = with pkgs; [
         gimp3
         krita
@@ -51,7 +53,7 @@ _:
         entr
         ncdu
         rclone
-        libreoffice-stable
+        #libreoffice-stable
         moonlight-qt
       ];
 

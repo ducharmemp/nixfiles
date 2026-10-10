@@ -34,6 +34,9 @@
 
       programs.nixvim = {
         enable = true;
+        imports = [
+          inputs.buff.nixvimModules.default
+        ];
         # nixvim's flake input follows `unstable`. Setting `nixpkgs.source`
         # explicitly to the same input acknowledges that pin and suppresses
         # the "source default value affected by your flake input follows"
@@ -284,7 +287,12 @@
         plugins.which-key.enable = true;
         plugins.nvim-bqf.enable = true;
         plugins.undotree.enable = true;
+        plugins.orgmode.enable = true;
         plugins.render-markdown.enable = true;
+        plugins.buff = {
+          enable = true;
+          settings = { headless = false; timeout = 10000; };
+        };
         plugins.render-markdown.settings = {
           file_types = [ "markdown" "straps" "octo" ];
           win_options = {

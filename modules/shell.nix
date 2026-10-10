@@ -1,4 +1,4 @@
-_: {
+{ inputs, ... }: {
   perSystem =
     {
       pkgs,
@@ -24,6 +24,7 @@ _: {
           deadnix
           shellcheck
           nil
+          inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
         ];
       };
     };

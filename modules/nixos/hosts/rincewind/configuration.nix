@@ -36,7 +36,8 @@
           })
         ];
       }
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.home-manager.nixosModules.home-manager
       self.nixosModules.nix-settings
       self.nixosModules.theme
@@ -89,6 +90,7 @@
         LC_TIME = "en_US.UTF-8";
       };
 
+      services.fwupd.enable = true;
       services.thermald.enable = true;
       services.system76-scheduler.enable = true;
 

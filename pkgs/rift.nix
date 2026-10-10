@@ -11,7 +11,7 @@
 # The release tarball is the same artifact the upstream homebrew tap installs.
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "rift";
-  version = "0.5.3";
+  version = "0.7.0";
 
   src = fetchurl {
     url = "https://github.com/acsandmann/rift/releases/download/v${finalAttrs.version}/rift-universal-macos-${finalAttrs.version}.tar.gz";
