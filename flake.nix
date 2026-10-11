@@ -44,9 +44,18 @@
     straps.inputs.nixpkgs.follows = "unstable";
     straps-classifier.url = "git+ssh://git@github.com/ducharmemp/straps-classifier";
     straps-classifier.inputs.nixpkgs.follows = "unstable";
+    straps-divergent.url = "git+ssh://git@github.com/ducharmemp/straps-divergent";
+    straps-divergent.inputs.nixpkgs.follows = "unstable";
+    straps-renamer.url = "git+ssh://git@github.com/ducharmemp/straps-renamer";
+    straps-renamer.inputs.nixpkgs.follows = "unstable";
+    straps-exoskeleton.url = "git+ssh://git@github.com/ducharmemp/straps-exoskeleton";
+    straps-exoskeleton.inputs.nixpkgs.follows = "unstable";
 
     open-floorplan.url = "git+ssh://git@github.com/ducharmemp/open-floorplan.nvim";
     open-floorplan.inputs.nixpkgs.follows = "unstable";
+
+    telescope-orgmode.url = "github:nvim-orgmode/telescope-orgmode.nvim/214fe56e105bb3d0638f33320ed959911a1bfcb1";
+    telescope-orgmode.flake = false;
 
     foyer.url = "github:ducharmemp/foyer";
     foyer.inputs.nixpkgs.follows = "unstable";

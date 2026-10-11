@@ -17,11 +17,13 @@ _:
               "git"
               "ripgrep"
               "presenterm"
+              "orgmode"
             ];
             sources.providers = {
               git = {
                 module = "blink-cmp-git";
                 name = "git";
+                enabled.__raw = "function() return vim.bo.filetype ~= 'straps' end";
                 score_offset = 100;
                 opts = {
                   commit = { };
@@ -34,6 +36,7 @@ _:
                 async = true;
                 module = "blink-ripgrep";
                 name = "ripgrep";
+                enabled.__raw = "function() return vim.bo.filetype ~= 'straps' end";
                 score_offset = 100;
                 opts = {
                   prefix_min_len = 3;

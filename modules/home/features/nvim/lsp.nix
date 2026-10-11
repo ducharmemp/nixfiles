@@ -13,7 +13,7 @@
             jsonls.enable = true;
             html.enable = true;
             helm_ls.enable = true;
-            ts_ls.enable = true;
+            # ts_ls.enable = true;
             svelte.enable = true;
             nixd.enable = true;
             rust_analyzer.enable = true;
@@ -25,12 +25,56 @@
           };
         };
         extraConfigLua = ''
+          local function client_has_root(client, root_dir)
+            local uri = vim.uri_from_fname(root_dir)
+            for _, folder in ipairs(client.workspace_folders or {}) do
+              if folder.uri == uri then
+                return true
+              end
+            end
+            return false
+          end
+
+          local function reuse_per_root(client, config)
+            if client.name ~= config.name or client:is_stopped() then
+              return false
+            end
+            if not config.root_dir then
+              return not next(client.workspace_folders or {})
+            end
+            return client_has_root(client, config.root_dir)
+          end
+
+          local function reuse_per_server(client, config)
+            if reuse_per_root(client, config) then
+              return true
+            end
+            if client.name ~= config.name or client:is_stopped() or not config.root_dir then
+              return false
+            end
+            if not client.initialized or not next(client.workspace_folders or {}) then
+              return false
+            end
+            if not client:supports_method('workspace/didChangeWorkspaceFolders') then
+              return false
+            end
+            if type(client._add_workspace_folder) ~= 'function' then
+              return false
+            end
+            client:_add_workspace_folder(config.root_dir)
+            return true
+          end
+
+          vim.lsp.config('*', { reuse_client = reuse_per_server })
+
           vim.lsp.config('ruby-lsp', {
             filetypes = { "ruby", "eruby" },
 
             cmd = { "bundle", "exec", "ruby-lsp" },
 
             root_markers = { "Gemfile", ".git" },
+
+            reuse_client = reuse_per_root,
             
             init_options = {
               addonSettings = {
@@ -64,6 +108,8 @@
             end,
 
             root_markers = { "corral.json", "bundle.json", ".git", ".jj" },
+
+            reuse_client = reuse_per_root,
           })
           vim.lsp.enable('pony_lsp')
 

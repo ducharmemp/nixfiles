@@ -19,6 +19,7 @@
         self.homeModules.nvim-straps
         self.homeModules.nvim-presenterm
         self.homeModules.nvim-open-floorplan
+        self.homeModules.nvim-orgmode
       ];
 
       home.packages = with pkgs; [

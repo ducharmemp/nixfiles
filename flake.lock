@@ -51,11 +51,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1791490230,
-        "narHash": "sha256-5uIg8D4v479OrDN6uvDnrMs3SMFcZ2h/ep2af8ytxzM=",
+        "lastModified": 1791572633,
+        "narHash": "sha256-kQYoShxhQCNW7b2HkLlh4M8JQkZWbXsEeom/ERSVIcA=",
         "owner": "elixir-lang",
         "repo": "expert",
-        "rev": "3b7bbf80d0acb89da3fffe291394a7697b4a8594",
+        "rev": "439328e0c631845400e8688bd42f7e843c448227",
         "type": "github"
       },
       "original": {
@@ -351,11 +351,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1791373788,
-        "narHash": "sha256-c3oMt0QoE+4yiRk6u1m2L9ogjaUw0uTGn9yk808KkgE=",
+        "lastModified": 1791721963,
+        "narHash": "sha256-BYhx89XJltnRyQeuDKHVL5eSqbbfAcOKuDts7QRsrxQ=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "4bc63156b109ee7b4103e3ec30565c8c92bde435",
+        "rev": "60a624466c08787ee8303393b7d4752d1826f14f",
         "type": "github"
       },
       "original": {
@@ -454,11 +454,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1791426274,
-        "narHash": "sha256-MWhktfFtFE8Jl7bf9Pkp7TR5MSdYCjCswSo0Gkb4ywc=",
+        "lastModified": 1791662279,
+        "narHash": "sha256-xI8L+UwJLIg75yVJwLPsY+AUEP1teCT3FyuvodyJu2Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7c8764b7c7b09b34f632464276218ef9090eaa11",
+        "rev": "6fcc160353f63555b560f25588925133c8f61f2a",
         "type": "github"
       },
       "original": {
@@ -493,11 +493,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1791413357,
-        "narHash": "sha256-5l8P7oeBdNQC8QhhyjcadWnDL2NWqfCjhyiEHzf5gMs=",
+        "lastModified": 1792203519,
+        "narHash": "sha256-yJ072hxngo/srNdLTp4BlFeo0hedwnKicI3TGlSXLFE=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "2e18a1aee60f0b8193169ca225aa698d424c0d07",
+        "rev": "453dc9c5037e6d1bec81d2a51ddacd58a2f44e9c",
         "type": "github"
       },
       "original": {
@@ -581,6 +581,10 @@
         "profile": "profile",
         "straps": "straps",
         "straps-classifier": "straps-classifier",
+        "straps-divergent": "straps-divergent",
+        "straps-exoskeleton": "straps-exoskeleton",
+        "straps-renamer": "straps-renamer",
+        "telescope-orgmode": "telescope-orgmode",
         "unstable": "unstable",
         "unstable-home-manager": "unstable-home-manager",
         "wezterm": "wezterm"
@@ -614,11 +618,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791506415,
-        "narHash": "sha256-h3TH6c1gYOWaGYlk3a9J04jQM7ghKimR4Nj00OMH7nA=",
+        "lastModified": 1792789785,
+        "narHash": "sha256-PVZpTNCTNCxRa1BPp6felTYAt/ilVsiNTIv0DR1WeHA=",
         "ref": "refs/heads/main",
-        "rev": "ad864ac9311baa8a3583a3083ccf649fc11c24f8",
-        "revCount": 56,
+        "rev": "8ac1694093470a58b1e4cc13520bd3f20e6a67fd",
+        "revCount": 65,
         "type": "git",
         "url": "ssh://git@github.com/ducharmemp/straps"
       },
@@ -648,6 +652,68 @@
         "url": "ssh://git@github.com/ducharmemp/straps-classifier"
       }
     },
+    "straps-divergent": {
+      "inputs": {
+        "nixpkgs": [
+          "unstable"
+        ],
+        "straps": "straps_3"
+      },
+      "locked": {
+        "lastModified": 1791731474,
+        "narHash": "sha256-AM5ZcZ73o0MgeWqHeU6UNwn28IJBhMH+zTuQ2oR5t88=",
+        "ref": "refs/heads/main",
+        "rev": "0bd7ae90d9f4b3a4db51ad30df7d409e717a3bb4",
+        "revCount": 2,
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-divergent"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-divergent"
+      }
+    },
+    "straps-exoskeleton": {
+      "inputs": {
+        "nixpkgs": [
+          "unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792280767,
+        "narHash": "sha256-asGghY3jadT+OEkoXXvmmmDsn0w6Cy42hl6vwENI4z0=",
+        "ref": "refs/heads/main",
+        "rev": "5eb42e4f6a691e949ac09c6b6d7ec3bc4f88eb1c",
+        "revCount": 9,
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-exoskeleton"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-exoskeleton"
+      }
+    },
+    "straps-renamer": {
+      "inputs": {
+        "nixpkgs": [
+          "unstable"
+        ],
+        "straps": "straps_4"
+      },
+      "locked": {
+        "lastModified": 1792002278,
+        "narHash": "sha256-3iBNr9BqVJB5qprtVwPdIjdi5QZOTi604s3TkT9zsCI=",
+        "ref": "refs/heads/main",
+        "rev": "40c0a26b87e8cadaf6e990b3abcb303a4d9a8f4a",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-renamer"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps-renamer"
+      }
+    },
     "straps_2": {
       "inputs": {
         "nixpkgs": [
@@ -661,6 +727,48 @@
         "ref": "refs/heads/main",
         "rev": "8cefd62b561e619c80d94a15b3f37e0cce29cae3",
         "revCount": 50,
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/ducharmemp/straps"
+      }
+    },
+    "straps_3": {
+      "inputs": {
+        "nixpkgs": [
+          "straps-divergent",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791683829,
+        "narHash": "sha256-lF+9beo3wHdTG2rtB5kMkQ4bTTq1cFE4o6eXypih7L8=",
+        "owner": "ducharmemp",
+        "repo": "straps",
+        "rev": "82e072af98d5d151ab22e16dfb72d7fff3368340",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ducharmemp",
+        "repo": "straps",
+        "type": "github"
+      }
+    },
+    "straps_4": {
+      "inputs": {
+        "nixpkgs": [
+          "straps-renamer",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791773232,
+        "narHash": "sha256-2nRFkvCJcGYsJcoYGWaI7wFUTphtmdBWRMNKc0Y4F5g=",
+        "ref": "refs/heads/main",
+        "rev": "3a986118a4f07819790b7489d16a765c0060e687",
+        "revCount": 60,
         "type": "git",
         "url": "ssh://git@github.com/ducharmemp/straps"
       },
@@ -701,13 +809,30 @@
         "type": "github"
       }
     },
+    "telescope-orgmode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778787710,
+        "narHash": "sha256-6Eb0dabJ7W+bxypSgmgLVEhkRnXx4Y2RAaFxcC4CBbc=",
+        "owner": "nvim-orgmode",
+        "repo": "telescope-orgmode.nvim",
+        "rev": "214fe56e105bb3d0638f33320ed959911a1bfcb1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvim-orgmode",
+        "repo": "telescope-orgmode.nvim",
+        "rev": "214fe56e105bb3d0638f33320ed959911a1bfcb1",
+        "type": "github"
+      }
+    },
     "unstable": {
       "locked": {
-        "lastModified": 1791456040,
-        "narHash": "sha256-H83yz/do+hjOO0uujHyH8RgtIQP2v7Mw+cLwcZK/xKc=",
+        "lastModified": 1791722019,
+        "narHash": "sha256-7+1eXD8ZmCPB/bT8sLq/g+VZpi5Ab7IAQSeUZwD2jww=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e7439b6b14ad3cc35d05608ebca9bce01a25f5f8",
+        "rev": "5081109a1880d1cb4d5a4a9cd441f2762f66bbca",
         "type": "github"
       },
       "original": {
@@ -724,11 +849,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1791484883,
-        "narHash": "sha256-iKxFHJrg7Sltwhq3ssCZYQ4CFEDVvReVVuVuO9dj3sE=",
+        "lastModified": 1791642191,
+        "narHash": "sha256-0bK0A59rVUn1SRZzo4cNi4VSqAe7vR1gL2/MZl53Frw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "dfadbe5162d5e86bc0808badec8f346f81b4b3f0",
+        "rev": "c58f54c733a7894d84fa2fdff26cc12088c4b78c",
         "type": "github"
       },
       "original": {
@@ -752,11 +877,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1791172124,
-        "narHash": "sha256-0lV0WKulFROWlr8fYBUKR/ywFrD+mTT49QHSngOim4Q=",
+        "lastModified": 1791617951,
+        "narHash": "sha256-xiQ3IZJg/ezOTwTEjmFaTZGUNRBLY0OhPXAeUQAkXDs=",
         "owner": "wez",
         "repo": "wezterm",
-        "rev": "372548295b0b25c9a5400f0ea56f0e89f47e0524",
+        "rev": "e2a98e1b8af156988ad0ac778658ac27b60a55fb",
         "type": "github"
       },
       "original": {

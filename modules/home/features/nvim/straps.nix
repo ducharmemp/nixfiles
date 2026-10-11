@@ -4,7 +4,13 @@
     _:
     {
       programs.nixvim = {
-        imports = [ inputs.straps.nixvimModules.default inputs.straps-classifier.nixvimModules.default];
+        imports = [ 
+          inputs.straps.nixvimModules.default 
+          inputs.straps-classifier.nixvimModules.default
+          inputs.straps-divergent.nixvimModules.default
+          inputs.straps-renamer.nixvimModules.default
+          inputs.straps-exoskeleton.nixvimModules.default
+        ];
         plugins.straps.enable = true;
         plugins.straps.settings.model = "claude-opus-4-8";
         extraConfigLua = ''
@@ -131,6 +137,9 @@
           end
         '';
 
+        plugins.straps-divergent.enable = true;
+        plugins.straps-renamer.enable = true;
+        plugins.straps-exoskeleton.enable = true;
         plugins.straps-classifier = {
           enable = true;
           settings = {
