@@ -18,6 +18,7 @@
         enable = true;
         apply = true;
       };
+      catppuccin.ghostty.enable = true;
       programs.nixvim.colorschemes.catppuccin = {
         enable = true;
         settings.flavour = config.catppuccin.flavor;

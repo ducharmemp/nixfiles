@@ -30,6 +30,8 @@
 
     wezterm.url = "github:wez/wezterm?dir=nix";
     wezterm.inputs.nixpkgs.follows = "nixpkgs";
+    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.inputs.nixpkgs.follows = "nixpkgs";
 
     expert.url = "github:elixir-lang/expert";
     ponies-nix.url = "github:ducharmemp/ponies-nix";

@@ -126,6 +126,7 @@
           self.homeModules.git
           self.homeModules.nvim
           self.homeModules.wezterm
+          self.homeModules.ghostty
           self.homeModules.fish
           self.homeModules.oh-my-posh
           self.homeModules.psql
