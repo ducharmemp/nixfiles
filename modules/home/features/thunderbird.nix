@@ -4,7 +4,7 @@ _:
     _:
     {
       programs.thunderbird = {
-        enable = false;
+        enable = true;
         profiles.matt = {
           isDefault = true;
         };

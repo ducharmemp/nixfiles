@@ -17,6 +17,7 @@
           inputs.straps-exoskeleton.nixvimModules.default
           inputs.straps-chartifier.nixvimModules.default
           inputs.straps-buff.nixvimModules.default
+          inputs.straps-kagi.nixvimModules.default
         ];
         plugins.straps.enable = true;
         plugins.straps.settings.model = "claude-opus-5-5";
@@ -152,6 +153,7 @@
         plugins.straps-exoskeleton.enable = true;
         plugins.straps-chartifier.enable = true;
         plugins.straps-buff.enable = true;
+        plugins.straps-kagi.enable = true;
         plugins.straps-classifier = {
           enable = true;
           settings = {

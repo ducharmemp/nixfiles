@@ -4,7 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/69cbb6b7b66d93fd1b239ecb95bdd3ac827daf24";
 
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -59,6 +59,8 @@
     straps-chartifier.inputs.nixpkgs.follows = "unstable";
     straps-buff.url = "git+ssh://git@github.com/ducharmemp/straps-buff";
     straps-buff.inputs.nixpkgs.follows = "unstable";
+    straps-kagi.url = "git+ssh://git@github.com/ducharmemp/straps-kagi";
+    straps-kagi.inputs.nixpkgs.follows = "unstable";
     buff.url = "git+ssh://git@github.com/ducharmemp/buff.nvim";
     buff.inputs.nixpkgs.follows = "unstable";
 
