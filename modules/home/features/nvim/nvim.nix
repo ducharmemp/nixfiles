@@ -17,7 +17,6 @@
         self.homeModules.nvim-ts-autotag
         self.homeModules.nvim-octo
         self.homeModules.nvim-straps
-        self.homeModules.nvim-presenterm
         self.homeModules.nvim-open-floorplan
         self.homeModules.nvim-orgmode
       ];
@@ -65,7 +64,7 @@
         clipboard = {
           providers = {
             wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
-            # pbcopy.enable = pkgs.stdenv.hostPlatform.isDarwin;
+            pbcopy.enable = pkgs.stdenv.hostPlatform.isDarwin;
           };
           register = "unnamedplus";
         };

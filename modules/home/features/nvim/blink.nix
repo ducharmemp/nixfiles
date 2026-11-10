@@ -16,7 +16,6 @@ _:
               "buffer"
               "git"
               "ripgrep"
-              "presenterm"
               "orgmode"
             ];
             sources.providers = {

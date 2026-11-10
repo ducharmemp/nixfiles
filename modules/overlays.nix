@@ -10,6 +10,19 @@
       sbarlua = prev.sbarlua.overrideAttrs (o: {
         patches = (o.patches or [ ]) ++ [ ../pkgs/patches/sbarlua-send-timeout.patch ];
       });
+      zellij-unwrapped = prev.zellij-unwrapped.overrideAttrs (finalAttrs: _: {
+        version = "0.46.0";
+        src = prev.fetchFromGitHub {
+          owner = "zellij-org";
+          repo = "zellij";
+          tag = "v${finalAttrs.version}";
+          hash = "sha256-JpSNWC6jHahirUmnWRZKiVRonFjjIZx9j0V//6t1+iM=";
+        };
+        cargoDeps = prev.rustPlatform.fetchCargoVendor {
+          inherit (finalAttrs) pname version src;
+          hash = "sha256-i3Vh7w9YeGUkGIsbqA2UIiLtMqsSC+/ehdSDIfTckM8=";
+        };
+      });
     };
 
     unstable-packages = final: _prev: {

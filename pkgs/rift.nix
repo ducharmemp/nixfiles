@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
 
   src = fetchurl {
     url = "https://github.com/acsandmann/rift/releases/download/v${finalAttrs.version}/rift-universal-macos-${finalAttrs.version}.tar.gz";
-    hash = "sha256-rQ1gM79deqtGKm6cXN5NGrhdLUK7QrhCWqhkPYaDh9g=";
+    hash = "sha256-ZbJcZm0mYXRD8vT8im17TRr8pXEM1oMgjxQxZDILAAE=";
   };
 
   # sigtool provides codesign and cctools provides codesign_allocate (needed to
